@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "108863604729",
+    "project_id": "proker-24178",
+    "storage_bucket": "proker-24178.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108863604729:android:4645215af27965e809df28",
+        "android_client_info": {
+          "package_name": "com.proker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNq5xrDcPLoncxJeKtHXCnEnx0gyejCEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
