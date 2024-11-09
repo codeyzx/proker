@@ -8,6 +8,7 @@ import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:proker/config/injection/injection.dart';
 import 'package:proker/firebase_options.dart';
+import 'package:proker/injectable.dart';
 import 'package:proker/presentation/app.dart';
 
 GlobalKey<NavigatorState> navigatorKey =
@@ -42,6 +43,8 @@ void main() async {
 
   // Background Service Setup
   // await getIt<BackgroundServiceClient>().initializeService();
+
+  configureDependencies();
 
   runApp(App(navigatorKey: navigatorKey));
 }

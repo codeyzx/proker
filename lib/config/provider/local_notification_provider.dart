@@ -9,7 +9,6 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
         NotificationDetails,
         NotificationResponse,
         Priority;
-import 'package:go_router/go_router.dart';
 import 'package:proker/config/injection/injection.dart';
 import 'package:proker/main.dart';
 
@@ -32,10 +31,10 @@ class LocalNotificationProvider {
         }
         if (response.payload != null) {
           if (response.payload == 'open_location_service_setting') {
-            GoRouter.of(navigatorKey.currentState!.context).go('/settings');
+            // GoRouter.of(navigatorKey.currentState!.context).go('/settings');
             print('Open location service setting');
           } else if (response.payload == 'open_sos_service') {
-            GoRouter.of(navigatorKey.currentState!.context).go('/profile');
+            // GoRouter.of(navigatorKey.currentState!.context).go('/profile');
             print('Open SOS service');
           } else {
             print('Open map with jamaah_id: ${response.payload}');
@@ -54,10 +53,10 @@ class LocalNotificationProvider {
     }
     if (response.payload != null) {
       if (response.payload == 'open_location_service_setting') {
-        GoRouter.of(navigatorKey.currentState!.context).go('/settings');
+        // GoRouter.of(navigatorKey.currentState!.context).go('/settings');
         print('Open location service setting');
       } else if (response.payload == 'open_sos_service') {
-        GoRouter.of(navigatorKey.currentState!.context).go('/profile');
+        // GoRouter.of(navigatorKey.currentState!.context).go('/profile');
         print('Open SOS service');
       } else {
         print('Open map with jamaah_id: ${response.payload}');

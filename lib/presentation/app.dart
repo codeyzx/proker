@@ -18,55 +18,38 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<AuthBloc>(
-          create: (context) =>
-              AuthBloc(authRepository: _authRepository)..add(AppLoaded()),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) =>
+          AuthBloc(authRepository: _authRepository)..add(AppLoaded()),
       child: BlocBuilder<AuthBloc, AuthState>(
         builder: (context, state) {
-          final appRouter = AppRouter(context, navigatorKey);
-          return MultiBlocListener(
-            listeners: [
-              BlocListener<AuthBloc, AuthState>(
-                listener: (context, state) async {
-                  await Future.delayed(
-                      const Duration(seconds: 1, milliseconds: 500));
-                  if (state is Unauthenticated) {
-                    appRouter.router.refresh();
-                  }
-                },
-              ),
-            ],
-            child: MaterialApp.router(
-              title: AppConstants.appTitle,
-              theme: AppTheme.light,
-              routerConfig: appRouter.router,
-              builder: (context, child) {
-                // FlutterBackgroundService().on('changeAuthState').listen((event) {
-                //   if (event != null) {
-                //     final isAuthenticated = event['is_authenticated'] as String;
-                //     if (isAuthenticated == 'false') {
-                //       context.read<AuthBloc>().add(LoggedOut());
-                //     }
-                //   }
-                // });
+          final appRouter = AppRouter();
+          return MaterialApp.router(
+            title: AppConstants.appTitle,
+            theme: AppTheme.light,
+            routerConfig: appRouter.config(),
+            builder: (context, child) {
+              // FlutterBackgroundService().on('changeAuthState').listen((event) {
+              //   if (event != null) {
+              //     final isAuthenticated = event['is_authenticated'] as String;
+              //     if (isAuthenticated == 'false') {
+              //       context.read<AuthBloc>().add(LoggedOut());
+              //     }
+              //   }
+              // });
 
-                // return Stack(
-                //   children: [
-                //     child!,
-                //     ZegoUIKitPrebuiltLiveStreamingMiniOverlayPage(
-                //       contextQuery: () {
-                //         return navigatorKey.currentState!.context;
-                //       },
-                //     ),
-                //   ],
-                // );
-                return child!;
-              },
-            ),
+              // return Stack(
+              //   children: [
+              //     child!,
+              //     ZegoUIKitPrebuiltLiveStreamingMiniOverlayPage(
+              //       contextQuery: () {
+              //         return navigatorKey.currentState!.context;
+              //       },
+              //     ),
+              //   ],
+              // );
+              return child!;
+            },
           );
         },
       ),

@@ -1,7 +1,9 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemChrome, SystemUiOverlayStyle;
-import 'package:go_router/go_router.dart' show GoRouter;
+import 'package:proker/config/router/app_router.dart';
 
+@RoutePage()
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
@@ -15,7 +17,8 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
-      GoRouter.of(context).go('/');
+      // GoRouter.of(context).go('/');
+      context.router.push(const HomeRoute());
     });
   }
 
