@@ -6,12 +6,12 @@ import 'package:flutter/services.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:proker/config/injection/injection.dart';
+import 'package:proker/core/config/injection/injectable.dart';
+import 'package:proker/core/config/router/app_router.dart';
+import 'package:proker/core/config/themes/app_theme.dart';
+import 'package:proker/core/constants/app_constants.dart';
 import 'package:proker/firebase_options.dart';
-import 'package:proker/presentation/app.dart';
 
-GlobalKey<NavigatorState> navigatorKey =
-    GlobalKey(debugLabel: "Main Navigator");
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -27,9 +27,6 @@ void main() async {
   await initializeDateFormatting(Platform.localeName);
   Intl.defaultLocale = Platform.localeName;
 
-  // Dependency Injection Setup
-  await initDependencyInjection(navigatorKey);
-
   // Orientation Setup
   await SystemChrome.setPreferredOrientations(
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
@@ -43,5 +40,24 @@ void main() async {
   // Background Service Setup
   // await getIt<BackgroundServiceClient>().initializeService();
 
-  runApp(App(navigatorKey: navigatorKey));
+  // Dependency Injection Setup
+  configureDependencies();
+
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  final _appRouter = AppRouter();
+
+  App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      title: AppConstants.appTitle,
+      theme: AppTheme.light,
+      routerConfig: _appRouter.config(),
+    );
+  }
 }
