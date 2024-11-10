@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -53,11 +54,25 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      title: AppConstants.appTitle,
-      theme: AppTheme.light,
-      routerConfig: _appRouter.config(),
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: ScreenUtil(
+        options: const ScreenUtilOptions(
+          enable: true,
+          designSize: Size(390, 844),
+          fontFactorByWidth: 2.0,
+          fontFactorByHeight: 1.0,
+          flipSizeWhenLandscape: true,
+        ),
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          title: AppConstants.appTitle,
+          theme: AppTheme.light,
+          routerConfig: _appRouter.config(),
+        ),
+      ),
     );
   }
 }
