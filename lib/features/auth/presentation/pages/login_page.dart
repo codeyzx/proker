@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:proker/core/common/widgets/loader.dart';
+import 'package:proker/core/common/widgets/loader/loader.dart';
 import 'package:proker/core/utils/show_snackbar.dart';
 import 'package:proker/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:proker/features/auth/presentation/widgets/auth_field.dart';
