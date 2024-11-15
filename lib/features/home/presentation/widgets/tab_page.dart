@@ -13,7 +13,7 @@ class TabPage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: const [
         HomeRoute(),
-        SignupRoute(),
+        EventRoute(),
         HomeRoute(),
         HomeRoute(),
       ],
