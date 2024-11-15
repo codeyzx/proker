@@ -10,6 +10,25 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [EventPage]
+class EventRoute extends PageRouteInfo<void> {
+  const EventRoute({List<PageRouteInfo>? children})
+      : super(
+          EventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EventRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EventPage();
+    },
+  );
+}
+
+/// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
   const HomeRoute({List<PageRouteInfo>? children})

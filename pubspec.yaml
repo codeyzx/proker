@@ -57,6 +57,7 @@ dependencies:
   intl: ^0.19.0
   json_annotation: ^4.9.0
   permission_handler: ^11.3.1
+  dotted_border: ^2.0.0
 
 dev_dependencies:
   auto_route_generator: ^9.0.0
@@ -90,6 +91,7 @@ flutter:
     - assets/fonts/Poppins-BoldItalic.ttf
     - assets/fonts/Poppins-Italic.ttf
     - assets/fonts/Poppins-Medium.ttf
+
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
@@ -145,6 +147,13 @@ flutter:
           weight: 100
         - asset: assets/fonts/Poppins-ThinItalic.ttf
           weight: 100
+          style: italic
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/Urbanist-Regular.ttf
+        - asset: assets/fonts/Urbanist-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Urbanist-Italic.ttf
           style: italic
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

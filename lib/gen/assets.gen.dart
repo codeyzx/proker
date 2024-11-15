@@ -71,12 +71,40 @@ class $AssetsImagesGen {
   AssetGenImage get appLogo =>
       const AssetGenImage('assets/images/app_logo.png');
 
+  /// File path: assets/images/banner_pergerakan_1.png
+  AssetGenImage get bannerPergerakan1 =>
+      const AssetGenImage('assets/images/banner_pergerakan_1.png');
+
+  /// File path: assets/images/banner_pergerakan_2.png
+  AssetGenImage get bannerPergerakan2 =>
+      const AssetGenImage('assets/images/banner_pergerakan_2.png');
+
+  /// File path: assets/images/banner_proker_1.png
+  AssetGenImage get bannerProker1 =>
+      const AssetGenImage('assets/images/banner_proker_1.png');
+
+  /// File path: assets/images/banner_proker_2.png
+  AssetGenImage get bannerProker2 =>
+      const AssetGenImage('assets/images/banner_proker_2.png');
+
+  /// File path: assets/images/banner_proker_3.png
+  AssetGenImage get bannerProker3 =>
+      const AssetGenImage('assets/images/banner_proker_3.png');
+
   /// File path: assets/images/himakom_logo.png
   AssetGenImage get himakomLogo =>
       const AssetGenImage('assets/images/himakom_logo.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [appLogo, himakomLogo];
+  List<AssetGenImage> get values => [
+        appLogo,
+        bannerPergerakan1,
+        bannerPergerakan2,
+        bannerProker1,
+        bannerProker2,
+        bannerProker3,
+        himakomLogo
+      ];
 }
 
 class Assets {

@@ -34,7 +34,7 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  _buildSectionTitle(context, "Event Terpopuler"),
+                  _buildSectionTitle(context, "Event udon"),
                   const EventListWidget(),
                   _buildSectionTitle(context, "Upcoming Event"),
                   Padding(
