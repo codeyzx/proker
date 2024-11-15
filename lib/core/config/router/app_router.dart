@@ -5,6 +5,7 @@ import 'package:proker/features/event/presentation/event_page.dart';
 import 'package:proker/features/home/presentation/home_page.dart';
 import 'package:proker/features/home/presentation/splash_page.dart';
 import 'package:proker/features/home/presentation/widgets/tab_page.dart';
+import 'package:proker/features/home/presentation/profile_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -18,7 +19,7 @@ class AppRouter extends RootStackRouter {
             AutoRoute(page: HomeRoute.page),
             AutoRoute(page: EventRoute.page),
             AutoRoute(page: HomeRoute.page),
-            AutoRoute(page: HomeRoute.page),
+            AutoRoute(page: ProfileRoute.page),
           ],
         ),
         AutoRoute(page: SplashRoute.page, initial: true),
