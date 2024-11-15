@@ -15,7 +15,7 @@ class TabPage extends StatelessWidget {
         HomeRoute(),
         EventRoute(),
         HomeRoute(),
-        HomeRoute(),
+        ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
