@@ -25,7 +25,7 @@ class _SplashPageState extends State<SplashPage> {
   void _navigateToHome() {
     Future.delayed(const Duration(seconds: 2), () {
       if (!mounted) return;
-      context.router.push(const HomeRoute());
+      context.router.push(const LoginRoute());
     });
   }
 
@@ -61,7 +61,7 @@ class _SplashPageState extends State<SplashPage> {
     return Text.rich(
       TextSpan(
         children: [
-          _buildTextSpan('Proker', FontWeight.w800),
+          _buildTextSpan('Przoker', FontWeight.w800),
           _buildTextSpan('Hub', FontWeight.normal),
         ],
       ),
