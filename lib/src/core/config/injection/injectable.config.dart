@@ -49,7 +49,7 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final fBModule = _$FBModule();
-    final registerModule = _$RegisterModule1(this);
+    final registerModule = _$RegisterModule(this);
     gh.factory<_i252.HiveLocalStorage>(() => _i252.HiveLocalStorage());
     gh.singleton<_i59.FirebaseAuth>(() => fBModule.getFirebaseAuth);
     gh.singleton<_i116.GoogleSignIn>(() => fBModule.getGoogleSignin);
@@ -101,8 +101,8 @@ extension GetItInjectableX on _i174.GetIt {
 
 class _$FBModule extends _i869.FBModule {}
 
-class _$RegisterModule1 extends _i333.RegisterModule {
-  _$RegisterModule1(this._getIt);
+class _$RegisterModule extends _i333.RegisterModule {
+  _$RegisterModule(this._getIt);
 
   final _i174.GetIt _getIt;
 

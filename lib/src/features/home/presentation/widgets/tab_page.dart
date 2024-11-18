@@ -13,9 +13,9 @@ class TabPage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: const [
         HomeRoute(),
-        SignUpRoute(),
+        EventRoute(),
         HomeRoute(),
-        HomeRoute(),
+        ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(

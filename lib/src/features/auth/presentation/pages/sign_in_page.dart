@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
-import 'package:proker/src/core/config/themes/app_colors.dart';
 import 'package:proker/src/core/utils/show_snackbar.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 
@@ -29,108 +28,138 @@ class SignInPage extends StatelessWidget {
           }
         },
         child: Scaffold(
-            appBar: AppBar(),
-            body: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Please Login ! ",
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold),
+          backgroundColor: Colors.white,
+          body: Padding(
+            padding: EdgeInsets.all(context.w(16)),
+            child: Align(
+              alignment: Alignment.bottomCenter,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      // Image HIMAKOM
+                      padding: EdgeInsets.only(bottom: context.h(16)),
+                      child: Image.asset(
+                        'assets/images/himakom_logo.png',
+                        height: context.h(150),
                       ),
-                      SizedBox(height: 10),
-                      Text("Create an account so you can use this application")
-                    ],
-                  ),
-                  const SizedBox(height: 30),
-                  Column(
-                    children: [
-                      TextFormField(
-                        controller: emailCtr,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Email",
+                    ),
+                    SizedBox(height: context.h(24)),
+
+                    // Text "Masuk"
+                    Padding(
+                      padding: EdgeInsets.only(bottom: context.h(16)),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Masuk',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: context.sp(32),
+                          ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      TextFormField(
-                        controller: pwdCtr,
-                        decoration: const InputDecoration(
-                          border: OutlineInputBorder(),
-                          labelText: "Passpord",
+                    ),
+
+                    // input email
+                    TextFormField(
+                      controller: emailCtr,
+                      decoration: const InputDecoration(
+                        labelText: 'abc@gmail.com',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.email),
+                      ),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                    SizedBox(height: context.h(24)),
+
+                    // input password
+                    TextFormField(
+                      controller: pwdCtr,
+                      decoration: const InputDecoration(
+                        labelText: 'Your password',
+                        border: OutlineInputBorder(),
+                        prefixIcon: Icon(Icons.lock),
+                      ),
+                      obscureText: true,
+                    ),
+                    SizedBox(height: context.h(18)),
+
+                    // Text "Lupa Password?"
+
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: InkWell(
+                        onTap: () {
+                          context.replaceRoute(const ResetPasswordRoute());
+                        },
+                        child: const Text(
+                          'Lupa Password?',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  const Spacer(),
-                  Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      BlocBuilder<AuthCubit, AuthState>(
-                          builder: (context, state) {
-                        // return PrimaryButton(
-                        //   onTap: () {
-                        //     context.read<AuthCubit>().signInWithEmail(
-                        //           emailCtr.text,
-                        //           pwdCtr.text,
-                        //         );
-                        //   },
-                        //   isLoading: state.maybeMap(
-                        //     orElse: () => false,
-                        //     loading: (e) => true,
-                        //   ),
-                        //   label: "Sign In",
-                        // );
-                        return ElevatedButton(
-                          onPressed: () {
-                            context
-                                .read<AuthCubit>()
-                                .login(emailCtr.text, pwdCtr.text);
-                          },
-                          child: state.maybeMap(
-                            orElse: () => const Text("Sign In"),
-                            loginLoading: (e) =>
-                                const CircularProgressIndicator(),
+                    ),
+
+                    // Button for login
+                    BlocBuilder<AuthCubit, AuthState>(
+                      builder: (context, state) {
+                        return Padding(
+                          padding: EdgeInsets.only(top: context.h(40)),
+                          child: SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                context.read<AuthCubit>().login(
+                                      emailCtr.text,
+                                      pwdCtr.text,
+                                    );
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF04339B),
+                                padding: EdgeInsets.all(context.h(16)),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                minimumSize:
+                                    Size(context.w(200), context.h(50)),
+                              ),
+                              child: state.maybeMap(
+                                orElse: () => Text(
+                                  'MASUK',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: context.sp(16),
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                loginLoading: (e) =>
+                                    const CircularProgressIndicator(),
+                              ),
+                            ),
                           ),
                         );
-                      }),
-                      const SizedBox(height: 20),
-                      RichText(
-                        text: TextSpan(
-                            style: const TextStyle(
-                              color: Colors.grey,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            children: [
-                              const TextSpan(text: "I don't have an account"),
-                              const TextSpan(text: " "),
-                              TextSpan(
-                                text: "Sign Up",
-                                recognizer: TapGestureRecognizer()
-                                  ..onTap = () {
-                                    context.replaceRoute(const SignUpRoute());
-                                  },
-                                style: const TextStyle(
-                                  color: AppColors.primary,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ]),
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  )
-                ],
+                      },
+                    ),
+
+                    // Button for forgot password
+                    Padding(
+                      padding: EdgeInsets.only(top: context.h(30)),
+                      child: TextButton(
+                        onPressed: () {
+                          context.router.push(const SignUpRoute());
+                        },
+                        child: const Text('Lupa Password'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
