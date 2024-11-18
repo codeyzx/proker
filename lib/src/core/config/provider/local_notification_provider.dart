@@ -10,6 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart'
         NotificationResponse,
         Priority;
 import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/core/utils/logger.dart';
 
 class LocalNotificationProvider {
   final FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin =
@@ -26,17 +27,17 @@ class LocalNotificationProvider {
       initializationSettings,
       onDidReceiveNotificationResponse: (response) async {
         if (kDebugMode) {
-          print('Notification clicked with id ${response.id}');
+          logger.d('Notification clicked with id ${response.id}');
         }
         if (response.payload != null) {
           if (response.payload == 'open_location_service_setting') {
             // GoRouter.of(navigatorKey.currentState!.context).go('/settings');
-            print('Open location service setting');
+            logger.d('Open location service setting');
           } else if (response.payload == 'open_sos_service') {
             // GoRouter.of(navigatorKey.currentState!.context).go('/profile');
-            print('Open SOS service');
+            logger.d('Open SOS service');
           } else {
-            print('Open map with jamaah_id: ${response.payload}');
+            logger.d('Open map with jamaah_id: ${response.payload}');
           }
         }
       },
@@ -48,17 +49,17 @@ class LocalNotificationProvider {
   static Future<void> _localNotificationBackgroundHandler(
       NotificationResponse response) async {
     if (kDebugMode) {
-      print('Notification clicked with id ${response.id}');
+      logger.d('Notification clicked with id ${response.id}');
     }
     if (response.payload != null) {
       if (response.payload == 'open_location_service_setting') {
         // GoRouter.of(navigatorKey.currentState!.context).go('/settings');
-        print('Open location service setting');
+        logger.d('Open location service setting');
       } else if (response.payload == 'open_sos_service') {
         // GoRouter.of(navigatorKey.currentState!.context).go('/profile');
-        print('Open SOS service');
+        logger.d('Open SOS service');
       } else {
-        print('Open map with jamaah_id: ${response.payload}');
+        logger.d('Open map with jamaah_id: ${response.payload}');
       }
     }
   }

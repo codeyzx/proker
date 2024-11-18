@@ -3,10 +3,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
-import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 
 @RoutePage()

@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
-import 'package:proker/gen/assets.gen.dart';
 
 @RoutePage()
 class TabPage extends StatelessWidget {

@@ -1,9 +1,32 @@
-import 'package:injectable/injectable.dart';
-
-import 'package:proker/src/core/cache/local_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:injectable/injectable.dart';
+import 'package:proker/src/core/cache/local_storage.dart';
 
-@singleton
+@module
+abstract class RegisterModule {
+  @lazySingleton
+  FlutterSecureStorage get flutterSecureStorage;
+
+  @lazySingleton
+  IOSOptions get iosOptions => const IOSOptions();
+
+  @lazySingleton
+  AndroidOptions get androidOptions => const AndroidOptions();
+
+  @lazySingleton
+  LinuxOptions get linuxOptions => const LinuxOptions();
+
+  @lazySingleton
+  WindowsOptions get windowsOptions => const WindowsOptions();
+
+  @lazySingleton
+  WebOptions get webOptions => const WebOptions();
+
+  @lazySingleton
+  MacOsOptions get macOsOptions => const MacOsOptions();
+}
+
+@injectable
 class SecureLocalStorage implements LocalStorage {
   final FlutterSecureStorage _storage;
   const SecureLocalStorage(this._storage);

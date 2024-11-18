@@ -1,22 +1,22 @@
-import '../errors/failures.dart';
+import 'package:proker/src/core/errors/failures.dart';
 
 String mapFailureToMessage(Failure failure) {
   switch (failure.runtimeType) {
-    case ServerFailure:
+    case ServerFailure _:
       return "Server Failure";
-    case CacheFailure:
+    case CacheFailure _:
       return "Cache Failure";
-    case EmptyFailure:
+    case EmptyFailure _:
       return "Empty Failure";
-    case CredentialFailure:
+    case CredentialFailure _:
       return "Wrong Email or Password";
-    case DuplicateEmailFailure:
+    case DuplicateEmailFailure _:
       return "Email already taken";
-    case PasswordNotMatchFailure:
+    case PasswordNotMatchFailure _:
       return "Password not match";
-    case InvalidEmailFailure:
+    case InvalidEmailFailure _:
       return "Invalid email format";
-    case InvalidPasswordFailure:
+    case InvalidPasswordFailure _:
       return "Invalid password format";
     default:
       return "Unexpected error";

@@ -35,7 +35,6 @@ import '../../../features/auth/presentation/bloc/auth/auth_cubit.dart' as _i32;
 import '../../cache/hive_local_storage.dart' as _i252;
 import '../../cache/secure_local_storage.dart' as _i333;
 import '../../common/infrastructure/fb_module.dart' as _i869;
-import '../../common/infrastructure/register_module.dart' as _i183;
 import '../../network/connection_checker.dart' as _i989;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -50,22 +49,45 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     final fBModule = _$FBModule();
-    final registerModule = _$RegisterModule();
-    gh.singleton<_i252.HiveLocalStorage>(() => _i252.HiveLocalStorage());
+    final registerModule = _$RegisterModule1(this);
+    gh.factory<_i252.HiveLocalStorage>(() => _i252.HiveLocalStorage());
     gh.singleton<_i59.FirebaseAuth>(() => fBModule.getFirebaseAuth);
     gh.singleton<_i116.GoogleSignIn>(() => fBModule.getGoogleSignin);
     gh.singleton<_i451.FirebaseChatCore>(() => fBModule.getFirebaseChatCore);
-    gh.singleton<_i1043.AuthRemoteDataSourceImpl>(
-        () => _i1043.AuthRemoteDataSourceImpl());
+    gh.lazySingleton<_i558.IOSOptions>(() => registerModule.iosOptions);
+    gh.lazySingleton<_i558.AndroidOptions>(() => registerModule.androidOptions);
+    gh.lazySingleton<_i558.LinuxOptions>(() => registerModule.linuxOptions);
+    gh.lazySingleton<_i558.WindowsOptions>(() => registerModule.windowsOptions);
+    gh.lazySingleton<_i558.WebOptions>(() => registerModule.webOptions);
+    gh.lazySingleton<_i558.MacOsOptions>(() => registerModule.macOsOptions);
     gh.lazySingleton<_i161.InternetConnection>(
         () => registerModule.internetConnection);
-    gh.singleton<_i619.AuthCheckSignInStatusUseCase>(
+    gh.lazySingleton<_i1043.AuthRemoteDataSource>(
+        () => _i1043.AuthRemoteDataSourceImpl());
+    gh.lazySingleton<_i558.FlutterSecureStorage>(
+        () => registerModule.flutterSecureStorage);
+    gh.factory<_i333.SecureLocalStorage>(
+        () => _i333.SecureLocalStorage(gh<_i558.FlutterSecureStorage>()));
+    gh.lazySingleton<_i838.AuthLocalDataSource>(
+        () => _i838.AuthLocalDataSourceImpl(
+              gh<_i333.SecureLocalStorage>(),
+              gh<_i252.HiveLocalStorage>(),
+            ));
+    gh.singleton<_i989.ConnectionChecker>(
+        () => _i989.ConnectionCheckerImpl(gh<_i161.InternetConnection>()));
+    gh.lazySingleton<_i234.AuthRepository>(() => _i365.AuthRepositoryImpl(
+          gh<_i1043.AuthRemoteDataSource>(),
+          gh<_i838.AuthLocalDataSource>(),
+          gh<_i333.SecureLocalStorage>(),
+          gh<_i252.HiveLocalStorage>(),
+        ));
+    gh.lazySingleton<_i619.AuthCheckSignInStatusUseCase>(
         () => _i619.AuthCheckSignInStatusUseCase(gh<_i234.AuthRepository>()));
-    gh.singleton<_i849.AuthLoginUseCase>(
+    gh.lazySingleton<_i849.AuthLoginUseCase>(
         () => _i849.AuthLoginUseCase(gh<_i234.AuthRepository>()));
-    gh.singleton<_i1.AuthLogoutUseCase>(
+    gh.lazySingleton<_i1.AuthLogoutUseCase>(
         () => _i1.AuthLogoutUseCase(gh<_i234.AuthRepository>()));
-    gh.singleton<_i879.AuthRegisterUseCase>(
+    gh.lazySingleton<_i879.AuthRegisterUseCase>(
         () => _i879.AuthRegisterUseCase(gh<_i234.AuthRepository>()));
     gh.factory<_i32.AuthCubit>(() => _i32.AuthCubit(
           gh<_i849.AuthLoginUseCase>(),
@@ -73,25 +95,27 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i879.AuthRegisterUseCase>(),
           gh<_i619.AuthCheckSignInStatusUseCase>(),
         ));
-    gh.singleton<_i333.SecureLocalStorage>(
-        () => _i333.SecureLocalStorage(gh<_i558.FlutterSecureStorage>()));
-    gh.singleton<_i989.ConnectionChecker>(
-        () => _i989.ConnectionCheckerImpl(gh<_i161.InternetConnection>()));
-    gh.singleton<_i365.AuthRepositoryImpl>(() => _i365.AuthRepositoryImpl(
-          gh<_i1043.AuthRemoteDataSource>(),
-          gh<_i838.AuthLocalDataSource>(),
-          gh<_i333.SecureLocalStorage>(),
-          gh<_i252.HiveLocalStorage>(),
-        ));
-    gh.singleton<_i838.AuthLocalDataSourceImpl>(
-        () => _i838.AuthLocalDataSourceImpl(
-              gh<_i333.SecureLocalStorage>(),
-              gh<_i252.HiveLocalStorage>(),
-            ));
     return this;
   }
 }
 
 class _$FBModule extends _i869.FBModule {}
 
-class _$RegisterModule extends _i183.RegisterModule {}
+class _$RegisterModule1 extends _i333.RegisterModule {
+  _$RegisterModule1(this._getIt);
+
+  final _i174.GetIt _getIt;
+
+  @override
+  _i558.FlutterSecureStorage get flutterSecureStorage =>
+      _i558.FlutterSecureStorage(
+        iOptions: _getIt<_i558.IOSOptions>(),
+        aOptions: _getIt<_i558.AndroidOptions>(),
+        lOptions: _getIt<_i558.LinuxOptions>(),
+        wOptions: _getIt<_i558.WindowsOptions>(),
+        webOptions: _getIt<_i558.WebOptions>(),
+        mOptions: _getIt<_i558.MacOsOptions>(),
+      );
+
+  _i161.InternetConnection get internetConnection => _i161.InternetConnection();
+}

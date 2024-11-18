@@ -7,7 +7,7 @@ import 'package:proker/src/core/utils/extensions/string_extensions.dart';
 import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 import 'package:proker/src/features/auth/domain/repositories/auth_repository.dart';
 
-@singleton
+@lazySingleton
 class AuthLoginUseCase implements UseCase<UserEntity, Params> {
   final AuthRepository _authRepository;
   const AuthLoginUseCase(this._authRepository);

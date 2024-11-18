@@ -1,8 +1,7 @@
 import 'package:injectable/injectable.dart';
-
-import 'package:proker/src/core/errors/exceptions.dart';
 import 'package:proker/src/core/cache/hive_local_storage.dart';
 import 'package:proker/src/core/cache/secure_local_storage.dart';
+import 'package:proker/src/core/errors/exceptions.dart';
 import 'package:proker/src/core/utils/logger.dart';
 import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 
@@ -10,7 +9,7 @@ sealed class AuthLocalDataSource {
   Future<UserEntity> checkSignInStatus();
 }
 
-@singleton
+@LazySingleton(as: AuthLocalDataSource)
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   final SecureLocalStorage _secureLocalStorage;
   final HiveLocalStorage _localStorage;

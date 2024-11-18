@@ -16,8 +16,15 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<AuthCubit>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => getIt<AuthCubit>(),
+        ),
+        BlocProvider(
+          create: (context) => getIt<ThemeBloc>(),
+        ),
+      ],
       child: BlocListener<AuthCubit, AuthState>(
         listenWhen: (_, current) =>
             current is AuthCheckSignInStatusSuccessState,

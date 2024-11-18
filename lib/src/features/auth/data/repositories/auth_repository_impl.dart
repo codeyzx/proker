@@ -1,19 +1,18 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-
 import 'package:proker/src/core/cache/hive_local_storage.dart';
 import 'package:proker/src/core/cache/secure_local_storage.dart';
 import 'package:proker/src/core/errors/exceptions.dart';
 import 'package:proker/src/core/errors/failures.dart';
-import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
-import 'package:proker/src/features/auth/domain/repositories/auth_repository.dart';
-import 'package:proker/src/features/auth/domain/usecases/usecase_params.dart';
 import 'package:proker/src/features/auth/data/datasources/auth_local_datasource.dart';
 import 'package:proker/src/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:proker/src/features/auth/data/models/login_model.dart';
 import 'package:proker/src/features/auth/data/models/register_model.dart';
+import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
+import 'package:proker/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:proker/src/features/auth/domain/usecases/usecase_params.dart';
 
-@singleton
+@LazySingleton(as: AuthRepository)
 class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource _authRemoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;

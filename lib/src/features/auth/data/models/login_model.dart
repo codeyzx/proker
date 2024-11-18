@@ -1,4 +1,4 @@
-import '../../domain/entities/user_entity.dart';
+import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 
 class LoginModel extends UserEntity {
   const LoginModel({

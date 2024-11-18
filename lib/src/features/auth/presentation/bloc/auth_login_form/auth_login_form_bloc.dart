@@ -1,11 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 
-import '../../../../../core/utils/logger.dart';
+import 'package:proker/src/core/utils/logger.dart';
 
 part 'auth_login_form_event.dart';
 part 'auth_login_form_state.dart';
 
+@factoryMethod
 class AuthLoginFormBloc extends Bloc<LoginFormEvent, LoginFormState> {
   AuthLoginFormBloc() : super(const LoginFormInitialState()) {
     on<LoginFormEmailChangedEvent>(_emailChanged);

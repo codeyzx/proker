@@ -1,14 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:proker/src/core/errors/failures.dart';
 import 'package:proker/src/core/usecase/usecase.dart';
 import 'package:proker/src/core/utils/extensions/string_extensions.dart';
-import 'package:proker/src/features/auth/domain/usecases/login_usecase.dart';
-
-import 'package:proker/src/core/errors/failures.dart';
 import 'package:proker/src/features/auth/domain/repositories/auth_repository.dart';
 
-@singleton
+@lazySingleton
 class AuthRegisterUseCase implements UseCase<void, Params> {
   final AuthRepository _authRepository;
   const AuthRegisterUseCase(this._authRepository);

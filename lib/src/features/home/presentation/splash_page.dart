@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/core/common/widgets/status_bar/status_bar_widget.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
-import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 
 @RoutePage()
@@ -39,13 +39,27 @@ class SplashPage extends StatelessWidget {
           if (state is AuthCheckSignInStatusSuccessState) {
             context.router.replaceAll([const HomeRoute()]);
           } else if (state is AuthCheckSignInStatusFailureState) {
-            Future.delayed(const Duration(seconds: 3))
-                .then((value) => context.router.replaceAll([SignInRoute()]));
+            Future.delayed(const Duration(seconds: 3)).then((value) {
+              if (context.mounted) {
+                // context.router.replaceAll([SignInRoute()]);
+                context.router.replaceAll([const HomeRoute()]);
+              }
+            });
           }
         },
-        child: const Scaffold(
-          body: Center(
-            child: Text("Flutter Splash Page"),
+        child: StatusBarWidget(
+          color: Colors.white,
+          child: Scaffold(
+            backgroundColor: AppColors.primary,
+            body: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _buildLogo(context),
+                  _buildSplashText(context),
+                ],
+              ),
+            ),
           ),
         ),
       ),

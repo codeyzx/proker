@@ -1,5 +1,5 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:proker/src/core/usecase/usecase.dart';
 import 'package:proker/src/core/utils/failure_converter.dart';
@@ -11,8 +11,8 @@ import 'package:proker/src/features/auth/domain/usecases/logout_usecase.dart';
 import 'package:proker/src/features/auth/domain/usecases/register_usecase.dart';
 import 'package:proker/src/features/auth/domain/usecases/usecase_params.dart';
 
-part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
+part 'auth_state.dart';
 
 @injectable
 class AuthCubit extends Cubit<AuthState> {

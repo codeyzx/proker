@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../user_model.dart';
+import 'package:proker/src/features/auth/data/models/user_model.dart';
 
 class UserAdapter extends TypeAdapter<UserModel> {
   @override

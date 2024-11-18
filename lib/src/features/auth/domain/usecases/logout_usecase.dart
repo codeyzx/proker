@@ -1,11 +1,10 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import 'package:proker/src/core/usecase/usecase.dart';
-
 import 'package:proker/src/core/errors/failures.dart';
+import 'package:proker/src/core/usecase/usecase.dart';
 import 'package:proker/src/features/auth/domain/repositories/auth_repository.dart';
 
-@singleton
+@lazySingleton
 class AuthLogoutUseCase implements UseCase<void, NoParams> {
   final AuthRepository _authRepository;
   const AuthLogoutUseCase(this._authRepository);

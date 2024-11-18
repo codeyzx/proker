@@ -7,13 +7,14 @@ import 'package:proker/src/features/auth/data/models/login_model.dart';
 import 'package:proker/src/features/auth/data/models/register_model.dart';
 import 'package:proker/src/features/auth/data/models/user_model.dart';
 
+@factoryMethod
 sealed class AuthRemoteDataSource {
   Future<UserModel> login(LoginModel model);
   Future<void> logout();
   Future<void> register(RegisterModel model);
 }
 
-@singleton
+@LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<UserModel> login(LoginModel model) async {

@@ -1,14 +1,13 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:injectable/injectable.dart';
 import 'package:proker/src/core/utils/extensions/string_extensions.dart';
-import 'package:proker/src/features/auth/domain/usecases/login_usecase.dart';
-import 'package:proker/src/features/auth/domain/usecases/register_usecase.dart';
-
 import 'package:proker/src/core/utils/logger.dart';
 
 part 'auth_register_form_event.dart';
 part 'auth_register_form_state.dart';
 
+@factoryMethod
 class AuthRegisterFormBloc extends Bloc<RegisterFormEvent, RegisterFormState> {
   AuthRegisterFormBloc() : super(const RegisterFormInitialState()) {
     on<RegisterFormEmailChangedEvent>(_emailChanged);

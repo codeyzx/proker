@@ -5,7 +5,7 @@ import 'package:proker/src/core/errors/failures.dart';
 import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 import 'package:proker/src/features/auth/domain/usecases/usecase_params.dart';
 
-@singleton
+@factoryMethod
 abstract class AuthRepository {
   Future<Either<Failure, UserEntity>> login(LoginParams params);
   Future<Either<Failure, void>> logout();
