@@ -3,20 +3,21 @@ import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:proker/core/config/injection/injectable.dart';
-import 'package:proker/core/config/router/app_router.dart';
-import 'package:proker/core/config/themes/app_theme.dart';
-import 'package:proker/core/constants/app_constants.dart';
 import 'package:proker/firebase_options.dart';
+import 'package:proker/src/app.dart';
+import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/core/utils/observer.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-// Request notification permission if it's not granted
+  // Request notification permission if it's not granted
   if (await Permission.notification.isDenied ||
       await Permission.notification.isPermanentlyDenied ||
       await Permission.notification.isRestricted ||
@@ -33,8 +34,16 @@ void main() async {
     [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
   );
 
-  // Firebase Setup
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Future.wait([
+    // Firebase Setup
+    Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform),
+    Hive.initFlutter(),
+    getTemporaryDirectory().then((path) async {
+      HydratedBloc.storage = await HydratedStorage.build(
+        storageDirectory: path,
+      );
+    }),
+  ]);
 
   // FirebaseNotificationProvider();
 
@@ -44,35 +53,9 @@ void main() async {
   // Dependency Injection Setup
   configureDependencies();
 
+  setup();
+
+  Bloc.observer = AppBlocObserver();
+
   runApp(App());
-}
-
-class App extends StatelessWidget {
-  final _appRouter = AppRouter();
-
-  App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
-      child: ScreenUtil(
-        options: const ScreenUtilOptions(
-          enable: true,
-          designSize: Size(390, 844),
-          fontFactorByWidth: 2.0,
-          fontFactorByHeight: 1.0,
-          flipSizeWhenLandscape: true,
-        ),
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          title: AppConstants.appTitle,
-          theme: AppTheme.light,
-          routerConfig: _appRouter.config(),
-        ),
-      ),
-    );
-  }
 }
