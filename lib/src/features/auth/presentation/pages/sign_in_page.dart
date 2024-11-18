@@ -32,7 +32,7 @@ class SignInPage extends StatelessWidget {
           body: Padding(
             padding: EdgeInsets.all(context.w(16)),
             child: Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.center,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -92,7 +92,7 @@ class SignInPage extends StatelessWidget {
                       alignment: Alignment.centerRight,
                       child: InkWell(
                         onTap: () {
-                          context.replaceRoute(const ResetPasswordRoute());
+                          context.router.push(const ResetPasswordRoute());
                         },
                         child: const Text(
                           'Lupa Password?',
@@ -112,10 +112,12 @@ class SignInPage extends StatelessWidget {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                context.read<AuthCubit>().login(
-                                      emailCtr.text,
-                                      pwdCtr.text,
-                                    );
+                                // context.read<AuthCubit>().login(
+                                //       emailCtr.text,
+                                //       pwdCtr.text,
+                                //     );
+
+                                context.router.replaceAll([const HomeRoute()]);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF04339B),

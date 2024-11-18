@@ -24,7 +24,7 @@ class ResetPasswordPage extends StatelessWidget {
                 alignment: Alignment.topLeft,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.of(context).pop();
+                    context.maybePop();
                   },
                   child: Container(
                     padding: EdgeInsets.all(context.w(8)),
@@ -37,6 +37,7 @@ class ResetPasswordPage extends StatelessWidget {
                     child: Icon(
                       Icons.arrow_back_ios,
                       size: context.sp(24),
+                      color: Colors.black.withOpacity(0.5),
                     ),
                   ),
                 ),

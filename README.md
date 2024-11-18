@@ -1,6 +1,5 @@
-# Laporan Minggu 10 Kelompok 2B
-
 ## Anggota Kelompok
+
 - Adrian Pratama Sasmita (231524033)
 - Alya Naila Putri Ashadilla (231524036)
 - Faisal Bashri Albir (231524042)
@@ -10,9 +9,16 @@
 - Yahya Alfon Sinaga (231524064)
 
 ---
+
 ### **Deskripsi Umum Aplikasi**
+
 Aplikasi ini dirancang untuk membantu mahasiswa dalam suatu himpunan mahasiswa agar dapat dengan mudah mengakses informasi tentang program kerja (proker) yang diadakan oleh berbagai departemen di himpunan tersebut. Proker biasanya disosialisasikan melalui berbagai media komunikasi, namun cara ini dirasa kurang efektif dan terstruktur. Oleh karena itu, aplikasi ini akan menjadi platform sentral yang memungkinkan mahasiswa untuk melihat, mendukung, dan berinteraksi dengan program-program kerja yang sedang atau akan dilaksanakan.
 
+---
+
+## Visualization of this repo
+
+![Visualization of this repo](./diagram.svg)
 ---
 
 ### **Fitur Utama Aplikasi**
@@ -91,16 +97,18 @@ Proker dalam aplikasi ini dikategorikan ke dalam tiga state, yang membantu mahas
 ---
 
 ## Aplikasi dalam Konteks Paradigma dan Prinsip Pemrograman
+
 ### **Paradigma Pemrograman**
+
 1. **Object-Oriented Programming (OOP)**:
    - **Di Flutter**: Aplikasi ini menggunakan OOP karena Flutter berbasis Dart yang mendukung kelas dan objek. Setiap halaman atau fitur seperti program kerja dan chat dibuat sebagai objek dengan properti dan fungsi sendiri.
    - **Manfaat**: Memungkinkan reuse kode dan mempermudah pengembangan dengan pembagian yang jelas antar komponen.
 
-
 ### **Prinsip Pemrograman**
+
 1. **Concurrency (Konkuren)**:
    - **Isolates di Dart**: Tugas yang berat, seperti pemrosesan data, dijalankan secara bersamaan tanpa mengganggu aplikasi. Contohnya, mengambil data dari server dan memperbarui UI secara bersamaan.
-   
+
 2. **Event-Driven Programming**:
    - **Event Loop di Flutter**: Aplikasi merespons perubahan state, misalnya, ketika program kerja diperbarui, UI juga akan diperbarui.
    - **Fitur Chat**: Pada aplikasi ini, fitur chat menggunakan Firebase untuk komunikasi real-time. Firebase memungkinkan pesan dikirim dan diterima secara langsung, dengan UI yang diperbarui setiap kali ada perubahan data. **Sebelumnya**, tim telah mengembangkan aplikasi chat berbasis WebSocket, yang memungkinkan komunikasi dua arah secara real-time. Kini, chat pada aplikasi ini menggunakan Firebase sebagai pengganti WebSocket, yang menyediakan layanan real-time secara lebih sederhana dan terintegrasi.
@@ -137,6 +145,7 @@ Proker dalam aplikasi ini dikategorikan ke dalam tiga state, yang membantu mahas
    - Pengguna lebih sering mengecek ponsel, sehingga fitur seperti chat dan diskusi lebih aktif dibandingkan di web.
 
 ## Flutter Vs Kotlin
+
 Berikut adalah tabel perbandingan Flutter (Dart) dan Kotlin dengan fokus pada aspek penggunaannya dalam pembuatan aplikasi mobile.
 
 | **Aspek**                   | **Flutter (Dart)**                                       | **Kotlin**                                         | **Komentar**                                                                                   |
@@ -157,5 +166,6 @@ Berikut adalah tabel perbandingan Flutter (Dart) dan Kotlin dengan fokus pada as
 | **Pemeliharaan**             | Satu basis kode untuk dua platform                      | Fokus hanya untuk Android                         | **Flutter lebih baik**: Pemeliharaan lebih hemat waktu karena basis kode tunggal.              |
 
 ### Kesimpulan  
+
 - Jika aplikasi yang dibuat membutuhkan pengembangan *cross-platform* dengan UI menarik dan waktu pengembangan yang lebih cepat, Flutter adalah pilihan yang lebih baik.  
 - Namun, jika aplikasi fokus pada Android dengan kebutuhan akses mendalam ke fitur *native*, Kotlin lebih optimal.
