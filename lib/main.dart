@@ -11,6 +11,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:proker/firebase_options.dart';
 import 'package:proker/src/app.dart';
+import 'package:proker/src/core/config/adapter/adapter_conf.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/utils/observer.dart';
 
@@ -49,6 +50,9 @@ void main() async {
 
   // Background Service Setup
   // await getIt<BackgroundServiceClient>().initializeService();
+
+  // Hive Adapter Setup
+  configureAdapter();
 
   // Dependency Injection Setup
   configureDependencies();

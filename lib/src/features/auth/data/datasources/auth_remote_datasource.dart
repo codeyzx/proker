@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
 import 'package:proker/src/core/api/api_url.dart';
 import 'package:proker/src/core/constants/app_constants.dart';
@@ -16,11 +19,23 @@ sealed class AuthRemoteDataSource {
 
 @LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
+  AuthRemoteDataSourceImpl(this.fbAuth, this.googleSignIn, this.fbChatCore);
+  final FirebaseAuth fbAuth;
+  final GoogleSignIn googleSignIn;
+  final FirebaseChatCore fbChatCore;
+
   @override
   Future<UserModel> login(LoginModel model) async {
     try {
-      final user = await _getUserByEmail(model.email ?? "");
+      final userCred = await fbAuth.signInWithEmailAndPassword(
+        email: model.email ?? "",
+        password: model.password ?? "",
+      );
 
+      final userResult = userCred.user;
+      if (userResult == null) throw AuthException();
+
+      final user = await _getUserByEmail(model.email ?? "");
       return user;
     } on EmptyException {
       throw AuthException();
@@ -36,7 +51,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> logout() async {
     try {
-      await Future.delayed(const Duration(seconds: 1));
+      await FirebaseAuth.instance.signOut();
       return;
     } catch (e) {
       logger.e(e);

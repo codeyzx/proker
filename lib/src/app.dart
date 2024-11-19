@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -25,38 +24,29 @@ class App extends StatelessWidget {
           create: (context) => getIt<ThemeBloc>(),
         ),
       ],
-      child: BlocListener<AuthCubit, AuthState>(
-        listenWhen: (_, current) =>
-            current is AuthCheckSignInStatusSuccessState,
-        listener: (_, state) {
-          if (state is AuthCheckSignInStatusSuccessState) {
-            context.replaceRoute(const HomeRoute());
-          }
-        },
-        child: BlocBuilder<ThemeBloc, ThemeState>(
-          builder: (_, state) {
-            return GestureDetector(
-              onTap: () {
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              child: ScreenUtil(
-                options: const ScreenUtilOptions(
-                  enable: true,
-                  designSize: Size(390, 844),
-                  fontFactorByWidth: 2.0,
-                  fontFactorByHeight: 1.0,
-                  flipSizeWhenLandscape: true,
-                ),
-                child: MaterialApp.router(
-                  debugShowCheckedModeBanner: false,
-                  title: AppConstants.appTitle,
-                  theme: AppTheme.data(state.isDarkMode),
-                  routerConfig: _appRouter.config(),
-                ),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (_, state) {
+          return GestureDetector(
+            onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            child: ScreenUtil(
+              options: const ScreenUtilOptions(
+                enable: true,
+                designSize: Size(390, 844),
+                fontFactorByWidth: 2.0,
+                fontFactorByHeight: 1.0,
+                flipSizeWhenLandscape: true,
               ),
-            );
-          },
-        ),
+              child: MaterialApp.router(
+                debugShowCheckedModeBanner: false,
+                title: AppConstants.appTitle,
+                theme: AppTheme.data(state.isDarkMode),
+                routerConfig: _appRouter.config(),
+              ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -460,7 +460,7 @@ class UpcomingEventCard extends StatelessWidget {
                         SizedBox(width: context.w(4)),
                         Expanded(
                           child: Text(
-                            "Jum'at, 25 Okt 2024",
+                            "Jum'at",
                             style: TextStyle(fontSize: context.sp(11)),
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -553,7 +553,7 @@ class CustomSliverAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Halo ${state.data.username ?? "User"}!',
+                          'Halo ${state.data.name ?? "User"}!',
                           style: TextStyle(
                               color: Colors.white, fontSize: context.sp(18)),
                         ),
@@ -566,7 +566,7 @@ class CustomSliverAppBar extends StatelessWidget {
                             ),
                             SizedBox(width: context.w(4)),
                             const Text(
-                              "Jum'at, 25 Oktober 2024",
+                              "Jum'at",
                               style: TextStyle(color: Colors.white70),
                             ),
                           ],

@@ -63,7 +63,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i161.InternetConnection>(
         () => registerModule.internetConnection);
     gh.lazySingleton<_i1043.AuthRemoteDataSource>(
-        () => _i1043.AuthRemoteDataSourceImpl());
+        () => _i1043.AuthRemoteDataSourceImpl(
+              gh<_i59.FirebaseAuth>(),
+              gh<_i116.GoogleSignIn>(),
+              gh<_i451.FirebaseChatCore>(),
+            ));
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage);
     gh.factory<_i333.SecureLocalStorage>(
@@ -89,7 +93,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1.AuthLogoutUseCase(gh<_i234.AuthRepository>()));
     gh.lazySingleton<_i879.AuthRegisterUseCase>(
         () => _i879.AuthRegisterUseCase(gh<_i234.AuthRepository>()));
-    gh.factory<_i32.AuthCubit>(() => _i32.AuthCubit(
+    gh.singleton<_i32.AuthCubit>(() => _i32.AuthCubit(
           gh<_i849.AuthLoginUseCase>(),
           gh<_i1.AuthLogoutUseCase>(),
           gh<_i879.AuthRegisterUseCase>(),

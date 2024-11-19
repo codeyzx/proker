@@ -14,7 +14,7 @@ import 'package:proker/src/features/auth/domain/usecases/usecase_params.dart';
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
 
-@injectable
+@singleton
 class AuthCubit extends Cubit<AuthState> {
   final AuthLoginUseCase _loginUseCase;
   final AuthRegisterUseCase _registerUseCase;
@@ -64,7 +64,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     final result = await _registerUseCase.call(
       RegisterParams(
-        username: name,
+        name: name,
         email: email,
         password: password,
         confirmPassword: confirmPassword,

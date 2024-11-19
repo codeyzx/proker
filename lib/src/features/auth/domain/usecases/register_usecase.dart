@@ -31,12 +31,12 @@ class AuthRegisterUseCase implements UseCase<void, Params> {
 }
 
 class Params extends Equatable {
-  final String username;
+  final String name;
   final String email;
   final String password;
   final String confirmPassword;
   const Params({
-    required this.username,
+    required this.name,
     required this.email,
     required this.password,
     required this.confirmPassword,
@@ -44,7 +44,7 @@ class Params extends Equatable {
 
   @override
   List<Object?> get props => [
-        username,
+        name,
         email,
         password,
         confirmPassword,

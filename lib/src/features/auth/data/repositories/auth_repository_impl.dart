@@ -34,11 +34,8 @@ class AuthRepositoryImpl implements AuthRepository {
       );
 
       final result = await _authRemoteDataSource.login(model);
-      if (result.password != params.password) {
-        return Left(CredentialFailure());
-      }
 
-      await _secureLocalStorage.save(key: "user_id", value: result.userId);
+      await _secureLocalStorage.save(key: "user_id", value: result.id);
       await _localStorage.save(key: "user", value: result, boxName: "cache");
 
       return Right(result);
@@ -67,7 +64,7 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, void>> register(RegisterParams params) async {
     try {
       final model = RegisterModel(
-        username: params.username,
+        name: params.name,
         email: params.email,
         password: params.password,
       );

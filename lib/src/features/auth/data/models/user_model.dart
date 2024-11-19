@@ -2,23 +2,20 @@ import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 
 class UserModel extends UserEntity {
   const UserModel({
-    required String userId,
+    required String id,
     required String email,
-    required String username,
-    required String password,
+    required String name,
   }) : super(
-          userId: userId,
+          id: id,
           email: email,
-          username: username,
-          password: password,
+          name: name,
         );
 
-  factory UserModel.fromJson(Map<String, dynamic> json, String userId) {
+  factory UserModel.fromJson(Map<String, dynamic> json, String id) {
     return UserModel(
-      userId: userId,
+      id: id,
       email: json["email"],
-      username: json["username"],
-      password: json["password"],
+      name: json["name"],
     );
   }
 }

@@ -2,22 +2,22 @@ import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 
 class RegisterModel extends UserEntity {
   const RegisterModel({
-    required String username,
+    required String name,
     required String email,
     required String password,
   }) : super(
-          username: username,
+          name: name,
           email: email,
           password: password,
         );
 
   RegisterModel copyWith({
-    String? username,
+    String? name,
     String? email,
     String? password,
   }) {
     return RegisterModel(
-      username: username ?? (this.username ?? ""),
+      name: name ?? (this.name ?? ""),
       email: email ?? (this.email ?? ""),
       password: password ?? (this.password ?? ""),
     );
@@ -25,7 +25,7 @@ class RegisterModel extends UserEntity {
 
   Map<String, dynamic> toMap() {
     return {
-      "username": username,
+      "name": name,
       "email": email,
       "password": password,
     };

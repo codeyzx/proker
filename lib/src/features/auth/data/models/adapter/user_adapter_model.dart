@@ -11,19 +11,18 @@ class UserAdapter extends TypeAdapter<UserModel> {
     final data = reader.readList();
 
     return UserModel(
-      userId: data[0],
+      id: data[0],
       email: data[1],
-      username: data[2],
-      password: data[3],
+      name: data[2],
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer.writeList([
-      obj.userId,
+      obj.id,
       obj.email,
-      obj.username,
+      obj.name,
       obj.password,
     ]);
   }

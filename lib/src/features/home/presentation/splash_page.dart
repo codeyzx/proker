@@ -15,27 +15,10 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<AuthCubit>()..checkSignInStatus(),
+    return BlocProvider.value(
+      value: getIt<AuthCubit>()..checkSignInStatus(),
       child: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
-          // state.maybeMap(
-          //   orElse: () {},
-          //   loading: (e) {},
-          //   error: (e) {
-          //     Future.delayed(const Duration(seconds: 3))
-          //         .then((value) => context.router.replaceAll([SignInRoute()]));
-          //   },
-          //   success: (e) {
-          //     getIt<AuthenticationCubit>().setCurrentUser(User(
-          //       id: e.user.uid,
-          //       email: e.user.email,
-          //       name: e.user.displayName,
-          //     ));
-          //     Future.delayed(const Duration(seconds: 3)).then(
-          //         (value) => context.router.replaceAll([const HomeRoute()]));
-          //   },
-          // );
           if (state is AuthCheckSignInStatusSuccessState) {
             context.router.replaceAll([const HomeRoute()]);
           } else if (state is AuthCheckSignInStatusFailureState) {
@@ -47,7 +30,7 @@ class SplashPage extends StatelessWidget {
           }
         },
         child: StatusBarWidget(
-          color: Colors.white,
+          color: AppColors.primary,
           child: Scaffold(
             backgroundColor: AppColors.primary,
             body: Center(
