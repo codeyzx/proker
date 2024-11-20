@@ -70,9 +70,7 @@ class HomePage extends StatelessWidget {
                 fontSize: context.sp(18), fontWeight: FontWeight.bold),
           ),
           TextButton(
-            onPressed: () {
-              context.pushRoute(const FriendRoute());
-            },
+            onPressed: () {},
             child: Text("View All",
                 style: TextStyle(
                     color: const Color(0xFF04339B), fontSize: context.sp(14))),

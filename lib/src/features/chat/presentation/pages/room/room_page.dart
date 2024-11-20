@@ -73,14 +73,8 @@ class RoomPage extends StatelessWidget {
                                         createdAt: DateTime.now()
                                             .millisecondsSinceEpoch,
                                       );
-
-                              final lastMessageText =
-                                  (lastMessage is TextMessage)
-                                      ? lastMessage.text
-                                      : "No messages yet";
-
                               return LastRepliedMessageWidget(
-                                message: lastMessageText,
+                                message: lastMessage,
                                 isRead: false,
                               );
                             },
@@ -107,7 +101,7 @@ class RoomPage extends StatelessWidget {
 
 // Updated widget for displaying the last replied message with read status
 class LastRepliedMessageWidget extends StatelessWidget {
-  final String? message;
+  final Message? message;
   final bool isRead;
 
   const LastRepliedMessageWidget(
@@ -115,14 +109,35 @@ class LastRepliedMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      message ?? "No messages yet",
-      style: TextStyle(
-        color: !isRead ? Colors.grey : Colors.black,
-        fontWeight: isRead ? FontWeight.normal : FontWeight.bold,
-      ),
-      maxLines: 1,
-      overflow: TextOverflow.ellipsis,
+    String displayText = "No messages yet";
+    IconData? icon;
+
+    if (message is TextMessage) {
+      displayText = (message as TextMessage).text;
+    } else if (message is FileMessage) {
+      displayText = "File";
+      icon = Icons.attach_file;
+    } else if (message is ImageMessage) {
+      displayText = "Image";
+      icon = Icons.image;
+    }
+
+    return Row(
+      children: [
+        if (icon != null) Icon(icon, size: 16, color: Colors.grey),
+        const SizedBox(width: 4),
+        Expanded(
+          child: Text(
+            displayText,
+            style: TextStyle(
+              color: !isRead ? Colors.grey : Colors.black,
+              fontWeight: isRead ? FontWeight.normal : FontWeight.bold,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }
