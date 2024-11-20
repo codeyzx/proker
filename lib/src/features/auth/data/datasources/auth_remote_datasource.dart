@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -14,7 +15,7 @@ import 'package:proker/src/features/auth/data/models/user_model.dart';
 sealed class AuthRemoteDataSource {
   Future<UserModel> login(LoginModel model);
   Future<void> logout();
-  Future<void> register(RegisterModel model);
+  Future<UserModel> register(RegisterModel model);
 }
 
 @LazySingleton(as: AuthRemoteDataSource)
@@ -28,19 +29,53 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> login(LoginModel model) async {
     try {
       final userCred = await fbAuth.signInWithEmailAndPassword(
-        email: model.email ?? "",
-        password: model.password ?? "",
+        email: model.email ?? '',
+        password: model.password ?? '',
       );
-
       final userResult = userCred.user;
-      if (userResult == null) throw AuthException();
+      if (userResult == null) {
+        logger.e('User not found.');
+        throw CustomFirebaseAuthException('User not found.');
+      }
 
-      final user = await _getUserByEmail(model.email ?? "");
+      final user = await _getUserByEmail(model.email ?? '');
       return user;
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'user-not-found':
+          throw CustomFirebaseAuthException(
+              'There is no user corresponding to this email address.');
+        case 'wrong-password':
+          throw CustomFirebaseAuthException(
+              'The password is invalid for the provided email address.');
+        case 'invalid-email':
+          throw CustomFirebaseAuthException('The email address is not valid.');
+        case 'user-disabled':
+          throw CustomFirebaseAuthException(
+              'The user account has been disabled by an administrator.');
+        case 'too-many-requests':
+          throw CustomFirebaseAuthException(
+              'Too many requests. Try again later.');
+        case 'operation-not-allowed':
+          throw CustomFirebaseAuthException(
+              'Operation not allowed. Please enable it in the Firebase console.');
+        case 'invalid-credential':
+          throw CustomFirebaseAuthException(
+              'The provided credential is invlid or malformed.');
+        case 'account-exists-with-different-credential':
+          throw CustomFirebaseAuthException(
+              'The account exists with a different sign-in method.');
+        case 'credential-already-in-use':
+          throw CustomFirebaseAuthException(
+              'The credential is already associated with a different user account.');
+        default:
+          throw CustomFirebaseAuthException(
+              e.message ?? 'An unknown error occurred.');
+      }
     } on EmptyException {
       throw AuthException();
     } catch (e) {
-      logger.e(e);
+      logger.e("Error: $e");
       if (e.toString() == noElement) {
         throw AuthException();
       }
@@ -60,16 +95,54 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<void> register(RegisterModel model) async {
+  Future<UserModel> register(RegisterModel model) async {
     try {
-      final user = await _getUserByEmail(model.email ?? "");
-      if (user.email == model.email) {
-        throw DuplicateEmailException();
-      }
+      final userCred = await fbAuth.createUserWithEmailAndPassword(
+        email: model.email ?? '',
+        password: model.password ?? '',
+      );
 
-      return;
-    } on EmptyException {
-      await ApiUrl.users.add(model.toMap());
+      final user = userCred.user;
+      if (user == null) throw CustomFirebaseAuthException('User not found.');
+
+      await _registerUserToFirestore(user, name: model.name);
+      return UserModel(
+        id: user.uid,
+        email: user.email ?? '',
+        name: model.name ?? user.displayName ?? '',
+        firstName: model.name ?? user.displayName ?? '',
+        lastName: '',
+        imageUrl: user.photoURL ?? 'https://i.pravatar.cc/300',
+        role: 'user',
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
+        lastSeen: DateTime.now(),
+      );
+    } on FirebaseAuthException catch (e) {
+      switch (e.code) {
+        case 'email-already-in-use':
+          throw CustomFirebaseAuthException(
+              'The email address is already in use by another account.');
+        case 'invalid-email':
+          throw CustomFirebaseAuthException('The email address is not valid.');
+        case 'weak-password':
+          throw CustomFirebaseAuthException('The password is too weak.');
+        case 'operation-not-allowed':
+          throw CustomFirebaseAuthException(
+              'Operation not allowed. Please enable it in the Firebase console.');
+        case 'invalid-credential':
+          throw CustomFirebaseAuthException(
+              'The provided credential is invalid or malformed.');
+        case 'account-exists-with-different-credential':
+          throw CustomFirebaseAuthException(
+              'The account exists with a different sign-in method.');
+        case 'credential-already-in-use':
+          throw CustomFirebaseAuthException(
+              'The credential is already associated with a different user account.');
+        default:
+          throw CustomFirebaseAuthException(
+              e.message ?? 'An unknown error occurred.');
+      }
     } on DuplicateEmailException {
       rethrow;
     } catch (e) {
@@ -92,5 +165,19 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       logger.e(e);
       throw ServerException();
     }
+  }
+
+  Future<void> _registerUserToFirestore(User user, {String? name}) async {
+    await ApiUrl.users.doc(user.uid).set({
+      "email": user.email,
+      "name": name ?? user.displayName,
+      "firstName": name ?? user.displayName,
+      "lastName": "",
+      "imageUrl": user.photoURL ?? 'https://i.pravatar.cc/300',
+      "role": "user",
+      "createdAt": FieldValue.serverTimestamp(),
+      "updatedAt": FieldValue.serverTimestamp(),
+      "lastSeen": FieldValue.serverTimestamp(),
+    });
   }
 }

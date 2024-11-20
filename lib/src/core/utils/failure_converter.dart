@@ -2,22 +2,24 @@ import 'package:proker/src/core/errors/failures.dart';
 
 String mapFailureToMessage(Failure failure) {
   switch (failure.runtimeType) {
-    case ServerFailure _:
+    case const (ServerFailure):
       return "Server Failure";
-    case CacheFailure _:
+    case const (CacheFailure):
       return "Cache Failure";
-    case EmptyFailure _:
+    case const (EmptyFailure):
       return "Empty Failure";
-    case CredentialFailure _:
+    case const (CredentialFailure):
       return "Wrong Email or Password";
-    case DuplicateEmailFailure _:
+    case const (DuplicateEmailFailure):
       return "Email already taken";
-    case PasswordNotMatchFailure _:
+    case const (PasswordNotMatchFailure):
       return "Password not match";
-    case InvalidEmailFailure _:
+    case const (InvalidEmailFailure):
       return "Invalid email format";
-    case InvalidPasswordFailure _:
+    case const (InvalidPasswordFailure):
       return "Invalid password format";
+    case const (FirebaseAuthFailure):
+      return (failure as FirebaseAuthFailure).message;
     default:
       return "Unexpected error";
   }

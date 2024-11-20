@@ -1,8 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart';
 import 'package:proker/src/features/auth/presentation/pages/reset_password_page.dart';
 import 'package:proker/src/features/auth/presentation/pages/sign_in_page.dart';
 import 'package:proker/src/features/auth/presentation/pages/sign_up_page.dart';
+import 'package:proker/src/features/chat/presentation/pages/chat/chat_page.dart';
+import 'package:proker/src/features/chat/presentation/pages/friends/friends_page.dart';
+import 'package:proker/src/features/chat/presentation/pages/room/room_page.dart';
 import 'package:proker/src/features/event/presentation/event_page.dart';
 import 'package:proker/src/features/home/presentation/home_page.dart';
 import 'package:proker/src/features/home/presentation/profile_page.dart';
@@ -28,5 +32,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: ResetPasswordRoute.page),
+        AutoRoute(page: FriendRoute.page),
+        AutoRoute(page: ChatRoute.page),
+        AutoRoute(page: RoomRoute.page),
       ];
 }

@@ -10,6 +10,52 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [ChatPage]
+class ChatRoute extends PageRouteInfo<ChatRouteArgs> {
+  ChatRoute({
+    Key? key,
+    required Room room,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ChatRoute.name,
+          args: ChatRouteArgs(
+            key: key,
+            room: room,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ChatRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<ChatRouteArgs>();
+      return ChatPage(
+        key: args.key,
+        room: args.room,
+      );
+    },
+  );
+}
+
+class ChatRouteArgs {
+  const ChatRouteArgs({
+    this.key,
+    required this.room,
+  });
+
+  final Key? key;
+
+  final Room room;
+
+  @override
+  String toString() {
+    return 'ChatRouteArgs{key: $key, room: $room}';
+  }
+}
+
+/// generated route for
 /// [EventPage]
 class EventRoute extends PageRouteInfo<void> {
   const EventRoute({List<PageRouteInfo>? children})
@@ -24,6 +70,25 @@ class EventRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const EventPage();
+    },
+  );
+}
+
+/// generated route for
+/// [FriendPage]
+class FriendRoute extends PageRouteInfo<void> {
+  const FriendRoute({List<PageRouteInfo>? children})
+      : super(
+          FriendRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FriendRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const FriendPage();
     },
   );
 }
@@ -81,6 +146,25 @@ class ResetPasswordRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const ResetPasswordPage();
+    },
+  );
+}
+
+/// generated route for
+/// [RoomPage]
+class RoomRoute extends PageRouteInfo<void> {
+  const RoomRoute({List<PageRouteInfo>? children})
+      : super(
+          RoomRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RoomRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RoomPage();
     },
   );
 }

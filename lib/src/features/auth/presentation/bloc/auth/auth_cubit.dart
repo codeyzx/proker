@@ -14,7 +14,7 @@ import 'package:proker/src/features/auth/domain/usecases/usecase_params.dart';
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
 
-@singleton
+@lazySingleton
 class AuthCubit extends Cubit<AuthState> {
   final AuthLoginUseCase _loginUseCase;
   final AuthRegisterUseCase _registerUseCase;
@@ -40,7 +40,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.fold(
       (l) => emit(AuthState.loginFailure(mapFailureToMessage(l))),
-      (r) => emit(AuthState.loginSuccess(r)),
+      (r) => emit(AuthState.authenticated(r)),
     );
   }
 
@@ -51,7 +51,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.fold(
       (l) => emit(AuthState.logoutFailure(mapFailureToMessage(l))),
-      (r) => emit(const AuthState.logoutSuccess("Logout Success")),
+      (_) => emit(const AuthState.logoutSuccess("Logout Success")),
     );
   }
 
@@ -73,7 +73,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.fold(
       (l) => emit(AuthState.registerFailure(mapFailureToMessage(l))),
-      (r) => emit(const AuthState.registerSuccess("Register Success")),
+      (r) => emit(AuthState.authenticated(r)),
     );
   }
 
@@ -84,13 +84,14 @@ class AuthCubit extends Cubit<AuthState> {
 
     result.fold(
       (l) => emit(AuthState.checkSignInStatusFailure(mapFailureToMessage(l))),
-      (r) => emit(AuthState.checkSignInStatusSuccess(r)),
+      (r) => emit(AuthState.authenticated(r)),
     );
   }
 
   @override
-  Future<void> close() {
+  // ignore: must_call_super
+  Future<void> close() async {
     logger.i("===== CLOSE AuthCubit =====");
-    return super.close();
+    return Future.value();
   }
 }

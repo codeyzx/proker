@@ -20,3 +20,11 @@ class PasswordNotMatchFailure extends Failure {}
 class InvalidEmailFailure extends Failure {}
 
 class InvalidPasswordFailure extends Failure {}
+
+class FirebaseAuthFailure extends Failure {
+  final String message;
+  FirebaseAuthFailure(this.message);
+
+  @override
+  List<Object> get props => [message];
+}

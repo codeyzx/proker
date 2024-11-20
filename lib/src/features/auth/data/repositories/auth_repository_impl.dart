@@ -39,6 +39,8 @@ class AuthRepositoryImpl implements AuthRepository {
       await _localStorage.save(key: "user", value: result, boxName: "cache");
 
       return Right(result);
+    } on CustomFirebaseAuthException catch (e) {
+      return Left(FirebaseAuthFailure(e.message));
     } on AuthException {
       return Left(CredentialFailure());
     } on ServerException {
@@ -61,7 +63,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, void>> register(RegisterParams params) async {
+  Future<Either<Failure, UserEntity>> register(RegisterParams params) async {
     try {
       final model = RegisterModel(
         name: params.name,
@@ -70,7 +72,13 @@ class AuthRepositoryImpl implements AuthRepository {
       );
 
       final result = await _authRemoteDataSource.register(model);
+
+      await _secureLocalStorage.save(key: "user_id", value: result.id);
+      await _localStorage.save(key: "user", value: result, boxName: "cache");
+
       return Right(result);
+    } on CustomFirebaseAuthException catch (e) {
+      return Left(FirebaseAuthFailure(e.message));
     } on DuplicateEmailException {
       return Left(DuplicateEmailFailure());
     } on ServerException {

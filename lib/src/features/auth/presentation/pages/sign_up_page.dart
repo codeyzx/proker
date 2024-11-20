@@ -29,25 +29,9 @@ class _SignUpPageState extends State<SignUpPage> {
       create: (context) => getIt<AuthCubit>(),
       child: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
-          // state.maybeMap(
-          //   orElse: () {},
-          //   loading: (e) {},
-          //   error: (e) {
-          //     ScaffoldMessenger.of(context).showSnackBar(
-          //       SnackBar(
-          //         content: Text(e.errMsg),
-          //         duration: const Duration(seconds: 5),
-          //       ),
-          //     );
-          //   },
-          //   success: (e) {
-          //     getIt<AuthenticationCubit>().setCurrentUser(e.user);
-          //     context.router.replaceAll([HomeRoute()]);
-          //   },
-          // );
           if (state is AuthRegisterFailureState) {
             showSnackBar(context, Colors.red, state.message);
-          } else if (state is AuthRegisterSuccessState) {
+          } else if (state is AuthAuthenticatedState) {
             showSnackBar(context, Colors.green, "Register success");
             context.router.replaceAll([const HomeRoute()]);
           }
@@ -148,23 +132,6 @@ class _SignUpPageState extends State<SignUpPage> {
                   children: [
                     BlocBuilder<AuthCubit, AuthState>(
                       builder: (context, state) {
-                        // return PrimaryButton(
-                        //   onTap: () {
-                        //     if (formKey.currentState?.validate() == true) {
-                        //       //do register
-                        //       context.read<AuthCubit>().registerWithEmail(
-                        //             emailCtr.text,
-                        //             pwdConCtr.text,
-                        //             nameCtr.text,
-                        //           );
-                        //     }
-                        //   },
-                        //   isLoading: state.maybeMap(
-                        //     orElse: () => false,
-                        //     loading: (e) => true,
-                        //   ),
-                        //   label: "Sign Up",
-                        // );
                         return ElevatedButton(
                           onPressed: () {
                             if (formKey.currentState?.validate() == true) {

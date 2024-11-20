@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:proker/src/core/errors/failures.dart';
@@ -22,9 +23,13 @@ class AuthLoginUseCase implements UseCase<UserEntity, Params> {
       return Left(InvalidPasswordFailure());
     }
 
-    final result = await _authRepository.login(params);
-
-    return result;
+    try {
+      final result = await _authRepository.login(params);
+      return result;
+    } on FirebaseAuthException catch (e) {
+      return Left(
+          FirebaseAuthFailure(e.message ?? 'An unknown error occurred'));
+    }
   }
 }
 

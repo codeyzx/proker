@@ -20,51 +20,45 @@ mixin _$AuthState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,60 +66,51 @@ mixin _$AuthState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -194,17 +179,15 @@ class _$AuthInitialStateImpl implements AuthInitialState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return initial();
   }
@@ -214,17 +197,15 @@ class _$AuthInitialStateImpl implements AuthInitialState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return initial?.call();
   }
@@ -234,17 +215,15 @@ class _$AuthInitialStateImpl implements AuthInitialState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -258,20 +237,17 @@ class _$AuthInitialStateImpl implements AuthInitialState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return initial(this);
   }
@@ -281,20 +257,17 @@ class _$AuthInitialStateImpl implements AuthInitialState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return initial?.call(this);
   }
@@ -304,20 +277,17 @@ class _$AuthInitialStateImpl implements AuthInitialState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -377,17 +347,15 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return registerLoading();
   }
@@ -397,17 +365,15 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return registerLoading?.call();
   }
@@ -417,17 +383,15 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (registerLoading != null) {
@@ -441,20 +405,17 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return registerLoading(this);
   }
@@ -464,20 +425,17 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return registerLoading?.call(this);
   }
@@ -487,20 +445,17 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (registerLoading != null) {
@@ -512,225 +467,6 @@ class _$AuthRegisterLoadingStateImpl implements AuthRegisterLoadingState {
 
 abstract class AuthRegisterLoadingState implements AuthState {
   const factory AuthRegisterLoadingState() = _$AuthRegisterLoadingStateImpl;
-}
-
-/// @nodoc
-abstract class _$$AuthRegisterSuccessStateImplCopyWith<$Res> {
-  factory _$$AuthRegisterSuccessStateImplCopyWith(
-          _$AuthRegisterSuccessStateImpl value,
-          $Res Function(_$AuthRegisterSuccessStateImpl) then) =
-      __$$AuthRegisterSuccessStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class __$$AuthRegisterSuccessStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthRegisterSuccessStateImpl>
-    implements _$$AuthRegisterSuccessStateImplCopyWith<$Res> {
-  __$$AuthRegisterSuccessStateImplCopyWithImpl(
-      _$AuthRegisterSuccessStateImpl _value,
-      $Res Function(_$AuthRegisterSuccessStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_$AuthRegisterSuccessStateImpl(
-      null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AuthRegisterSuccessStateImpl implements AuthRegisterSuccessState {
-  const _$AuthRegisterSuccessStateImpl(this.message);
-
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'AuthState.registerSuccess(message: $message)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthRegisterSuccessStateImpl &&
-            (identical(other.message, message) || other.message == message));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthRegisterSuccessStateImplCopyWith<_$AuthRegisterSuccessStateImpl>
-      get copyWith => __$$AuthRegisterSuccessStateImplCopyWithImpl<
-          _$AuthRegisterSuccessStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
-    required TResult Function(String message) registerFailure,
-    required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
-    required TResult Function(String message) loginFailure,
-    required TResult Function() logoutLoading,
-    required TResult Function(String message) logoutSuccess,
-    required TResult Function(String message) logoutFailure,
-    required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
-    required TResult Function(String message) checkSignInStatusFailure,
-  }) {
-    return registerSuccess(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
-    TResult? Function(String message)? registerFailure,
-    TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
-    TResult? Function(String message)? loginFailure,
-    TResult? Function()? logoutLoading,
-    TResult? Function(String message)? logoutSuccess,
-    TResult? Function(String message)? logoutFailure,
-    TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
-    TResult? Function(String message)? checkSignInStatusFailure,
-  }) {
-    return registerSuccess?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
-    TResult Function(String message)? registerFailure,
-    TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
-    TResult Function(String message)? loginFailure,
-    TResult Function()? logoutLoading,
-    TResult Function(String message)? logoutSuccess,
-    TResult Function(String message)? logoutFailure,
-    TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
-    TResult Function(String message)? checkSignInStatusFailure,
-    required TResult orElse(),
-  }) {
-    if (registerSuccess != null) {
-      return registerSuccess(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitialState value) initial,
-    required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
-    required TResult Function(AuthRegisterFailureState value) registerFailure,
-    required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
-    required TResult Function(AuthLoginFailureState value) loginFailure,
-    required TResult Function(AuthLogoutLoadingState value) logoutLoading,
-    required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
-    required TResult Function(AuthLogoutFailureState value) logoutFailure,
-    required TResult Function(AuthCheckSignInStatusLoadingState value)
-        checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
-    required TResult Function(AuthCheckSignInStatusFailureState value)
-        checkSignInStatusFailure,
-  }) {
-    return registerSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitialState value)? initial,
-    TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
-    TResult? Function(AuthRegisterFailureState value)? registerFailure,
-    TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
-    TResult? Function(AuthLoginFailureState value)? loginFailure,
-    TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
-    TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
-    TResult? Function(AuthLogoutFailureState value)? logoutFailure,
-    TResult? Function(AuthCheckSignInStatusLoadingState value)?
-        checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
-    TResult? Function(AuthCheckSignInStatusFailureState value)?
-        checkSignInStatusFailure,
-  }) {
-    return registerSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitialState value)? initial,
-    TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
-    TResult Function(AuthRegisterFailureState value)? registerFailure,
-    TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
-    TResult Function(AuthLoginFailureState value)? loginFailure,
-    TResult Function(AuthLogoutLoadingState value)? logoutLoading,
-    TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
-    TResult Function(AuthLogoutFailureState value)? logoutFailure,
-    TResult Function(AuthCheckSignInStatusLoadingState value)?
-        checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
-    TResult Function(AuthCheckSignInStatusFailureState value)?
-        checkSignInStatusFailure,
-    required TResult orElse(),
-  }) {
-    if (registerSuccess != null) {
-      return registerSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthRegisterSuccessState implements AuthState {
-  const factory AuthRegisterSuccessState(final String message) =
-      _$AuthRegisterSuccessStateImpl;
-
-  String get message;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthRegisterSuccessStateImplCopyWith<_$AuthRegisterSuccessStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -806,17 +542,15 @@ class _$AuthRegisterFailureStateImpl implements AuthRegisterFailureState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return registerFailure(message);
   }
@@ -826,17 +560,15 @@ class _$AuthRegisterFailureStateImpl implements AuthRegisterFailureState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return registerFailure?.call(message);
   }
@@ -846,17 +578,15 @@ class _$AuthRegisterFailureStateImpl implements AuthRegisterFailureState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (registerFailure != null) {
@@ -870,20 +600,17 @@ class _$AuthRegisterFailureStateImpl implements AuthRegisterFailureState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return registerFailure(this);
   }
@@ -893,20 +620,17 @@ class _$AuthRegisterFailureStateImpl implements AuthRegisterFailureState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return registerFailure?.call(this);
   }
@@ -916,20 +640,17 @@ class _$AuthRegisterFailureStateImpl implements AuthRegisterFailureState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (registerFailure != null) {
@@ -997,17 +718,15 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return loginLoading();
   }
@@ -1017,17 +736,15 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return loginLoading?.call();
   }
@@ -1037,17 +754,15 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (loginLoading != null) {
@@ -1061,20 +776,17 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return loginLoading(this);
   }
@@ -1084,20 +796,17 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return loginLoading?.call(this);
   }
@@ -1107,20 +816,17 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (loginLoading != null) {
@@ -1132,224 +838,6 @@ class _$AuthLoginLoadingStateImpl implements AuthLoginLoadingState {
 
 abstract class AuthLoginLoadingState implements AuthState {
   const factory AuthLoginLoadingState() = _$AuthLoginLoadingStateImpl;
-}
-
-/// @nodoc
-abstract class _$$AuthLoginSuccessStateImplCopyWith<$Res> {
-  factory _$$AuthLoginSuccessStateImplCopyWith(
-          _$AuthLoginSuccessStateImpl value,
-          $Res Function(_$AuthLoginSuccessStateImpl) then) =
-      __$$AuthLoginSuccessStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserEntity data});
-}
-
-/// @nodoc
-class __$$AuthLoginSuccessStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthLoginSuccessStateImpl>
-    implements _$$AuthLoginSuccessStateImplCopyWith<$Res> {
-  __$$AuthLoginSuccessStateImplCopyWithImpl(_$AuthLoginSuccessStateImpl _value,
-      $Res Function(_$AuthLoginSuccessStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$AuthLoginSuccessStateImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AuthLoginSuccessStateImpl implements AuthLoginSuccessState {
-  const _$AuthLoginSuccessStateImpl(this.data);
-
-  @override
-  final UserEntity data;
-
-  @override
-  String toString() {
-    return 'AuthState.loginSuccess(data: $data)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthLoginSuccessStateImpl &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, data);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthLoginSuccessStateImplCopyWith<_$AuthLoginSuccessStateImpl>
-      get copyWith => __$$AuthLoginSuccessStateImplCopyWithImpl<
-          _$AuthLoginSuccessStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
-    required TResult Function(String message) registerFailure,
-    required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
-    required TResult Function(String message) loginFailure,
-    required TResult Function() logoutLoading,
-    required TResult Function(String message) logoutSuccess,
-    required TResult Function(String message) logoutFailure,
-    required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
-    required TResult Function(String message) checkSignInStatusFailure,
-  }) {
-    return loginSuccess(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
-    TResult? Function(String message)? registerFailure,
-    TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
-    TResult? Function(String message)? loginFailure,
-    TResult? Function()? logoutLoading,
-    TResult? Function(String message)? logoutSuccess,
-    TResult? Function(String message)? logoutFailure,
-    TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
-    TResult? Function(String message)? checkSignInStatusFailure,
-  }) {
-    return loginSuccess?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
-    TResult Function(String message)? registerFailure,
-    TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
-    TResult Function(String message)? loginFailure,
-    TResult Function()? logoutLoading,
-    TResult Function(String message)? logoutSuccess,
-    TResult Function(String message)? logoutFailure,
-    TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
-    TResult Function(String message)? checkSignInStatusFailure,
-    required TResult orElse(),
-  }) {
-    if (loginSuccess != null) {
-      return loginSuccess(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitialState value) initial,
-    required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
-    required TResult Function(AuthRegisterFailureState value) registerFailure,
-    required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
-    required TResult Function(AuthLoginFailureState value) loginFailure,
-    required TResult Function(AuthLogoutLoadingState value) logoutLoading,
-    required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
-    required TResult Function(AuthLogoutFailureState value) logoutFailure,
-    required TResult Function(AuthCheckSignInStatusLoadingState value)
-        checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
-    required TResult Function(AuthCheckSignInStatusFailureState value)
-        checkSignInStatusFailure,
-  }) {
-    return loginSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitialState value)? initial,
-    TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
-    TResult? Function(AuthRegisterFailureState value)? registerFailure,
-    TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
-    TResult? Function(AuthLoginFailureState value)? loginFailure,
-    TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
-    TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
-    TResult? Function(AuthLogoutFailureState value)? logoutFailure,
-    TResult? Function(AuthCheckSignInStatusLoadingState value)?
-        checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
-    TResult? Function(AuthCheckSignInStatusFailureState value)?
-        checkSignInStatusFailure,
-  }) {
-    return loginSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitialState value)? initial,
-    TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
-    TResult Function(AuthRegisterFailureState value)? registerFailure,
-    TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
-    TResult Function(AuthLoginFailureState value)? loginFailure,
-    TResult Function(AuthLogoutLoadingState value)? logoutLoading,
-    TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
-    TResult Function(AuthLogoutFailureState value)? logoutFailure,
-    TResult Function(AuthCheckSignInStatusLoadingState value)?
-        checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
-    TResult Function(AuthCheckSignInStatusFailureState value)?
-        checkSignInStatusFailure,
-    required TResult orElse(),
-  }) {
-    if (loginSuccess != null) {
-      return loginSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthLoginSuccessState implements AuthState {
-  const factory AuthLoginSuccessState(final UserEntity data) =
-      _$AuthLoginSuccessStateImpl;
-
-  UserEntity get data;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthLoginSuccessStateImplCopyWith<_$AuthLoginSuccessStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1424,17 +912,15 @@ class _$AuthLoginFailureStateImpl implements AuthLoginFailureState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return loginFailure(message);
   }
@@ -1444,17 +930,15 @@ class _$AuthLoginFailureStateImpl implements AuthLoginFailureState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return loginFailure?.call(message);
   }
@@ -1464,17 +948,15 @@ class _$AuthLoginFailureStateImpl implements AuthLoginFailureState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (loginFailure != null) {
@@ -1488,20 +970,17 @@ class _$AuthLoginFailureStateImpl implements AuthLoginFailureState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return loginFailure(this);
   }
@@ -1511,20 +990,17 @@ class _$AuthLoginFailureStateImpl implements AuthLoginFailureState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return loginFailure?.call(this);
   }
@@ -1534,20 +1010,17 @@ class _$AuthLoginFailureStateImpl implements AuthLoginFailureState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (loginFailure != null) {
@@ -1616,17 +1089,15 @@ class _$AuthLogoutLoadingStateImpl implements AuthLogoutLoadingState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return logoutLoading();
   }
@@ -1636,17 +1107,15 @@ class _$AuthLogoutLoadingStateImpl implements AuthLogoutLoadingState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return logoutLoading?.call();
   }
@@ -1656,17 +1125,15 @@ class _$AuthLogoutLoadingStateImpl implements AuthLogoutLoadingState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutLoading != null) {
@@ -1680,20 +1147,17 @@ class _$AuthLogoutLoadingStateImpl implements AuthLogoutLoadingState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return logoutLoading(this);
   }
@@ -1703,20 +1167,17 @@ class _$AuthLogoutLoadingStateImpl implements AuthLogoutLoadingState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return logoutLoading?.call(this);
   }
@@ -1726,20 +1187,17 @@ class _$AuthLogoutLoadingStateImpl implements AuthLogoutLoadingState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutLoading != null) {
@@ -1826,17 +1284,15 @@ class _$AuthLogoutSuccessStateImpl implements AuthLogoutSuccessState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return logoutSuccess(message);
   }
@@ -1846,17 +1302,15 @@ class _$AuthLogoutSuccessStateImpl implements AuthLogoutSuccessState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return logoutSuccess?.call(message);
   }
@@ -1866,17 +1320,15 @@ class _$AuthLogoutSuccessStateImpl implements AuthLogoutSuccessState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutSuccess != null) {
@@ -1890,20 +1342,17 @@ class _$AuthLogoutSuccessStateImpl implements AuthLogoutSuccessState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return logoutSuccess(this);
   }
@@ -1913,20 +1362,17 @@ class _$AuthLogoutSuccessStateImpl implements AuthLogoutSuccessState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return logoutSuccess?.call(this);
   }
@@ -1936,20 +1382,17 @@ class _$AuthLogoutSuccessStateImpl implements AuthLogoutSuccessState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutSuccess != null) {
@@ -2045,17 +1488,15 @@ class _$AuthLogoutFailureStateImpl implements AuthLogoutFailureState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return logoutFailure(message);
   }
@@ -2065,17 +1506,15 @@ class _$AuthLogoutFailureStateImpl implements AuthLogoutFailureState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return logoutFailure?.call(message);
   }
@@ -2085,17 +1524,15 @@ class _$AuthLogoutFailureStateImpl implements AuthLogoutFailureState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutFailure != null) {
@@ -2109,20 +1546,17 @@ class _$AuthLogoutFailureStateImpl implements AuthLogoutFailureState {
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return logoutFailure(this);
   }
@@ -2132,20 +1566,17 @@ class _$AuthLogoutFailureStateImpl implements AuthLogoutFailureState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return logoutFailure?.call(this);
   }
@@ -2155,20 +1586,17 @@ class _$AuthLogoutFailureStateImpl implements AuthLogoutFailureState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (logoutFailure != null) {
@@ -2239,17 +1667,15 @@ class _$AuthCheckSignInStatusLoadingStateImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return checkSignInStatusLoading();
   }
@@ -2259,17 +1685,15 @@ class _$AuthCheckSignInStatusLoadingStateImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return checkSignInStatusLoading?.call();
   }
@@ -2279,17 +1703,15 @@ class _$AuthCheckSignInStatusLoadingStateImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (checkSignInStatusLoading != null) {
@@ -2303,20 +1725,17 @@ class _$AuthCheckSignInStatusLoadingStateImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return checkSignInStatusLoading(this);
   }
@@ -2326,20 +1745,17 @@ class _$AuthCheckSignInStatusLoadingStateImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return checkSignInStatusLoading?.call(this);
   }
@@ -2349,20 +1765,17 @@ class _$AuthCheckSignInStatusLoadingStateImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (checkSignInStatusLoading != null) {
@@ -2375,229 +1788,6 @@ class _$AuthCheckSignInStatusLoadingStateImpl
 abstract class AuthCheckSignInStatusLoadingState implements AuthState {
   const factory AuthCheckSignInStatusLoadingState() =
       _$AuthCheckSignInStatusLoadingStateImpl;
-}
-
-/// @nodoc
-abstract class _$$AuthCheckSignInStatusSuccessStateImplCopyWith<$Res> {
-  factory _$$AuthCheckSignInStatusSuccessStateImplCopyWith(
-          _$AuthCheckSignInStatusSuccessStateImpl value,
-          $Res Function(_$AuthCheckSignInStatusSuccessStateImpl) then) =
-      __$$AuthCheckSignInStatusSuccessStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserEntity data});
-}
-
-/// @nodoc
-class __$$AuthCheckSignInStatusSuccessStateImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res,
-        _$AuthCheckSignInStatusSuccessStateImpl>
-    implements _$$AuthCheckSignInStatusSuccessStateImplCopyWith<$Res> {
-  __$$AuthCheckSignInStatusSuccessStateImplCopyWithImpl(
-      _$AuthCheckSignInStatusSuccessStateImpl _value,
-      $Res Function(_$AuthCheckSignInStatusSuccessStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? data = null,
-  }) {
-    return _then(_$AuthCheckSignInStatusSuccessStateImpl(
-      null == data
-          ? _value.data
-          : data // ignore: cast_nullable_to_non_nullable
-              as UserEntity,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$AuthCheckSignInStatusSuccessStateImpl
-    implements AuthCheckSignInStatusSuccessState {
-  const _$AuthCheckSignInStatusSuccessStateImpl(this.data);
-
-  @override
-  final UserEntity data;
-
-  @override
-  String toString() {
-    return 'AuthState.checkSignInStatusSuccess(data: $data)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthCheckSignInStatusSuccessStateImpl &&
-            (identical(other.data, data) || other.data == data));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, data);
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthCheckSignInStatusSuccessStateImplCopyWith<
-          _$AuthCheckSignInStatusSuccessStateImpl>
-      get copyWith => __$$AuthCheckSignInStatusSuccessStateImplCopyWithImpl<
-          _$AuthCheckSignInStatusSuccessStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
-    required TResult Function(String message) registerFailure,
-    required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
-    required TResult Function(String message) loginFailure,
-    required TResult Function() logoutLoading,
-    required TResult Function(String message) logoutSuccess,
-    required TResult Function(String message) logoutFailure,
-    required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
-    required TResult Function(String message) checkSignInStatusFailure,
-  }) {
-    return checkSignInStatusSuccess(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
-    TResult? Function(String message)? registerFailure,
-    TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
-    TResult? Function(String message)? loginFailure,
-    TResult? Function()? logoutLoading,
-    TResult? Function(String message)? logoutSuccess,
-    TResult? Function(String message)? logoutFailure,
-    TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
-    TResult? Function(String message)? checkSignInStatusFailure,
-  }) {
-    return checkSignInStatusSuccess?.call(data);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
-    TResult Function(String message)? registerFailure,
-    TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
-    TResult Function(String message)? loginFailure,
-    TResult Function()? logoutLoading,
-    TResult Function(String message)? logoutSuccess,
-    TResult Function(String message)? logoutFailure,
-    TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
-    TResult Function(String message)? checkSignInStatusFailure,
-    required TResult orElse(),
-  }) {
-    if (checkSignInStatusSuccess != null) {
-      return checkSignInStatusSuccess(data);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitialState value) initial,
-    required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
-    required TResult Function(AuthRegisterFailureState value) registerFailure,
-    required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
-    required TResult Function(AuthLoginFailureState value) loginFailure,
-    required TResult Function(AuthLogoutLoadingState value) logoutLoading,
-    required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
-    required TResult Function(AuthLogoutFailureState value) logoutFailure,
-    required TResult Function(AuthCheckSignInStatusLoadingState value)
-        checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
-    required TResult Function(AuthCheckSignInStatusFailureState value)
-        checkSignInStatusFailure,
-  }) {
-    return checkSignInStatusSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitialState value)? initial,
-    TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
-    TResult? Function(AuthRegisterFailureState value)? registerFailure,
-    TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
-    TResult? Function(AuthLoginFailureState value)? loginFailure,
-    TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
-    TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
-    TResult? Function(AuthLogoutFailureState value)? logoutFailure,
-    TResult? Function(AuthCheckSignInStatusLoadingState value)?
-        checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
-    TResult? Function(AuthCheckSignInStatusFailureState value)?
-        checkSignInStatusFailure,
-  }) {
-    return checkSignInStatusSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitialState value)? initial,
-    TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
-    TResult Function(AuthRegisterFailureState value)? registerFailure,
-    TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
-    TResult Function(AuthLoginFailureState value)? loginFailure,
-    TResult Function(AuthLogoutLoadingState value)? logoutLoading,
-    TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
-    TResult Function(AuthLogoutFailureState value)? logoutFailure,
-    TResult Function(AuthCheckSignInStatusLoadingState value)?
-        checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
-    TResult Function(AuthCheckSignInStatusFailureState value)?
-        checkSignInStatusFailure,
-    required TResult orElse(),
-  }) {
-    if (checkSignInStatusSuccess != null) {
-      return checkSignInStatusSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class AuthCheckSignInStatusSuccessState implements AuthState {
-  const factory AuthCheckSignInStatusSuccessState(final UserEntity data) =
-      _$AuthCheckSignInStatusSuccessStateImpl;
-
-  UserEntity get data;
-
-  /// Create a copy of AuthState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthCheckSignInStatusSuccessStateImplCopyWith<
-          _$AuthCheckSignInStatusSuccessStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -2676,17 +1866,15 @@ class _$AuthCheckSignInStatusFailureStateImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() registerLoading,
-    required TResult Function(String message) registerSuccess,
     required TResult Function(String message) registerFailure,
     required TResult Function() loginLoading,
-    required TResult Function(UserEntity data) loginSuccess,
     required TResult Function(String message) loginFailure,
     required TResult Function() logoutLoading,
     required TResult Function(String message) logoutSuccess,
     required TResult Function(String message) logoutFailure,
     required TResult Function() checkSignInStatusLoading,
-    required TResult Function(UserEntity data) checkSignInStatusSuccess,
     required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
   }) {
     return checkSignInStatusFailure(message);
   }
@@ -2696,17 +1884,15 @@ class _$AuthCheckSignInStatusFailureStateImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? registerLoading,
-    TResult? Function(String message)? registerSuccess,
     TResult? Function(String message)? registerFailure,
     TResult? Function()? loginLoading,
-    TResult? Function(UserEntity data)? loginSuccess,
     TResult? Function(String message)? loginFailure,
     TResult? Function()? logoutLoading,
     TResult? Function(String message)? logoutSuccess,
     TResult? Function(String message)? logoutFailure,
     TResult? Function()? checkSignInStatusLoading,
-    TResult? Function(UserEntity data)? checkSignInStatusSuccess,
     TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
   }) {
     return checkSignInStatusFailure?.call(message);
   }
@@ -2716,17 +1902,15 @@ class _$AuthCheckSignInStatusFailureStateImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? registerLoading,
-    TResult Function(String message)? registerSuccess,
     TResult Function(String message)? registerFailure,
     TResult Function()? loginLoading,
-    TResult Function(UserEntity data)? loginSuccess,
     TResult Function(String message)? loginFailure,
     TResult Function()? logoutLoading,
     TResult Function(String message)? logoutSuccess,
     TResult Function(String message)? logoutFailure,
     TResult Function()? checkSignInStatusLoading,
-    TResult Function(UserEntity data)? checkSignInStatusSuccess,
     TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
     required TResult orElse(),
   }) {
     if (checkSignInStatusFailure != null) {
@@ -2740,20 +1924,17 @@ class _$AuthCheckSignInStatusFailureStateImpl
   TResult map<TResult extends Object?>({
     required TResult Function(AuthInitialState value) initial,
     required TResult Function(AuthRegisterLoadingState value) registerLoading,
-    required TResult Function(AuthRegisterSuccessState value) registerSuccess,
     required TResult Function(AuthRegisterFailureState value) registerFailure,
     required TResult Function(AuthLoginLoadingState value) loginLoading,
-    required TResult Function(AuthLoginSuccessState value) loginSuccess,
     required TResult Function(AuthLoginFailureState value) loginFailure,
     required TResult Function(AuthLogoutLoadingState value) logoutLoading,
     required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
     required TResult Function(AuthLogoutFailureState value) logoutFailure,
     required TResult Function(AuthCheckSignInStatusLoadingState value)
         checkSignInStatusLoading,
-    required TResult Function(AuthCheckSignInStatusSuccessState value)
-        checkSignInStatusSuccess,
     required TResult Function(AuthCheckSignInStatusFailureState value)
         checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
   }) {
     return checkSignInStatusFailure(this);
   }
@@ -2763,20 +1944,17 @@ class _$AuthCheckSignInStatusFailureStateImpl
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(AuthInitialState value)? initial,
     TResult? Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult? Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult? Function(AuthRegisterFailureState value)? registerFailure,
     TResult? Function(AuthLoginLoadingState value)? loginLoading,
-    TResult? Function(AuthLoginSuccessState value)? loginSuccess,
     TResult? Function(AuthLoginFailureState value)? loginFailure,
     TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult? Function(AuthLogoutFailureState value)? logoutFailure,
     TResult? Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult? Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult? Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
   }) {
     return checkSignInStatusFailure?.call(this);
   }
@@ -2786,20 +1964,17 @@ class _$AuthCheckSignInStatusFailureStateImpl
   TResult maybeMap<TResult extends Object?>({
     TResult Function(AuthInitialState value)? initial,
     TResult Function(AuthRegisterLoadingState value)? registerLoading,
-    TResult Function(AuthRegisterSuccessState value)? registerSuccess,
     TResult Function(AuthRegisterFailureState value)? registerFailure,
     TResult Function(AuthLoginLoadingState value)? loginLoading,
-    TResult Function(AuthLoginSuccessState value)? loginSuccess,
     TResult Function(AuthLoginFailureState value)? loginFailure,
     TResult Function(AuthLogoutLoadingState value)? logoutLoading,
     TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
     TResult Function(AuthLogoutFailureState value)? logoutFailure,
     TResult Function(AuthCheckSignInStatusLoadingState value)?
         checkSignInStatusLoading,
-    TResult Function(AuthCheckSignInStatusSuccessState value)?
-        checkSignInStatusSuccess,
     TResult Function(AuthCheckSignInStatusFailureState value)?
         checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
     required TResult orElse(),
   }) {
     if (checkSignInStatusFailure != null) {
@@ -2820,5 +1995,209 @@ abstract class AuthCheckSignInStatusFailureState implements AuthState {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AuthCheckSignInStatusFailureStateImplCopyWith<
           _$AuthCheckSignInStatusFailureStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$AuthAuthenticatedStateImplCopyWith<$Res> {
+  factory _$$AuthAuthenticatedStateImplCopyWith(
+          _$AuthAuthenticatedStateImpl value,
+          $Res Function(_$AuthAuthenticatedStateImpl) then) =
+      __$$AuthAuthenticatedStateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserEntity data});
+}
+
+/// @nodoc
+class __$$AuthAuthenticatedStateImplCopyWithImpl<$Res>
+    extends _$AuthStateCopyWithImpl<$Res, _$AuthAuthenticatedStateImpl>
+    implements _$$AuthAuthenticatedStateImplCopyWith<$Res> {
+  __$$AuthAuthenticatedStateImplCopyWithImpl(
+      _$AuthAuthenticatedStateImpl _value,
+      $Res Function(_$AuthAuthenticatedStateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? data = null,
+  }) {
+    return _then(_$AuthAuthenticatedStateImpl(
+      null == data
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as UserEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AuthAuthenticatedStateImpl implements AuthAuthenticatedState {
+  const _$AuthAuthenticatedStateImpl(this.data);
+
+  @override
+  final UserEntity data;
+
+  @override
+  String toString() {
+    return 'AuthState.authenticated(data: $data)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AuthAuthenticatedStateImpl &&
+            (identical(other.data, data) || other.data == data));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, data);
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AuthAuthenticatedStateImplCopyWith<_$AuthAuthenticatedStateImpl>
+      get copyWith => __$$AuthAuthenticatedStateImplCopyWithImpl<
+          _$AuthAuthenticatedStateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() registerLoading,
+    required TResult Function(String message) registerFailure,
+    required TResult Function() loginLoading,
+    required TResult Function(String message) loginFailure,
+    required TResult Function() logoutLoading,
+    required TResult Function(String message) logoutSuccess,
+    required TResult Function(String message) logoutFailure,
+    required TResult Function() checkSignInStatusLoading,
+    required TResult Function(String message) checkSignInStatusFailure,
+    required TResult Function(UserEntity data) authenticated,
+  }) {
+    return authenticated(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? registerLoading,
+    TResult? Function(String message)? registerFailure,
+    TResult? Function()? loginLoading,
+    TResult? Function(String message)? loginFailure,
+    TResult? Function()? logoutLoading,
+    TResult? Function(String message)? logoutSuccess,
+    TResult? Function(String message)? logoutFailure,
+    TResult? Function()? checkSignInStatusLoading,
+    TResult? Function(String message)? checkSignInStatusFailure,
+    TResult? Function(UserEntity data)? authenticated,
+  }) {
+    return authenticated?.call(data);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? registerLoading,
+    TResult Function(String message)? registerFailure,
+    TResult Function()? loginLoading,
+    TResult Function(String message)? loginFailure,
+    TResult Function()? logoutLoading,
+    TResult Function(String message)? logoutSuccess,
+    TResult Function(String message)? logoutFailure,
+    TResult Function()? checkSignInStatusLoading,
+    TResult Function(String message)? checkSignInStatusFailure,
+    TResult Function(UserEntity data)? authenticated,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(data);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(AuthInitialState value) initial,
+    required TResult Function(AuthRegisterLoadingState value) registerLoading,
+    required TResult Function(AuthRegisterFailureState value) registerFailure,
+    required TResult Function(AuthLoginLoadingState value) loginLoading,
+    required TResult Function(AuthLoginFailureState value) loginFailure,
+    required TResult Function(AuthLogoutLoadingState value) logoutLoading,
+    required TResult Function(AuthLogoutSuccessState value) logoutSuccess,
+    required TResult Function(AuthLogoutFailureState value) logoutFailure,
+    required TResult Function(AuthCheckSignInStatusLoadingState value)
+        checkSignInStatusLoading,
+    required TResult Function(AuthCheckSignInStatusFailureState value)
+        checkSignInStatusFailure,
+    required TResult Function(AuthAuthenticatedState value) authenticated,
+  }) {
+    return authenticated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(AuthInitialState value)? initial,
+    TResult? Function(AuthRegisterLoadingState value)? registerLoading,
+    TResult? Function(AuthRegisterFailureState value)? registerFailure,
+    TResult? Function(AuthLoginLoadingState value)? loginLoading,
+    TResult? Function(AuthLoginFailureState value)? loginFailure,
+    TResult? Function(AuthLogoutLoadingState value)? logoutLoading,
+    TResult? Function(AuthLogoutSuccessState value)? logoutSuccess,
+    TResult? Function(AuthLogoutFailureState value)? logoutFailure,
+    TResult? Function(AuthCheckSignInStatusLoadingState value)?
+        checkSignInStatusLoading,
+    TResult? Function(AuthCheckSignInStatusFailureState value)?
+        checkSignInStatusFailure,
+    TResult? Function(AuthAuthenticatedState value)? authenticated,
+  }) {
+    return authenticated?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(AuthInitialState value)? initial,
+    TResult Function(AuthRegisterLoadingState value)? registerLoading,
+    TResult Function(AuthRegisterFailureState value)? registerFailure,
+    TResult Function(AuthLoginLoadingState value)? loginLoading,
+    TResult Function(AuthLoginFailureState value)? loginFailure,
+    TResult Function(AuthLogoutLoadingState value)? logoutLoading,
+    TResult Function(AuthLogoutSuccessState value)? logoutSuccess,
+    TResult Function(AuthLogoutFailureState value)? logoutFailure,
+    TResult Function(AuthCheckSignInStatusLoadingState value)?
+        checkSignInStatusLoading,
+    TResult Function(AuthCheckSignInStatusFailureState value)?
+        checkSignInStatusFailure,
+    TResult Function(AuthAuthenticatedState value)? authenticated,
+    required TResult orElse(),
+  }) {
+    if (authenticated != null) {
+      return authenticated(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class AuthAuthenticatedState implements AuthState {
+  const factory AuthAuthenticatedState(final UserEntity data) =
+      _$AuthAuthenticatedStateImpl;
+
+  UserEntity get data;
+
+  /// Create a copy of AuthState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$AuthAuthenticatedStateImplCopyWith<_$AuthAuthenticatedStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

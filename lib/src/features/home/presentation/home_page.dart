@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              context.pushRoute(SignInRoute());
+              context.pushRoute(const FriendRoute());
             },
             child: Text("View All",
                 style: TextStyle(
@@ -533,7 +533,8 @@ class CustomSliverAppBar extends StatelessWidget {
         preferredSize: Size.fromHeight(context.h(85)),
         child: BlocBuilder<AuthCubit, AuthState>(
           builder: (context, state) {
-            if (state is AuthCheckSignInStatusSuccessState) {
+            if (state is AuthAuthenticatedState) {
+              final user = state.data;
               return Container(
                 padding: EdgeInsets.only(
                   left: context.w(25),
@@ -544,8 +545,7 @@ class CustomSliverAppBar extends StatelessWidget {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      backgroundImage:
-                          const AssetImage('assets/images/app_logo.png'),
+                      backgroundImage: NetworkImage(user.imageUrl ?? ''),
                       radius: context.r(24),
                     ),
                     SizedBox(width: context.w(16)),
@@ -553,7 +553,7 @@ class CustomSliverAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Halo ${state.data.name ?? "User"}!',
+                          'Halo ${user.name ?? "User"}!',
                           style: TextStyle(
                               color: Colors.white, fontSize: context.sp(18)),
                         ),
@@ -590,17 +590,22 @@ class CustomSliverAppBar extends StatelessWidget {
                           ),
                         ),
                         SizedBox(width: context.w(12)),
-                        Container(
-                          padding: EdgeInsets.all(context.i(8)),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(context.r(8)),
-                          ),
-                          child: Assets.icons.icChat.svg(
-                            width: context.w(20),
-                            height: context.h(20),
-                            colorFilter: const ColorFilter.mode(
-                                Color(0xFF3785FC), BlendMode.srcIn),
+                        InkWell(
+                          onTap: () {
+                            context.pushRoute(const RoomRoute());
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(context.i(8)),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(context.r(8)),
+                            ),
+                            child: Assets.icons.icChat.svg(
+                              width: context.w(20),
+                              height: context.h(20),
+                              colorFilter: const ColorFilter.mode(
+                                  Color(0xFF3785FC), BlendMode.srcIn),
+                            ),
                           ),
                         ),
                       ],

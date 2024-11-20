@@ -32,6 +32,21 @@ import '../../../features/auth/domain/usecases/login_usecase.dart' as _i849;
 import '../../../features/auth/domain/usecases/logout_usecase.dart' as _i1;
 import '../../../features/auth/domain/usecases/register_usecase.dart' as _i879;
 import '../../../features/auth/presentation/bloc/auth/auth_cubit.dart' as _i32;
+import '../../../features/chat/data/datasources/chat_datasource.dart' as _i759;
+import '../../../features/chat/data/datasources/friend_datasource.dart'
+    as _i1046;
+import '../../../features/chat/data/datasources/room_datasource.dart' as _i994;
+import '../../../features/chat/domain/repositories/chat_repository.dart'
+    as _i75;
+import '../../../features/chat/domain/repositories/friend_repository.dart'
+    as _i291;
+import '../../../features/chat/domain/repositories/room_repository.dart'
+    as _i719;
+import '../../../features/chat/presentation/bloc/friend/friend_cubit.dart'
+    as _i892;
+import '../../../features/chat/presentation/bloc/message/message_cubit.dart'
+    as _i375;
+import '../../../features/chat/presentation/bloc/room/room_cubit.dart' as _i517;
 import '../../cache/hive_local_storage.dart' as _i252;
 import '../../cache/secure_local_storage.dart' as _i333;
 import '../../common/infrastructure/fb_module.dart' as _i869;
@@ -62,14 +77,24 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.MacOsOptions>(() => registerModule.macOsOptions);
     gh.lazySingleton<_i161.InternetConnection>(
         () => registerModule.internetConnection);
+    gh.singleton<_i75.ChatRepository>(
+        () => _i759.ChatDatasource(gh<_i451.FirebaseChatCore>()));
+    gh.singleton<_i719.RoomRepository>(
+        () => _i994.RoomDatasource(gh<_i451.FirebaseChatCore>()));
     gh.lazySingleton<_i1043.AuthRemoteDataSource>(
         () => _i1043.AuthRemoteDataSourceImpl(
               gh<_i59.FirebaseAuth>(),
               gh<_i116.GoogleSignIn>(),
               gh<_i451.FirebaseChatCore>(),
             ));
+    gh.singleton<_i291.FriendRepository>(
+        () => _i1046.FriendDatasource(gh<_i451.FirebaseChatCore>()));
+    gh.factory<_i517.RoomCubit>(
+        () => _i517.RoomCubit(gh<_i719.RoomRepository>()));
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage);
+    gh.factory<_i375.MessageCubit>(
+        () => _i375.MessageCubit(gh<_i75.ChatRepository>()));
     gh.factory<_i333.SecureLocalStorage>(
         () => _i333.SecureLocalStorage(gh<_i558.FlutterSecureStorage>()));
     gh.lazySingleton<_i838.AuthLocalDataSource>(
@@ -79,6 +104,8 @@ extension GetItInjectableX on _i174.GetIt {
             ));
     gh.singleton<_i989.ConnectionChecker>(
         () => _i989.ConnectionCheckerImpl(gh<_i161.InternetConnection>()));
+    gh.factory<_i892.FriendCubit>(
+        () => _i892.FriendCubit(gh<_i291.FriendRepository>()));
     gh.lazySingleton<_i234.AuthRepository>(() => _i365.AuthRepositoryImpl(
           gh<_i1043.AuthRemoteDataSource>(),
           gh<_i838.AuthLocalDataSource>(),
@@ -93,7 +120,7 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1.AuthLogoutUseCase(gh<_i234.AuthRepository>()));
     gh.lazySingleton<_i879.AuthRegisterUseCase>(
         () => _i879.AuthRegisterUseCase(gh<_i234.AuthRepository>()));
-    gh.singleton<_i32.AuthCubit>(() => _i32.AuthCubit(
+    gh.lazySingleton<_i32.AuthCubit>(() => _i32.AuthCubit(
           gh<_i849.AuthLoginUseCase>(),
           gh<_i1.AuthLogoutUseCase>(),
           gh<_i879.AuthRegisterUseCase>(),

@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:proker/src/core/errors/failures.dart';
 import 'package:proker/src/core/usecase/usecase.dart';
 import 'package:proker/src/core/utils/extensions/string_extensions.dart';
+import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 import 'package:proker/src/features/auth/domain/repositories/auth_repository.dart';
 
 @lazySingleton
@@ -12,7 +14,7 @@ class AuthRegisterUseCase implements UseCase<void, Params> {
   const AuthRegisterUseCase(this._authRepository);
 
   @override
-  Future<Either<Failure, void>> call(Params params) async {
+  Future<Either<Failure, UserEntity>> call(Params params) async {
     if (!params.email.isEmailValid) {
       return Left(InvalidEmailFailure());
     }
@@ -26,7 +28,12 @@ class AuthRegisterUseCase implements UseCase<void, Params> {
       return Left(PasswordNotMatchFailure());
     }
 
-    return await _authRepository.register(params);
+    try {
+      return await _authRepository.register(params);
+    } on FirebaseAuthException catch (e) {
+      return Left(
+          FirebaseAuthFailure(e.message ?? 'An unknown error occurred'));
+    }
   }
 }
 

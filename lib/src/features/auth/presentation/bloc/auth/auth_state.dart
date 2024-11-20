@@ -6,14 +6,11 @@ class AuthState with _$AuthState {
 
   // Register states
   const factory AuthState.registerLoading() = AuthRegisterLoadingState;
-  const factory AuthState.registerSuccess(String message) =
-      AuthRegisterSuccessState;
   const factory AuthState.registerFailure(String message) =
       AuthRegisterFailureState;
 
   // Login states
   const factory AuthState.loginLoading() = AuthLoginLoadingState;
-  const factory AuthState.loginSuccess(UserEntity data) = AuthLoginSuccessState;
   const factory AuthState.loginFailure(String message) = AuthLoginFailureState;
 
   // Logout states
@@ -26,8 +23,9 @@ class AuthState with _$AuthState {
   // Check Sign-In Status states
   const factory AuthState.checkSignInStatusLoading() =
       AuthCheckSignInStatusLoadingState;
-  const factory AuthState.checkSignInStatusSuccess(UserEntity data) =
-      AuthCheckSignInStatusSuccessState;
   const factory AuthState.checkSignInStatusFailure(String message) =
       AuthCheckSignInStatusFailureState;
+
+  const factory AuthState.authenticated(UserEntity data) =
+      AuthAuthenticatedState;
 }

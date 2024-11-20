@@ -19,7 +19,7 @@ class SplashPage extends StatelessWidget {
       value: getIt<AuthCubit>()..checkSignInStatus(),
       child: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
-          if (state is AuthCheckSignInStatusSuccessState) {
+          if (state is AuthAuthenticatedState) {
             context.router.replaceAll([const HomeRoute()]);
           } else if (state is AuthCheckSignInStatusFailureState) {
             Future.delayed(const Duration(seconds: 3)).then((value) {
