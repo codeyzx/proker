@@ -57,19 +57,22 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDNq5xrDcPLoncxJeKtHXCnEnx0gyejCEU',
-    appId: '1:108863604729:android:4645215af27965e809df28',
-    messagingSenderId: '108863604729',
-    projectId: 'proker-24178',
-    storageBucket: 'proker-24178.firebasestorage.app',
+    apiKey: 'AIzaSyAK07QdeLSXcSoFWfQk5mbkc7tY_fKzGiE',
+    appId: '1:368168566691:android:4711143d79189a0c022416',
+    messagingSenderId: '368168566691',
+    projectId: 'e-study-6f999',
+    databaseURL: 'https://e-study-6f999-default-rtdb.firebaseio.com',
+    storageBucket: 'e-study-6f999.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDyAXuYv-NXVT_A1Zxh1Z707y-nuTpxZUY',
-    appId: '1:108863604729:ios:2d38ffe7f622daa209df28',
-    messagingSenderId: '108863604729',
-    projectId: 'proker-24178',
-    storageBucket: 'proker-24178.firebasestorage.app',
+    apiKey: 'AIzaSyArYT0_ufme7Uzgg_hDcNTmk3bbqn5eg2c',
+    appId: '1:368168566691:ios:b1a92a682f276682022416',
+    messagingSenderId: '368168566691',
+    projectId: 'e-study-6f999',
+    databaseURL: 'https://e-study-6f999-default-rtdb.firebaseio.com',
+    storageBucket: 'e-study-6f999.appspot.com',
     iosBundleId: 'com.proker',
   );
+
 }
