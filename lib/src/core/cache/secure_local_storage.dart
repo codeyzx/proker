@@ -1,6 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:proker/src/core/cache/local_storage.dart';
+import 'package:proker/src/core/config/injection/injectable.dart';
 
 @module
 abstract class RegisterModule {
@@ -24,6 +26,14 @@ abstract class RegisterModule {
 
   @lazySingleton
   MacOsOptions get macOsOptions => const MacOsOptions();
+
+  @lazySingleton
+  InternetConnectionChecker get connectionChecker =>
+      InternetConnectionChecker();
+
+  @lazySingleton
+  LocalStorage get localStorage =>
+      SecureLocalStorage(getIt<FlutterSecureStorage>());
 }
 
 @injectable

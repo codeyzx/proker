@@ -7,7 +7,9 @@ import 'package:proker/src/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:proker/src/features/chat/presentation/pages/chat/chat_page.dart';
 import 'package:proker/src/features/chat/presentation/pages/friends/friends_page.dart';
 import 'package:proker/src/features/chat/presentation/pages/room/room_page.dart';
-import 'package:proker/src/features/event/presentation/event_page.dart';
+import 'package:proker/src/features/event/presentation/pages/create_event_page.dart';
+import 'package:proker/src/features/event/presentation/pages/event_list_page.dart';
+import 'package:proker/src/features/event/presentation/pages/event_page.dart';
 import 'package:proker/src/features/home/presentation/home_page.dart';
 import 'package:proker/src/features/home/presentation/profile_page.dart';
 import 'package:proker/src/features/home/presentation/splash_page.dart';
@@ -35,5 +37,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: FriendRoute.page),
         AutoRoute(page: ChatRoute.page),
         AutoRoute(page: RoomRoute.page),
+        AutoRoute(page: EventListRoute.page),
+        AutoRoute(page: CreateEventRoute.page),
       ];
 }

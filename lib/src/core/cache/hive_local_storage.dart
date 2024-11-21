@@ -1,11 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:injectable/injectable.dart'; // Add this import
 import 'package:proker/src/core/cache/local_storage.dart';
+import 'package:proker/src/core/utils/logger.dart';
 
 @injectable // Add this annotation
 class HiveLocalStorage implements LocalStorage {
   @override
   Future<dynamic> load({required String key, String? boxName}) async {
+    logger.e('Loading from Hive');
     await Hive.openBox(boxName!);
     final box = Hive.box(boxName);
     try {

@@ -74,5 +74,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'e-study-6f999.appspot.com',
     iosBundleId: 'com.proker',
   );
-
 }
