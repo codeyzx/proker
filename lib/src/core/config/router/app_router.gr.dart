@@ -56,6 +56,44 @@ class ChatRouteArgs {
 }
 
 /// generated route for
+/// [CreateEventPage]
+class CreateEventRoute extends PageRouteInfo<void> {
+  const CreateEventRoute({List<PageRouteInfo>? children})
+      : super(
+          CreateEventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'CreateEventRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const CreateEventPage();
+    },
+  );
+}
+
+/// generated route for
+/// [EventListPage]
+class EventListRoute extends PageRouteInfo<void> {
+  const EventListRoute({List<PageRouteInfo>? children})
+      : super(
+          EventListRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'EventListRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const EventListPage();
+    },
+  );
+}
+
+/// generated route for
 /// [EventPage]
 class EventRoute extends PageRouteInfo<void> {
   const EventRoute({List<PageRouteInfo>? children})

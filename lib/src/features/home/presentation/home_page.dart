@@ -574,17 +574,22 @@ class CustomSliverAppBar extends StatelessWidget {
                     const Spacer(),
                     Row(
                       children: [
-                        Container(
-                          padding: EdgeInsets.all(context.i(8)),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(context.r(8)),
-                          ),
-                          child: Assets.icons.icNotif.svg(
-                            width: context.w(20),
-                            height: context.h(20),
-                            colorFilter: const ColorFilter.mode(
-                                Color(0xFF3785FC), BlendMode.srcIn),
+                        InkWell(
+                          onTap: () {
+                            context.pushRoute(const EventListRoute());
+                          },
+                          child: Container(
+                            padding: EdgeInsets.all(context.i(8)),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(context.r(8)),
+                            ),
+                            child: Assets.icons.icNotif.svg(
+                              width: context.w(20),
+                              height: context.h(20),
+                              colorFilter: const ColorFilter.mode(
+                                  Color(0xFF3785FC), BlendMode.srcIn),
+                            ),
                           ),
                         ),
                         SizedBox(width: context.w(12)),

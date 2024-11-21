@@ -15,8 +15,8 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:google_sign_in/google_sign_in.dart' as _i116;
 import 'package:injectable/injectable.dart' as _i526;
-import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart'
-    as _i161;
+import 'package:internet_connection_checker/internet_connection_checker.dart'
+    as _i973;
 
 import '../../../features/auth/data/datasources/auth_local_datasource.dart'
     as _i838;
@@ -47,10 +47,29 @@ import '../../../features/chat/presentation/bloc/friend/friend_cubit.dart'
 import '../../../features/chat/presentation/bloc/message/message_cubit.dart'
     as _i375;
 import '../../../features/chat/presentation/bloc/room/room_cubit.dart' as _i517;
+import '../../../features/event/data/datasources/event_local_datasource.dart'
+    as _i476;
+import '../../../features/event/data/datasources/event_remote_datasource.dart'
+    as _i780;
+import '../../../features/event/data/repositories/event_repository_impl.dart'
+    as _i59;
+import '../../../features/event/domain/repositories/event_repository.dart'
+    as _i340;
+import '../../../features/event/domain/usecases/create_event_usecase.dart'
+    as _i534;
+import '../../../features/event/domain/usecases/delete_event_usecase.dart'
+    as _i883;
+import '../../../features/event/domain/usecases/get_event_list_usecase.dart'
+    as _i68;
+import '../../../features/event/domain/usecases/update_event_usecase.dart'
+    as _i441;
+import '../../../features/event/presentation/bloc/event/event_cubit.dart'
+    as _i20;
 import '../../cache/hive_local_storage.dart' as _i252;
+import '../../cache/local_storage.dart' as _i99;
 import '../../cache/secure_local_storage.dart' as _i333;
 import '../../common/infrastructure/fb_module.dart' as _i869;
-import '../../network/connection_checker.dart' as _i989;
+import '../../network/network_info.dart' as _i408;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -75,10 +94,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i558.WindowsOptions>(() => registerModule.windowsOptions);
     gh.lazySingleton<_i558.WebOptions>(() => registerModule.webOptions);
     gh.lazySingleton<_i558.MacOsOptions>(() => registerModule.macOsOptions);
-    gh.lazySingleton<_i161.InternetConnection>(
-        () => registerModule.internetConnection);
+    gh.lazySingleton<_i973.InternetConnectionChecker>(
+        () => registerModule.connectionChecker);
+    gh.lazySingleton<_i99.LocalStorage>(() => registerModule.localStorage);
+    gh.lazySingleton<_i476.EventLocalDataSource>(
+        () => _i476.EventLocalDataSourceImpl(gh<_i252.HiveLocalStorage>()));
     gh.singleton<_i75.ChatRepository>(
         () => _i759.ChatDatasource(gh<_i451.FirebaseChatCore>()));
+    gh.lazySingleton<_i780.EventRemoteDataSource>(
+        () => const _i780.EventRemoteDataSourceImpl());
     gh.singleton<_i719.RoomRepository>(
         () => _i994.RoomDatasource(gh<_i451.FirebaseChatCore>()));
     gh.lazySingleton<_i1043.AuthRemoteDataSource>(
@@ -91,6 +115,8 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1046.FriendDatasource(gh<_i451.FirebaseChatCore>()));
     gh.factory<_i517.RoomCubit>(
         () => _i517.RoomCubit(gh<_i719.RoomRepository>()));
+    gh.singleton<_i408.NetworkInfo>(
+        () => _i408.NetworkInfoImpl(gh<_i973.InternetConnectionChecker>()));
     gh.lazySingleton<_i558.FlutterSecureStorage>(
         () => registerModule.flutterSecureStorage);
     gh.factory<_i375.MessageCubit>(
@@ -102,8 +128,12 @@ extension GetItInjectableX on _i174.GetIt {
               gh<_i333.SecureLocalStorage>(),
               gh<_i252.HiveLocalStorage>(),
             ));
-    gh.singleton<_i989.ConnectionChecker>(
-        () => _i989.ConnectionCheckerImpl(gh<_i161.InternetConnection>()));
+    gh.lazySingleton<_i340.EventRepository>(() => _i59.EventRepositoryImpl(
+          gh<_i780.EventRemoteDataSource>(),
+          gh<_i476.EventLocalDataSource>(),
+          gh<_i408.NetworkInfo>(),
+          gh<_i252.HiveLocalStorage>(),
+        ));
     gh.factory<_i892.FriendCubit>(
         () => _i892.FriendCubit(gh<_i291.FriendRepository>()));
     gh.lazySingleton<_i234.AuthRepository>(() => _i365.AuthRepositoryImpl(
@@ -126,6 +156,20 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i879.AuthRegisterUseCase>(),
           gh<_i619.AuthCheckSignInStatusUseCase>(),
         ));
+    gh.lazySingleton<_i534.CreateEventUseCase>(
+        () => _i534.CreateEventUseCase(gh<_i340.EventRepository>()));
+    gh.lazySingleton<_i883.DeleteEventUseCase>(
+        () => _i883.DeleteEventUseCase(gh<_i340.EventRepository>()));
+    gh.lazySingleton<_i68.GetEventListUseCase>(
+        () => _i68.GetEventListUseCase(gh<_i340.EventRepository>()));
+    gh.lazySingleton<_i441.UpdateEventUseCase>(
+        () => _i441.UpdateEventUseCase(gh<_i340.EventRepository>()));
+    gh.factory<_i20.EventCubit>(() => _i20.EventCubit(
+          gh<_i534.CreateEventUseCase>(),
+          gh<_i883.DeleteEventUseCase>(),
+          gh<_i68.GetEventListUseCase>(),
+          gh<_i441.UpdateEventUseCase>(),
+        ));
     return this;
   }
 }
@@ -147,6 +191,4 @@ class _$RegisterModule extends _i333.RegisterModule {
         webOptions: _getIt<_i558.WebOptions>(),
         mOptions: _getIt<_i558.MacOsOptions>(),
       );
-
-  _i161.InternetConnection get internetConnection => _i161.InternetConnection();
 }
