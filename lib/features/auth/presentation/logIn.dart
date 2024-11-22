@@ -4,7 +4,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/core/config/router/app_router.dart';
 
 @RoutePage()
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  final ValueNotifier<bool> passwordNotifier = ValueNotifier<bool>(true);
+ 
+  @override
+  _LoginPageState createState() => _LoginPageState();
+} 
+
+class _LoginPageState extends State<LoginPage> {
+  bool isObscureText = true; 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,8 +68,20 @@ class LoginPage extends StatelessWidget {
                     labelText: 'Your password',
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.lock),
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          isObscureText = !isObscureText; // Password visibility
+                        });
+                      },
+                      child: Icon(
+                        isObscureText
+                            ? Icons.visibility_off_outlined
+                            : Icons.visibility_outlined,
+                      ),
+                    ),
                   ),
-                  obscureText: true,
+                  obscureText: isObscureText,
                 ),SizedBox(height: context.h(18)),
 
                 // Text "Lupa Password?"
