@@ -14,6 +14,7 @@ import 'package:proker/src/features/home/presentation/home_page.dart';
 import 'package:proker/src/features/home/presentation/profile_page.dart';
 import 'package:proker/src/features/home/presentation/splash_page.dart';
 import 'package:proker/src/features/home/presentation/widgets/tab_page.dart';
+import 'package:proker/src/features/streaming/presentation/streaming_room_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -39,5 +40,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: RoomRoute.page),
         AutoRoute(page: EventListRoute.page),
         AutoRoute(page: CreateEventRoute.page),
+        AutoRoute(page: StreamingRoomRoute.page),
       ];
 }

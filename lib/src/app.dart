@@ -7,11 +7,13 @@ import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_theme.dart';
 import 'package:proker/src/core/constants/app_constants.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
+import 'package:zego_uikit_prebuilt_live_streaming/zego_uikit_prebuilt_live_streaming.dart';
 
 class App extends StatelessWidget {
+  final GlobalKey<NavigatorState> navigatorKey;
   final _appRouter = AppRouter();
 
-  App({super.key});
+  App({super.key, required this.navigatorKey});
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +45,18 @@ class App extends StatelessWidget {
                 title: AppConstants.appTitle,
                 theme: AppTheme.data(state.isDarkMode),
                 routerConfig: _appRouter.config(),
+                builder: (context, child) {
+                  return Stack(
+                    children: [
+                      child!,
+                      ZegoUIKitPrebuiltLiveStreamingMiniOverlayPage(
+                        contextQuery: () {
+                          return navigatorKey.currentState!.context;
+                        },
+                      ),
+                    ],
+                  );
+                },
               ),
             ),
           );

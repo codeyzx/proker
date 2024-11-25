@@ -102,7 +102,16 @@ class ProfilePage extends StatelessWidget {
                           ),
                           SizedBox(height: context.h(18)),
                           InkWell(
-                            onTap: () async {},
+                            onTap: state is AuthAuthenticatedState
+                                ? () {
+                                    context.router.push(StreamingRoomRoute(
+                                      isHost: true,
+                                      liveID: '12345',
+                                      userID: state.data.id.toString(),
+                                      userName: state.data.name.toString(),
+                                    ));
+                                  }
+                                : () {},
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -155,7 +164,16 @@ class ProfilePage extends StatelessWidget {
                           ),
                           SizedBox(height: context.h(18)),
                           InkWell(
-                            onTap: () async {},
+                            onTap: state is AuthAuthenticatedState
+                                ? () {
+                                    context.router.push(StreamingRoomRoute(
+                                      isHost: false,
+                                      liveID: '12345',
+                                      userID: state.data.id.toString(),
+                                      userName: state.data.name.toString(),
+                                    ));
+                                  }
+                                : () {},
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [

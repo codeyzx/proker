@@ -15,6 +15,9 @@ import 'package:proker/src/core/config/adapter/adapter_conf.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/utils/observer.dart';
 
+GlobalKey<NavigatorState> navigatorKey =
+    GlobalKey(debugLabel: "Main Navigator");
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -61,5 +64,5 @@ void main() async {
 
   Bloc.observer = AppBlocObserver();
 
-  runApp(App());
+  runApp(App(navigatorKey: navigatorKey));
 }

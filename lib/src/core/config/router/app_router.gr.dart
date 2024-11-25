@@ -281,6 +281,70 @@ class SplashRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [StreamingRoomPage]
+class StreamingRoomRoute extends PageRouteInfo<StreamingRoomRouteArgs> {
+  StreamingRoomRoute({
+    Key? key,
+    required bool isHost,
+    required String userName,
+    required String userID,
+    required String liveID,
+    List<PageRouteInfo>? children,
+  }) : super(
+          StreamingRoomRoute.name,
+          args: StreamingRoomRouteArgs(
+            key: key,
+            isHost: isHost,
+            userName: userName,
+            userID: userID,
+            liveID: liveID,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'StreamingRoomRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<StreamingRoomRouteArgs>();
+      return StreamingRoomPage(
+        key: args.key,
+        isHost: args.isHost,
+        userName: args.userName,
+        userID: args.userID,
+        liveID: args.liveID,
+      );
+    },
+  );
+}
+
+class StreamingRoomRouteArgs {
+  const StreamingRoomRouteArgs({
+    this.key,
+    required this.isHost,
+    required this.userName,
+    required this.userID,
+    required this.liveID,
+  });
+
+  final Key? key;
+
+  final bool isHost;
+
+  final String userName;
+
+  final String userID;
+
+  final String liveID;
+
+  @override
+  String toString() {
+    return 'StreamingRoomRouteArgs{key: $key, isHost: $isHost, userName: $userName, userID: $userID, liveID: $liveID}';
+  }
+}
+
+/// generated route for
 /// [TabPage]
 class TabRoute extends PageRouteInfo<void> {
   const TabRoute({List<PageRouteInfo>? children})
