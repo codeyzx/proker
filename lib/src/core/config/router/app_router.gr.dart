@@ -10,6 +10,25 @@
 part of 'app_router.dart';
 
 /// generated route for
+/// [AddEventPage]
+class AddEventRoute extends PageRouteInfo<void> {
+  const AddEventRoute({List<PageRouteInfo>? children})
+      : super(
+          AddEventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddEventRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const AddEventPage();
+    },
+  );
+}
+
+/// generated route for
 /// [ChatPage]
 class ChatRoute extends PageRouteInfo<ChatRouteArgs> {
   ChatRoute({
@@ -146,6 +165,25 @@ class HomeRoute extends PageRouteInfo<void> {
     name,
     builder: (data) {
       return const HomePage();
+    },
+  );
+}
+
+/// generated route for
+/// [KelolaEventPage]
+class KelolaEventRoute extends PageRouteInfo<void> {
+  const KelolaEventRoute({List<PageRouteInfo>? children})
+      : super(
+          KelolaEventRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'KelolaEventRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const KelolaEventPage();
     },
   );
 }

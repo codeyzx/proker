@@ -24,12 +24,20 @@ class TabPage extends StatelessWidget {
     }
 
     return AutoTabsScaffold(
-      routes: [
-        const HomeRoute(),
-        const EventRoute(),
-        if (userRole == 'pengelola') const EventRoute(),
-        const EventRoute(),
-        const ProfileRoute(),
+      // routes: [
+      //   const HomeRoute(),
+      //   const EventRoute(),
+      //   if (userRole == 'pengelola') const KelolaEventRoute(),
+      //   const EventRoute(),
+      //   const ProfileRoute(),
+      // ],
+      //for testing
+      routes: const [
+        HomeRoute(),
+        EventRoute(),
+        KelolaEventRoute(),
+        EventRoute(),
+        ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
@@ -57,11 +65,18 @@ class TabPage extends StatelessWidget {
 
   List<BottomNavigationBarItem> _buildBottomNavigationBarItems(
       TabsRouter tabsRouter, String userRole) {
+    // final items = [
+    //   {'icon': Assets.icons.icHome, 'label': 'Home'},
+    //   {'icon': Assets.icons.icEvent, 'label': 'Event'},
+    //   if (userRole == 'pengelola')
+    //     {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
+    //   {'icon': Assets.icons.icFeed, 'label': 'Feed'},
+    //   {'icon': Assets.icons.icProfile, 'label': 'Profile'},
+    // ];
     final items = [
       {'icon': Assets.icons.icHome, 'label': 'Home'},
       {'icon': Assets.icons.icEvent, 'label': 'Event'},
-      if (userRole == 'pengelola')
-        {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
+      {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
       {'icon': Assets.icons.icFeed, 'label': 'Feed'},
       {'icon': Assets.icons.icProfile, 'label': 'Profile'},
     ];
