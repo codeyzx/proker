@@ -1,8 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
+import 'package:proker/src/core/utils/logger.dart';
+import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 
 @RoutePage()
 class TabPage extends StatelessWidget {
@@ -10,12 +13,23 @@ class TabPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final authState = context.watch<AuthCubit>().state;
+    String userRole = '';
+
+    if (authState is AuthAuthenticatedState) {
+      userRole = authState.data.role ?? '';
+      logger.i('userRole: $userRole');
+    } else if (authState is AuthLogoutLoadingState) {
+      context.router.replaceAll([SignInRoute()]);
+    }
+
     return AutoTabsScaffold(
-      routes: const [
-        HomeRoute(),
-        EventRoute(),
-        HomeRoute(),
-        ProfileRoute(),
+      routes: [
+        const HomeRoute(),
+        const EventRoute(),
+        if (userRole == 'pengelola') const EventRoute(),
+        const EventRoute(),
+        const ProfileRoute(),
       ],
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
@@ -35,17 +49,19 @@ class TabPage extends StatelessWidget {
             fontSize: 13,
             fontWeight: FontWeight.w600,
           ),
-          items: _buildBottomNavigationBarItems(tabsRouter),
+          items: _buildBottomNavigationBarItems(tabsRouter, userRole),
         );
       },
     );
   }
 
   List<BottomNavigationBarItem> _buildBottomNavigationBarItems(
-      TabsRouter tabsRouter) {
+      TabsRouter tabsRouter, String userRole) {
     final items = [
       {'icon': Assets.icons.icHome, 'label': 'Home'},
       {'icon': Assets.icons.icEvent, 'label': 'Event'},
+      if (userRole == 'pengelola')
+        {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
       {'icon': Assets.icons.icFeed, 'label': 'Feed'},
       {'icon': Assets.icons.icProfile, 'label': 'Profile'},
     ];
