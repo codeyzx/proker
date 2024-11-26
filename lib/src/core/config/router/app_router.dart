@@ -29,6 +29,7 @@ class AppRouter extends RootStackRouter {
           children: [
             AutoRoute(page: HomeRoute.page),
             AutoRoute(page: EventRoute.page),
+            AutoRoute(page: KelolaEventRoute.page),
             AutoRoute(page: HomeRoute.page),
             AutoRoute(page: ProfileRoute.page),
           ],
@@ -44,6 +45,5 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: CreateEventRoute.page),
         AutoRoute(page: StreamingRoomRoute.page),
         AutoRoute(page: AddEventRoute.page),
-        AutoRoute(page: KelolaEventRoute.page),
       ];
 }

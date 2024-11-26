@@ -1,6 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/features/event/domain/entities/event_entity.dart';
+import 'package:proker/src/features/event/presentation/bloc/event/event_cubit.dart';
 
 @RoutePage()
 class EventPage extends StatefulWidget {
@@ -21,48 +25,9 @@ class _EventPageState extends State<EventPage> {
       TextEditingController(); // Controller untuk search
   String searchText = ''; // Teks yang diinputkan pada search
 
-  // Daftar event
-  final List<Map<String, dynamic>> events = [
-    {
-      'title': 'Himakom E-Sport Championship (HeSC)',
-      'description':
-          'Kompetisi dibidang e-Sport dalam ruang lingkup HIMAKOM guna menyalurkan minat dan bakat Mahasiswa/i dibidang e-Sport dan mempererat tali silaturahmi antar Mahasiswa/i baik dengan Mahasiswa/i lainnya maupun Alumni.',
-      'categories': ['Kompetisi', 'Peminatan', 'Non Akademik'],
-      'image': 'assets/images/banner_proker_1.png',
-      'jenis': 'Program Kerja',
-      'status': 'New',
-      'pengelola': 'Seni dan Olahraga',
-    },
-    {
-      'title': 'Speak Up Day',
-      'description':
-          'Workshop HIMAKOM dengan pembicara yang membahas teknologi baru dan Pekan Kreativitas Mahasiswa.',
-      'categories': ['Non Akademik', 'Sosial'],
-      'image': 'assets/images/banner_proker_2.png',
-      'jenis': 'Program Kerja',
-      'status': 'Upcoming',
-      'pengelola': 'PSDA',
-    },
-    {
-      'title': 'Kajian Islam Teknologi',
-      'description':
-          'Kajian tentang hubungan majunya teknologi dan dampaknya terhadap perkembangan agama Islam.',
-      'categories': ['Non Akademik', 'Rohani'],
-      'image': 'assets/images/banner_proker_3.png',
-      'jenis': 'Program Kerja',
-      'status': 'Done',
-      'pengelola': 'Rohani Islam',
-    },
-  ];
-
-  // Daftar event yang difilter
-  List<Map<String, dynamic>> filteredEvents = [];
-
   @override
   void initState() {
     super.initState();
-    _filterEvents(); // Inisialisasi event yang difilter
-    filteredEvents; // Inisialisasi dengan semua event
   }
 
   void toggleFilter(String label) {
@@ -78,34 +43,23 @@ class _EventPageState extends State<EventPage> {
 
   void _filterEvents() {
     setState(() {
-      filteredEvents = events.where((event) {
-        final matchesJenis = event['jenis'] == selectedValue;
-        final matchesStatus = (isNewSelected && event['status'] == 'New') ||
-            (isUpcomingSelected && event['status'] == 'Upcoming') ||
-            (isDoneSelected && event['status'] == 'Done');
-        final matchesPengelola = selectedCategories.isEmpty ||
-            selectedCategories.contains(event['pengelola']);
-        final matchesSearch = searchText.isEmpty ||
-            event['title'].toLowerCase().contains(searchText) ||
-            event['description'].toLowerCase().contains(searchText);
-        return matchesJenis &&
-            matchesStatus &&
-            matchesPengelola &&
-            matchesSearch;
-      }).toList();
+      context.read<EventCubit>().searchEvents(searchText);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        top: false,
-        child: Column(
-          children: [
-            _buildBlueSection(),
-            _buildWhiteSection(),
-          ],
+    return BlocProvider(
+      create: (context) => getIt<EventCubit>()..getAll(),
+      child: Scaffold(
+        body: SafeArea(
+          top: false,
+          child: Column(
+            children: [
+              _buildBlueSection(),
+              _buildWhiteSection(),
+            ],
+          ),
         ),
       ),
     );
@@ -133,15 +87,29 @@ class _EventPageState extends State<EventPage> {
 
   Widget _buildWhiteSection() {
     return Expanded(
-      child: ListView.builder(
-        itemCount: filteredEvents.length, // Jumlah event yang difilter
-        itemBuilder: (context, index) {
-          final event = filteredEvents[index];
-          return Padding(
-            padding: EdgeInsets.symmetric(
-                vertical: context.h(8.0), horizontal: context.w(16.0)),
-            child: EventCard(event: event),
-          );
+      child: BlocBuilder<EventCubit, EventState>(
+        builder: (context, state) {
+          if (state is GetEventListLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is GetEventListSuccessState) {
+            final events = state.data;
+            return events.isEmpty
+                ? const Center(child: Text('No events available.'))
+                : ListView.builder(
+                    itemCount: events.length,
+                    itemBuilder: (context, index) {
+                      final event = events[index];
+                      return Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: context.h(8.0),
+                            horizontal: context.w(16.0)),
+                        child: EventCard(event: event),
+                      );
+                    },
+                  );
+          } else {
+            return const Center(child: Text('Unexpected state'));
+          }
         },
       ),
     );
@@ -542,7 +510,7 @@ class _EventPageState extends State<EventPage> {
 }
 
 class EventCard extends StatelessWidget {
-  final Map<String, dynamic> event;
+  final EventEntity event;
 
   const EventCard({super.key, required this.event});
 
@@ -551,12 +519,10 @@ class EventCard extends StatelessWidget {
     return Card(
       elevation: 2,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(
-          context.r(12),
-        ),
+        borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: EdgeInsets.all(context.i(16.0)),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -565,66 +531,74 @@ class EventCard extends StatelessWidget {
               height: 100,
               width: 340,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(
-                  context.r(12),
-                ),
-                image: DecorationImage(
-                  image:
-                      AssetImage(event['image']), // Ganti dengan sumber gambar
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  event.bannerUrl ??
+                      'https://via.placeholder.com/340x100', // Ganti dengan sumber gambar fallback
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    // Log error
+                    print('Error loading image: $error');
+                    return Container(
+                      color: Colors.grey,
+                      child: const Center(
+                        child: Text(
+                          'Error loading image',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
-            SizedBox(
-              height: context.h(8),
-            ),
+            const SizedBox(height: 8),
 
             // Elemen kategori event
             Wrap(
               spacing: 6.0,
-              children: event['categories'].map<Widget>((category) {
+              children:
+                  (event.category?.split(', ') ?? []).map<Widget>((category) {
                 return Chip(
                   label: Text(
                     category,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontFamily: 'Urbanist Bold',
-                      fontSize: context.sp(10.0), // Ubah ukuran teks
+                      fontSize: 10.0, // Ubah ukuran teks
                       fontWeight: FontWeight.bold, // Ubah ketebalan teks
                       color: Colors.white, // Ubah warna teks
                     ),
                   ),
                   backgroundColor: const Color(0xFF04339B),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                      context.r(20.0),
-                    ), // Ubah border radius
+                    borderRadius:
+                        BorderRadius.circular(20.0), // Ubah border radius
                   ),
                 );
               }).toList(),
             ),
-            SizedBox(
-              height: context.h(8),
-            ),
+            const SizedBox(height: 8),
 
             // Judul event
             Text(
-              event['title'],
-              style: TextStyle(
+              event.title ?? 'No Title',
+              style: const TextStyle(
                 fontFamily: 'Urbanist Bold',
-                fontSize: context.sp(16),
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(
-              height: context.h(4),
-            ),
+            const SizedBox(height: 4),
 
             // Deskripsi event
             Text(
-              event['description'],
+              event.description ?? 'No Description',
               style: TextStyle(
                 fontFamily: 'Urbanist',
-                fontSize: context.sp(12),
+                fontSize: 12,
                 color: Colors.grey[600],
               ),
             ),

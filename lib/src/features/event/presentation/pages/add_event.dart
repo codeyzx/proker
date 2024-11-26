@@ -5,7 +5,9 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/features/event/domain/usecases/create_event_usecase.dart';
 import 'package:proker/src/features/event/presentation/bloc/event/event_cubit.dart';
 
@@ -21,6 +23,7 @@ class _AddEventPageState extends State<AddEventPage> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
+  final _benefitController = TextEditingController();
   final _locationController = TextEditingController();
   final _startDateController = TextEditingController();
   final _endDateController = TextEditingController();
@@ -32,6 +35,7 @@ class _AddEventPageState extends State<AddEventPage> {
   void dispose() {
     _titleController.dispose();
     _descriptionController.dispose();
+    _benefitController.dispose();
     _locationController.dispose();
     _startDateController.dispose();
     _endDateController.dispose();
@@ -101,6 +105,21 @@ class _AddEventPageState extends State<AddEventPage> {
         showCheckmark: false,
       ),
     );
+  }
+
+  Future<void> _selectDate(
+      BuildContext context, TextEditingController controller) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null) {
+      setState(() {
+        controller.text = DateFormat('MMMM dd, yyyy').format(picked);
+      });
+    }
   }
 
   @override
@@ -291,7 +310,7 @@ class _AddEventPageState extends State<AddEventPage> {
                 ),
                 _buildSectionTitle('Manfaat Event'),
                 _buildTextField(
-                  controller: _descriptionController,
+                  controller: _benefitController,
                   hintText: 'Isi manfaat event baru...',
                   height: 85,
                   validator: (value) => value == null || value.isEmpty
@@ -299,19 +318,17 @@ class _AddEventPageState extends State<AddEventPage> {
                       : null,
                 ),
                 _buildSectionTitle('Waktu dan Lokasi Event'),
-                _buildTextField(
+                _buildDateField(
                   controller: _startDateController,
-                  hintText: 'Isi waktu event baru...',
+                  hintText: 'Pilih tanggal mulai...',
                   icon: Icons.calendar_today,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Waktu event diperlukan';
-                    }
-                    if (DateTime.tryParse(value) == null) {
-                      return 'Format tanggal tidak valid';
-                    }
-                    return null;
-                  },
+                  onTap: () => _selectDate(context, _startDateController),
+                ),
+                _buildDateField(
+                  controller: _endDateController,
+                  hintText: 'Pilih tanggal akhir...',
+                  icon: Icons.calendar_today,
+                  onTap: () => _selectDate(context, _endDateController),
                 ),
                 _buildTextField(
                   controller: _locationController,
@@ -336,18 +353,31 @@ class _AddEventPageState extends State<AddEventPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState?.validate() ?? false) {
+                        final DateFormat formatter =
+                            DateFormat('MMMM dd, yyyy');
+                        final DateTime startDate =
+                            formatter.parse(_startDateController.text);
+                        final DateTime endDate =
+                            formatter.parse(_endDateController.text);
+
                         final params = Params(
                           title: _titleController.text,
                           description: _descriptionController.text,
+                          benefits: _benefitController.text,
                           location: _locationController.text,
-                          startDate: DateTime.parse(_startDateController.text),
-                          endDate: DateTime.parse(_endDateController.text),
+                          startDate: startDate,
+                          endDate: endDate,
                           category: selectedCategories.join(', '),
                           createdBy:
                               'currentUserId', // Replace with actual user ID
+                          bannerUrl:
+                              'https://ibb.co.com/LPW5vSt', // URL foto random
+                          type: selectedType ?? 'Program Kerja',
+                          status: 'Unpublished',
                         );
 
                         context.read<EventCubit>().create(params);
+                        context.router.push(const KelolaEventRoute());
                       }
                     },
                     style: ElevatedButton.styleFrom(
@@ -421,6 +451,39 @@ class _AddEventPageState extends State<AddEventPage> {
           icon: icon != null ? Icon(icon) : null,
         ),
         validator: validator,
+      ),
+    );
+  }
+
+  Widget _buildDateField({
+    required TextEditingController controller,
+    required String hintText,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return Container(
+      height: 50,
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 0.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(color: Colors.grey.shade300),
+      ),
+      child: TextFormField(
+        controller: controller,
+        decoration: InputDecoration(
+          hintText: hintText,
+          hintStyle: const TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
+            fontFamily: 'Urbanist',
+          ),
+          border: InputBorder.none,
+          icon: Icon(icon),
+        ),
+        readOnly: true,
+        onTap: onTap,
       ),
     );
   }

@@ -1,7 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
+import 'package:proker/src/features/event/domain/entities/event_entity.dart';
+import 'package:proker/src/features/event/presentation/bloc/event/event_cubit.dart';
 
 @RoutePage()
 class KelolaEventPage extends StatefulWidget {
@@ -12,103 +16,34 @@ class KelolaEventPage extends StatefulWidget {
 }
 
 class _KelolaEventPageState extends State<KelolaEventPage> {
-  int _selectedIndex = 2; // Indeks halaman yang dipilih
   TextEditingController searchController =
       TextEditingController(); // Controller untuk search
   String searchText = ''; // Teks yang diinputkan pada search
 
-  // Daftar event
-  final List<Map<String, dynamic>> events = [
-    {
-      'title': 'Himakom E-Sport Championship (HeSC)',
-      'description':
-          'Kompetisi dibidang e-Sport dalam ruang lingkup HIMAKOM guna menyalurkan minat dan bakat Mahasiswa/i dibidang e-Sport dan mempererat tali silaturahmi antar Mahasiswa/i baik dengan Mahasiswa/i lainnya maupun Alumni.',
-      'categories': ['Kompetisi', 'Peminatan', 'Non Akademik'],
-      'image': 'assets/image/banner_proker_1.png',
-      'jenis': 'Program Kerja',
-      'status': 'New',
-      'pengelola': 'Seni dan Olahraga',
-    },
-    {
-      'title': 'Olahraga Rutinan',
-      'description':
-          'Olahraga Rutinan dalam ruang lingkup HIMAKOM guna meningkatkan kebugaran jasmani dan mempererat tali silaturahmi antar Mahasiswa/i HIMAKOM, baik dengan Mahasiswa/i lainnya maupun Alumni.',
-      'categories': ['Non Akademik', 'Peminatan', 'Olahraga'],
-      'image': 'assets/image/banner_pergerakan_2.png',
-      'jenis': 'Pergerakan',
-      'status': 'Upcoming',
-      'pengelola': 'Seni dan Olahraga',
-    },
-    {
-      'title': 'Himakom Musician',
-      'description':
-          'Himakom Musician dalam ruang lingkup HIMAKOM guna menyalurkan minat dan bakat Mahasiswa/i HIMAKOM dalam bermusik serta mempererat tali silaturahmi antar Mahasiswa/i, baik dengan Mahasiswa/i lainnya maupun Alumni.',
-      'categories': ['Non Akademik', 'Peminatan'],
-      'image': 'assets/image/banner_pergerakan_1.png',
-      'jenis': 'Pergerakan',
-      'status': 'Upcoming',
-      'pengelola': 'Seni dan Olahraga',
-    },
-  ];
-
-  // Daftar event yang difilter
-  List<Map<String, dynamic>> filteredEvents = [];
-
   @override
   void initState() {
     super.initState();
-    filteredEvents = events; // Inisialisasi dengan semua event
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
   }
 
   void _filterEvents() {
     setState(() {
-      filteredEvents = events.where((event) {
-        final matchesSearch = searchText.isEmpty ||
-            event['title'].toLowerCase().contains(searchText) ||
-            event['description'].toLowerCase().contains(searchText);
-        return matchesSearch;
-      }).toList();
+      context.read<EventCubit>().searchEvents(searchText);
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            _buildBlueSection(),
-            _buildWhiteSection(),
-          ],
+    return BlocProvider(
+      create: (context) => getIt<EventCubit>()..getAll(),
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              _buildBlueSection(),
+              _buildWhiteSection(),
+            ],
+          ),
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book_outlined),
-            label: 'Event',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.description),
-            label: 'Kelola Event',
-          ),
-          BottomNavigationBarItem(icon: Icon(Icons.newspaper), label: 'Feed'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        currentIndex: _selectedIndex,
-        onTap: _onItemTapped,
-        selectedLabelStyle: const TextStyle(fontFamily: 'Urbanist'),
-        unselectedLabelStyle: const TextStyle(fontFamily: 'Urbanist'),
-        selectedFontSize: 12.0,
-        unselectedFontSize: 12.0,
       ),
     );
   }
@@ -133,22 +68,37 @@ class _KelolaEventPageState extends State<KelolaEventPage> {
 
   Widget _buildWhiteSection() {
     return Expanded(
-      child: ListView.builder(
-        itemCount: filteredEvents.length + 1, // Tambahkan satu item tambahan
-        itemBuilder: (context, index) {
-          if (index == filteredEvents.length) {
-            // Tampilkan DottedBorderButton pada item terakhir
-            return const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: DottedBorderButton(),
-            );
+      child: BlocBuilder<EventCubit, EventState>(
+        builder: (context, state) {
+          if (state is GetEventListLoadingState ||
+              state is DeleteEventLoadingState) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is GetEventListSuccessState) {
+            final events = state.data;
+            return events.isEmpty
+                ? const Center(child: Text('No events available.'))
+                : ListView.builder(
+                    itemCount:
+                        events.length + 1, // Tambahkan satu item tambahan
+                    itemBuilder: (context, index) {
+                      if (index == events.length) {
+                        // Tampilkan DottedBorderButton pada item terakhir
+                        return const Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: DottedBorderButton(),
+                        );
+                      } else {
+                        final event = events[index];
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 16.0),
+                          child: EventCard(event: event),
+                        );
+                      }
+                    },
+                  );
           } else {
-            final event = filteredEvents[index];
-            return Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-              child: EventCard(event: event),
-            );
+            return const Center(child: Text('Unexpected state'));
           }
         },
       ),
@@ -235,7 +185,7 @@ class DottedBorderButton extends StatelessWidget {
 }
 
 class EventCard extends StatelessWidget {
-  final Map<String, dynamic> event;
+  final EventEntity event;
 
   const EventCard({super.key, required this.event});
 
@@ -270,10 +220,25 @@ class EventCard extends StatelessWidget {
               width: 340,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                image: DecorationImage(
-                  image:
-                      AssetImage(event['image']), // Ganti dengan sumber gambar
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Image.network(
+                  event.bannerUrl ??
+                      'https://via.placeholder.com/340x100', // Ganti dengan sumber gambar fallback
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    // Handle error
+                    return Container(
+                      color: Colors.grey,
+                      child: const Center(
+                        child: Text(
+                          'Error loading image',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ),
             ),
@@ -283,7 +248,7 @@ class EventCard extends StatelessWidget {
               children: [
                 Chip(
                   label: Text(
-                    event['jenis'],
+                    event.type ?? '',
                     style: const TextStyle(
                       fontFamily: 'Urbanist Bold',
                       fontSize: 10.0,
@@ -302,7 +267,7 @@ class EventCard extends StatelessWidget {
                 ),
                 Chip(
                   label: Text(
-                    event['status'],
+                    event.status ?? '',
                     style: const TextStyle(
                       fontFamily: 'Urbanist Bold',
                       fontSize: 10.0,
@@ -310,7 +275,7 @@ class EventCard extends StatelessWidget {
                       color: Colors.white,
                     ),
                   ),
-                  backgroundColor: _getStatusColor(event['status']),
+                  backgroundColor: _getStatusColor(event.status ?? ''),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                     side: const BorderSide(
@@ -324,7 +289,8 @@ class EventCard extends StatelessWidget {
             // Elemen kategori event
             Wrap(
               spacing: 6.0,
-              children: event['categories'].map<Widget>((category) {
+              children:
+                  (event.category?.split(', ') ?? []).map<Widget>((category) {
                 return Chip(
                   label: Text(
                     category,
@@ -346,7 +312,7 @@ class EventCard extends StatelessWidget {
 
             // Judul event
             Text(
-              event['title'],
+              event.title ?? '',
               style: const TextStyle(
                 fontFamily: 'Urbanist',
                 fontSize: 16,
@@ -357,7 +323,7 @@ class EventCard extends StatelessWidget {
 
             // Deskripsi event
             Text(
-              event['description'],
+              event.description ?? '',
               style: TextStyle(
                 fontFamily: 'Urbanist',
                 fontSize: 12,

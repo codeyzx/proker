@@ -120,4 +120,6 @@ class EventCubit extends Cubit<EventState> {
     logger.i("===== CLOSE EventCubit =====");
     return super.close();
   }
+
+  void searchEvents(String searchText) {}
 }

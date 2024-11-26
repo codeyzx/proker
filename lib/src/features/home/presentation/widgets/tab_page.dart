@@ -23,26 +23,26 @@ class TabPage extends StatelessWidget {
       context.router.replaceAll([SignInRoute()]);
     }
 
+    final routes = [
+      const HomeRoute(),
+      const EventRoute(),
+      if (userRole == 'pengelola') const KelolaEventRoute(),
+      const EventRoute(),
+      const ProfileRoute(),
+    ];
+
     return AutoTabsScaffold(
-      // routes: [
-      //   const HomeRoute(),
-      //   const EventRoute(),
-      //   if (userRole == 'pengelola') const KelolaEventRoute(),
-      //   const EventRoute(),
-      //   const ProfileRoute(),
-      // ],
-      //for testing
-      routes: const [
-        HomeRoute(),
-        EventRoute(),
-        KelolaEventRoute(),
-        EventRoute(),
-        ProfileRoute(),
-      ],
+      routes: routes,
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
+          currentIndex: tabsRouter.activeIndex < routes.length
+              ? tabsRouter.activeIndex
+              : 0,
+          onTap: (index) {
+            if (index < routes.length) {
+              tabsRouter.setActiveIndex(index);
+            }
+          },
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           selectedItemColor: AppColors.primary,
@@ -65,18 +65,11 @@ class TabPage extends StatelessWidget {
 
   List<BottomNavigationBarItem> _buildBottomNavigationBarItems(
       TabsRouter tabsRouter, String userRole) {
-    // final items = [
-    //   {'icon': Assets.icons.icHome, 'label': 'Home'},
-    //   {'icon': Assets.icons.icEvent, 'label': 'Event'},
-    //   if (userRole == 'pengelola')
-    //     {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
-    //   {'icon': Assets.icons.icFeed, 'label': 'Feed'},
-    //   {'icon': Assets.icons.icProfile, 'label': 'Profile'},
-    // ];
     final items = [
       {'icon': Assets.icons.icHome, 'label': 'Home'},
       {'icon': Assets.icons.icEvent, 'label': 'Event'},
-      {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
+      if (userRole == 'pengelola')
+        {'icon': Assets.icons.icSearch, 'label': 'Kelola Event'},
       {'icon': Assets.icons.icFeed, 'label': 'Feed'},
       {'icon': Assets.icons.icProfile, 'label': 'Profile'},
     ];
