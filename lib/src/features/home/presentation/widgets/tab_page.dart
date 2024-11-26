@@ -23,18 +23,26 @@ class TabPage extends StatelessWidget {
       context.router.replaceAll([SignInRoute()]);
     }
 
+    final routes = [
+      const HomeRoute(),
+      const EventRoute(),
+      if (userRole == 'pengelola') const KelolaEventRoute(),
+      const EventRoute(),
+      const ProfileRoute(),
+    ];
+
     return AutoTabsScaffold(
-      routes: [
-        const HomeRoute(),
-        const EventRoute(),
-        if (userRole == 'pengelola') const EventRoute(),
-        const EventRoute(),
-        const ProfileRoute(),
-      ],
+      routes: routes,
       bottomNavigationBuilder: (_, tabsRouter) {
         return BottomNavigationBar(
-          currentIndex: tabsRouter.activeIndex,
-          onTap: tabsRouter.setActiveIndex,
+          currentIndex: tabsRouter.activeIndex < routes.length
+              ? tabsRouter.activeIndex
+              : 0,
+          onTap: (index) {
+            if (index < routes.length) {
+              tabsRouter.setActiveIndex(index);
+            }
+          },
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           selectedItemColor: AppColors.primary,
