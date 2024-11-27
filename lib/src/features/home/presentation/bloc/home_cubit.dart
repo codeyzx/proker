@@ -15,16 +15,15 @@ class HomeCubit extends Cubit<HomeState> {
     final firestore = FirebaseFirestore.instance;
 
     try {
-      // Fetch primary color
-      final warnaDoc =
+      final colorsDoc =
           await firestore.collection('warna').doc('4gvrWZTj8O2dWd67CuDU').get();
-      if (warnaDoc.exists) {
-        final colorCode = warnaDoc.data()?['code'] ?? '000000';
-        AppColors.primary = Color(int.parse('0xFF$colorCode'));
-        emit(HomeColorUpdated(color: AppColors.primary));
+      if (colorsDoc.exists) {
+        final data = colorsDoc.data();
+
+        AppColors.primary = Color(int.parse('0xFF${data?['code']}'));
+        emit(const HomeLoaded(banners: []));
       }
 
-      // Fetch banners
       final bannersQuery = await firestore
           .collection('banners')
           .where('status', isEqualTo: 'publish')

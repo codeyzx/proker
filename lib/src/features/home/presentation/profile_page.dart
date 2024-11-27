@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:proker/src/core/blocs/theme/theme_bloc.dart';
 import 'package:proker/src/core/common/widgets/status_bar/status_bar_widget.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
@@ -27,6 +28,31 @@ class ProfilePage extends StatelessWidget {
                   children: [
                     SizedBox(height: context.h(50)),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Profile',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: context.sp(32),
+                          ),
+                        ),
+                        BlocBuilder<ThemeBloc, ThemeState>(
+                          builder: (context, themeState) {
+                            return Switch(
+                              value: themeState.isDarkMode,
+                              onChanged: (value) {
+                                context
+                                    .read<ThemeBloc>()
+                                    .add(ToggleThemeEvent());
+                              },
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: context.h(18)),
+                    Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         state is AuthAuthenticatedState
@@ -39,7 +65,6 @@ class ProfilePage extends StatelessWidget {
                               )
                             : CircleAvatar(
                                 radius: context.r(18),
-                                backgroundColor: Colors.grey,
                               ),
                         SizedBox(width: context.w(18)),
                         Column(
@@ -52,7 +77,6 @@ class ProfilePage extends StatelessWidget {
                                     ? state.data.name ?? "User"
                                     : "User",
                                 style: TextStyle(
-                                  color: const Color(0xFF2C3E50),
                                   fontWeight: FontWeight.w700,
                                   fontSize: context.sp(18),
                                   overflow: TextOverflow.ellipsis,
@@ -64,7 +88,6 @@ class ProfilePage extends StatelessWidget {
                                   ? state.data.email ?? ""
                                   : "",
                               style: TextStyle(
-                                color: const Color(0xFF7F8C8D),
                                 fontWeight: FontWeight.w400,
                                 fontSize: context.sp(18),
                               ),
@@ -76,7 +99,6 @@ class ProfilePage extends StatelessWidget {
                     Container(
                       width: double.infinity,
                       height: context.h(1),
-                      color: const Color(0xFFD5D8DC), // Shadow color
                       margin: EdgeInsets.symmetric(vertical: context.h(18)),
                     ),
                     Column(
@@ -85,8 +107,6 @@ class ProfilePage extends StatelessWidget {
                         Text(
                           "Akun Kamu",
                           style: TextStyle(
-                            color:
-                                const Color(0xFF2C3E50), // Dark color for title
                             fontWeight: FontWeight.w700,
                             fontSize: context.sp(18),
                           ),
@@ -109,19 +129,20 @@ class ProfilePage extends StatelessWidget {
                               const Icon(
                                 Icons.person_rounded,
                                 size: 30,
-                                color: Color(0xFFBDC3C7), // Light grey color
                               ),
                               SizedBox(width: context.w(18)),
                               Expanded(
                                 child: Container(
                                   padding:
                                       EdgeInsets.only(bottom: context.h(18)),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.cardBorder,
                                         width: 1,
-                                        color:
-                                            Color(0xFFBDC3C7), // Border color
                                       ),
                                     ),
                                   ),
@@ -134,17 +155,13 @@ class ProfilePage extends StatelessWidget {
                                       Text(
                                         "Ubah Profil",
                                         style: TextStyle(
-                                          color: const Color(
-                                              0xFF2C3E50), // Dark color for item
                                           fontWeight: FontWeight.w400,
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
-                                        color:
-                                            AppColors.primary, // Splash color
                                       ),
                                     ],
                                   ),
@@ -171,19 +188,20 @@ class ProfilePage extends StatelessWidget {
                               const Icon(
                                 Icons.lock_rounded,
                                 size: 30,
-                                color: Color(0xFFBDC3C7), // Light grey color
                               ),
                               SizedBox(width: context.w(18)),
                               Expanded(
                                 child: Container(
                                   padding:
                                       EdgeInsets.only(bottom: context.h(18)),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.cardBorder,
                                         width: 1,
-                                        color:
-                                            Color(0xFFBDC3C7), // Border color
                                       ),
                                     ),
                                   ),
@@ -196,17 +214,13 @@ class ProfilePage extends StatelessWidget {
                                       Text(
                                         "Ubah Password",
                                         style: TextStyle(
-                                          color: const Color(
-                                              0xFF2C3E50), // Dark color for item
                                           fontWeight: FontWeight.w400,
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
-                                        color:
-                                            AppColors.primary, // Splash color
                                       ),
                                     ],
                                   ),
@@ -219,8 +233,6 @@ class ProfilePage extends StatelessWidget {
                         Text(
                           "Bantuan",
                           style: TextStyle(
-                            color:
-                                const Color(0xFF2C3E50), // Dark color for title
                             fontWeight: FontWeight.w700,
                             fontSize: context.sp(18),
                           ),
@@ -233,19 +245,20 @@ class ProfilePage extends StatelessWidget {
                               const Icon(
                                 Icons.email_rounded,
                                 size: 30,
-                                color: Color(0xFFBDC3C7), // Light grey color
                               ),
                               SizedBox(width: context.w(18)),
                               Expanded(
                                 child: Container(
                                   padding:
                                       EdgeInsets.only(bottom: context.h(18)),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.cardBorder,
                                         width: 1,
-                                        color:
-                                            Color(0xFFBDC3C7), // Border color
                                       ),
                                     ),
                                   ),
@@ -258,17 +271,13 @@ class ProfilePage extends StatelessWidget {
                                       Text(
                                         "Kontak Kami",
                                         style: TextStyle(
-                                          color: const Color(
-                                              0xFF2C3E50), // Dark color for item
                                           fontWeight: FontWeight.w400,
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
-                                        color:
-                                            AppColors.primary, // Splash color
                                       ),
                                     ],
                                   ),
@@ -285,19 +294,20 @@ class ProfilePage extends StatelessWidget {
                               const Icon(
                                 Icons.report_rounded,
                                 size: 30,
-                                color: Color(0xFFBDC3C7), // Light grey color
                               ),
                               SizedBox(width: context.w(18)),
                               Expanded(
                                 child: Container(
                                   padding:
                                       EdgeInsets.only(bottom: context.h(18)),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.cardBorder,
                                         width: 1,
-                                        color:
-                                            Color(0xFFBDC3C7), // Border color
                                       ),
                                     ),
                                   ),
@@ -310,17 +320,13 @@ class ProfilePage extends StatelessWidget {
                                       Text(
                                         "Laporkan Masalah",
                                         style: TextStyle(
-                                          color: const Color(
-                                              0xFF2C3E50), // Dark color for item
                                           fontWeight: FontWeight.w400,
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
-                                        color:
-                                            AppColors.primary, // Splash color
                                       ),
                                     ],
                                   ),
@@ -333,8 +339,6 @@ class ProfilePage extends StatelessWidget {
                         Text(
                           "Lainnya",
                           style: TextStyle(
-                            color:
-                                const Color(0xFF2C3E50), // Dark color for title
                             fontWeight: FontWeight.w700,
                             fontSize: context.sp(18),
                           ),
@@ -348,19 +352,20 @@ class ProfilePage extends StatelessWidget {
                               const Icon(
                                 Icons.library_books_rounded,
                                 size: 30,
-                                color: Color(0xFFBDC3C7), // Light grey color
                               ),
                               SizedBox(width: context.w(18)),
                               Expanded(
                                 child: Container(
                                   padding:
                                       EdgeInsets.only(bottom: context.h(18)),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.cardBorder,
                                         width: 1,
-                                        color:
-                                            Color(0xFFBDC3C7), // Border color
                                       ),
                                     ),
                                   ),
@@ -373,17 +378,13 @@ class ProfilePage extends StatelessWidget {
                                       Text(
                                         "Syarat & Ketentuan",
                                         style: TextStyle(
-                                          color: const Color(
-                                              0xFF2C3E50), // Dark color for item
                                           fontWeight: FontWeight.w400,
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
-                                        color:
-                                            AppColors.primary, // Splash color
                                       ),
                                     ],
                                   ),
@@ -404,20 +405,21 @@ class ProfilePage extends StatelessWidget {
                               const Icon(
                                 Icons.logout_rounded,
                                 size: 30,
-                                color:
-                                    Color(0xFFE74C3C), // Red color for logout
+                                color: Colors.red,
                               ),
                               SizedBox(width: context.w(18)),
                               Expanded(
                                 child: Container(
                                   padding:
                                       EdgeInsets.only(bottom: context.h(18)),
-                                  decoration: const BoxDecoration(
+                                  decoration: BoxDecoration(
                                     border: Border(
                                       bottom: BorderSide(
+                                        color: Theme.of(context).brightness ==
+                                                Brightness.dark
+                                            ? Colors.white
+                                            : AppColors.cardBorder,
                                         width: 1,
-                                        color:
-                                            Color(0xFFBDC3C7), // Border color
                                       ),
                                     ),
                                   ),
@@ -430,17 +432,15 @@ class ProfilePage extends StatelessWidget {
                                       Text(
                                         "Keluar",
                                         style: TextStyle(
-                                          color: const Color(
-                                              0xFFE74C3C), // Red color for item
                                           fontWeight: FontWeight.w400,
                                           fontSize: context.sp(18),
+                                          color: Colors.red,
                                         ),
                                       ),
                                       const Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
-                                        color: Color(
-                                            0xFFE74C3C), // Red color for icon
+                                        color: Colors.red,
                                       ),
                                     ],
                                   ),

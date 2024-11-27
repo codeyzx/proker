@@ -26,12 +26,3 @@ class HomeError extends HomeState {
   @override
   List<Object> get props => [message];
 }
-
-class HomeColorUpdated extends HomeState {
-  final Color color;
-
-  const HomeColorUpdated({required this.color});
-
-  @override
-  List<Object> get props => [color];
-}

@@ -44,27 +44,14 @@ class TabPage extends StatelessWidget {
             }
           },
           type: BottomNavigationBarType.fixed,
-          backgroundColor: Colors.white,
-          selectedItemColor: AppColors.primary,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          selectedLabelStyle: const TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-          ),
-          unselectedLabelStyle: const TextStyle(
-            fontSize: 13,
-            fontWeight: FontWeight.w600,
-          ),
-          items: _buildBottomNavigationBarItems(tabsRouter, userRole),
+          items: _buildBottomNavigationBarItems(tabsRouter, userRole, context),
         );
       },
     );
   }
 
   List<BottomNavigationBarItem> _buildBottomNavigationBarItems(
-      TabsRouter tabsRouter, String userRole) {
+      TabsRouter tabsRouter, String userRole, BuildContext context) {
     final items = [
       {'icon': Assets.icons.icHome, 'label': 'Home'},
       {'icon': Assets.icons.icEvent, 'label': 'Event'},
@@ -82,7 +69,11 @@ class TabPage extends StatelessWidget {
           width: 32,
           height: 32,
           colorFilter: ColorFilter.mode(
-            tabsRouter.activeIndex == index ? AppColors.primary : Colors.grey,
+            tabsRouter.activeIndex == index
+                ? Theme.of(context).brightness == Brightness.dark
+                    ? Colors.white
+                    : AppColors.primary
+                : Colors.grey,
             BlendMode.srcIn,
           ),
         ),

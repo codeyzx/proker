@@ -7,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
-import 'package:proker/src/core/config/themes/app_colors.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:proker/src/features/home/presentation/bloc/home_cubit.dart';
 
@@ -74,6 +73,7 @@ class HomePage extends StatelessWidget {
 
   // Helper method to build section titles
   Widget _buildSectionTitle(BuildContext context, String title) {
+    final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: context.w(25)),
       child: Row(
@@ -82,13 +82,16 @@ class HomePage extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: context.sp(18), fontWeight: FontWeight.bold),
+                fontSize: context.sp(18),
+                fontWeight: FontWeight.bold,
+                color: theme.textTheme.bodyLarge?.color),
           ),
           TextButton(
             onPressed: () {},
             child: Text("View All",
                 style: TextStyle(
-                    color: const Color(0xFF04339B), fontSize: context.sp(14))),
+                    color: theme.colorScheme.primary,
+                    fontSize: context.sp(14))),
           ),
         ],
       ),
@@ -162,8 +165,8 @@ class SearchBarWidget extends StatelessWidget {
                   Assets.icons.icSearch.svg(
                     width: context.w(20),
                     height: context.h(20),
-                    colorFilter:
-                        ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+                    colorFilter: ColorFilter.mode(
+                        Theme.of(context).primaryColor, BlendMode.srcIn),
                   ),
                   SizedBox(width: context.w(8)),
                   Text(
@@ -194,7 +197,8 @@ class SearchBarWidget extends StatelessWidget {
             child: Assets.icons.icFilter.svg(
               width: context.w(22),
               height: context.h(16),
-              colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).primaryColor, BlendMode.srcIn),
             ),
           ),
         ),
@@ -241,7 +245,8 @@ class CategoriesWidget extends StatelessWidget {
             ],
           ),
           padding: EdgeInsets.all(context.i(14)),
-          child: Icon(icon, color: AppColors.primary, size: context.sp(38)),
+          child: Icon(icon,
+              color: Theme.of(context).primaryColor, size: context.sp(38)),
         ),
         SizedBox(height: context.h(8)),
         Text(title,
@@ -512,7 +517,7 @@ class CustomSliverAppBar extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       floating: true,
-      backgroundColor: AppColors.primary,
+      backgroundColor: Theme.of(context).primaryColor,
       automaticallyImplyLeading: false,
       flexibleSpace: FlexibleSpaceBar(
         background: Container(
@@ -544,7 +549,7 @@ class CustomSliverAppBar extends StatelessWidget {
                   right: context.w(25),
                   bottom: context.h(20),
                 ),
-                color: AppColors.primary,
+                color: Theme.of(context).primaryColor,
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -593,7 +598,8 @@ class CustomSliverAppBar extends StatelessWidget {
                               width: context.w(20),
                               height: context.h(20),
                               colorFilter: ColorFilter.mode(
-                                  AppColors.primary, BlendMode.srcIn),
+                                  Theme.of(context).primaryColor,
+                                  BlendMode.srcIn),
                             ),
                           ),
                         ),
@@ -612,7 +618,8 @@ class CustomSliverAppBar extends StatelessWidget {
                               width: context.w(20),
                               height: context.h(20),
                               colorFilter: ColorFilter.mode(
-                                  AppColors.primary, BlendMode.srcIn),
+                                  Theme.of(context).primaryColor,
+                                  BlendMode.srcIn),
                             ),
                           ),
                         ),
@@ -628,7 +635,7 @@ class CustomSliverAppBar extends StatelessWidget {
                   right: context.w(25),
                   bottom: context.h(20),
                 ),
-                color: AppColors.primary,
+                color: Theme.of(context).primaryColor,
                 child: Row(
                   children: [
                     CircleAvatar(
@@ -711,7 +718,7 @@ List<Widget> _buildTags(BuildContext context, List<String> tags) {
       padding: EdgeInsets.symmetric(
           horizontal: context.w(8), vertical: context.h(4)),
       decoration: BoxDecoration(
-        color: AppColors.primary,
+        color: Theme.of(context).primaryColor,
         borderRadius: BorderRadius.circular(context.r(4)),
       ),
       child: Text(

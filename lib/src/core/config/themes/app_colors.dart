@@ -46,4 +46,36 @@ class AppColors {
   static const alertDark = Color(0xFFEAEAEA);
 
   static const locationRing = Color(0xFF5470F2);
+
+  // Dark mode colors
+  static const darkPrimary = Color(0xFF1A1A1A);
+  static const darkPrimaryDarker = Color(0xFF0D0D0D);
+  static const darkBackground = Color(0xFF121212);
+  static const darkText = Color(0xFFE0E0E0);
+  static const darkTextLight = Color(0xFFBFBFBF);
+  static const darkTextDark = Color(0xFF303030);
+  static const darkTextWhite = Color(0xFFFFFFFF);
+  static const darkTextBlack = Color(0xFF000000);
+  static const darkTextGrey = Color(0xFF8B8B8B);
+  static const darkTextRed = Color(0xFFFF2D2D);
+  static const darkInputFocus = Color(0xFF303030);
+  static const darkInputBorder = Color(0xFFBFBFBF);
+  static const darkInputError = Color(0xFFFF2D2D);
+  static const darkInputLabel = Color(0xFF303030);
+  static const darkInputHint = Color(0xFFBFBFBF);
+  static const darkCardBorder = Color(0xFFBFBFBF);
+  static const darkBorder = Color(0xFFEAEAEA);
+  static const darkButtonPrimary = Color(0xFF557f33);
+  static const darkButtonDisabled = Color(0xFFA0A0A0);
+  static const darkGreenTransparent = Color(0xFFF3F9ED);
+  static const darkAlertSuccessBorder = Color(0xFF8BC34A);
+  static const darkAlertSuccess = Color(0xFFF3F9ED);
+  static const darkAlertError = Color(0xFFFF2D2D);
+  static const darkYellowTransparent = Color(0xFFFEF6E9);
+  static const darkYellow = Color(0xFFF9A825);
+  static const darkAlertWarningBorder = Color(0xFFF9A825);
+  static const darkAlertWarning = Color(0xFFFEF6E9);
+  static const darkAlertDarkBorder = Color(0xFF303030);
+  static const darkAlertDark = Color(0xFFEAEAEA);
+  static const darkLocationRing = Color(0xFF5470F2);
 }
