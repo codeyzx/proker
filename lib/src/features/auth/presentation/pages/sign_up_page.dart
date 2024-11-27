@@ -186,7 +186,7 @@ class _SignUpPageState extends State<SignUpPage> {
                               text: "Sign In",
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  context.replaceRoute(SignInRoute());
+                                  context.replaceRoute(const SignInRoute());
                                 },
                               style: const TextStyle(
                                 color: AppColors.primary,

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/core/utils/logger.dart';
 import 'package:proker/src/features/event/domain/entities/event_entity.dart';
 import 'package:proker/src/features/event/presentation/bloc/event/event_cubit.dart';
 
@@ -541,7 +542,7 @@ class EventCard extends StatelessWidget {
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     // Log error
-                    print('Error loading image: $error');
+                    logger.e('Error loading image: $error');
                     return Container(
                       color: Colors.grey,
                       child: const Center(

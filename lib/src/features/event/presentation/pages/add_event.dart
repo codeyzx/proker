@@ -64,8 +64,8 @@ class _AddEventPageState extends State<AddEventPage> {
 
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
-    final PickedFile? pickedFile =
-        await picker.getImage(source: ImageSource.gallery);
+    final XFile? pickedFile =
+        await picker.pickImage(source: ImageSource.gallery);
 
     if (pickedFile != null) {
       setState(() {

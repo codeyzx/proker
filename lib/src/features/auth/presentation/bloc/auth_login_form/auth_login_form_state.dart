@@ -1,19 +1,22 @@
-part of 'auth_login_form_bloc.dart';
+part of 'auth_login_form_cubit.dart';
 
 sealed class LoginFormState extends Equatable {
   final String email;
   final String password;
   final bool isValid;
+  final bool isObscureText;
   const LoginFormState({
     required this.email,
     required this.password,
     required this.isValid,
+    required this.isObscureText,
   });
   @override
   List<Object?> get props => [
         email,
         password,
         isValid,
+        isObscureText,
       ];
 }
 
@@ -23,6 +26,7 @@ class LoginFormInitialState extends LoginFormState {
           email: "",
           password: "",
           isValid: false,
+          isObscureText: true,
         );
 }
 
@@ -34,6 +38,7 @@ class LoginFormDataState extends LoginFormState {
     required this.inputEmail,
     required this.inputPassword,
     required this.inputIsValid,
+    required super.isObscureText,
   }) : super(
           email: inputEmail,
           password: inputPassword,
@@ -44,5 +49,6 @@ class LoginFormDataState extends LoginFormState {
         inputEmail,
         inputPassword,
         inputIsValid,
+        isObscureText,
       ];
 }

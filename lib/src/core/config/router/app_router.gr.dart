@@ -247,13 +247,10 @@ class RoomRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SignInPage]
-class SignInRoute extends PageRouteInfo<SignInRouteArgs> {
-  SignInRoute({
-    Key? key,
-    List<PageRouteInfo>? children,
-  }) : super(
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute({List<PageRouteInfo>? children})
+      : super(
           SignInRoute.name,
-          args: SignInRouteArgs(key: key),
           initialChildren: children,
         );
 
@@ -262,22 +259,9 @@ class SignInRoute extends PageRouteInfo<SignInRouteArgs> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      final args =
-          data.argsAs<SignInRouteArgs>(orElse: () => const SignInRouteArgs());
-      return SignInPage(key: args.key);
+      return const SignInPage();
     },
   );
-}
-
-class SignInRouteArgs {
-  const SignInRouteArgs({this.key});
-
-  final Key? key;
-
-  @override
-  String toString() {
-    return 'SignInRouteArgs{key: $key}';
-  }
 }
 
 /// generated route for

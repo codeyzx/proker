@@ -32,6 +32,8 @@ import '../../../features/auth/domain/usecases/login_usecase.dart' as _i849;
 import '../../../features/auth/domain/usecases/logout_usecase.dart' as _i1;
 import '../../../features/auth/domain/usecases/register_usecase.dart' as _i879;
 import '../../../features/auth/presentation/bloc/auth/auth_cubit.dart' as _i32;
+import '../../../features/auth/presentation/bloc/auth_login_form/auth_login_form_cubit.dart'
+    as _i875;
 import '../../../features/chat/data/datasources/chat_datasource.dart' as _i759;
 import '../../../features/chat/data/datasources/friend_datasource.dart'
     as _i1046;
@@ -85,6 +87,7 @@ extension GetItInjectableX on _i174.GetIt {
     final fBModule = _$FBModule();
     final registerModule = _$RegisterModule(this);
     gh.factory<_i252.HiveLocalStorage>(() => _i252.HiveLocalStorage());
+    gh.factory<_i875.AuthLoginFormCubit>(() => _i875.AuthLoginFormCubit());
     gh.singleton<_i59.FirebaseAuth>(() => fBModule.getFirebaseAuth);
     gh.singleton<_i116.GoogleSignIn>(() => fBModule.getGoogleSignin);
     gh.singleton<_i451.FirebaseChatCore>(() => fBModule.getFirebaseChatCore);

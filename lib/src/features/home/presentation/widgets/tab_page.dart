@@ -20,7 +20,7 @@ class TabPage extends StatelessWidget {
       userRole = authState.data.role ?? '';
       logger.i('userRole: $userRole');
     } else if (authState is AuthLogoutLoadingState) {
-      context.router.replaceAll([SignInRoute()]);
+      context.router.replaceAll([const SignInRoute()]);
     }
 
     final routes = [
