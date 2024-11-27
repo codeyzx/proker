@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
+import 'package:proker/src/features/home/presentation/bloc/home_cubit.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -26,7 +28,20 @@ class HomePage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const BannerWidget(),
+                    BlocBuilder<HomeCubit, HomeState>(
+                      builder: (context, state) {
+                        if (state is HomeInitial) {
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        } else if (state is HomeLoaded) {
+                          return BannerWidget(banners: state.banners);
+                        } else if (state is HomeError) {
+                          return const Center(
+                              child: Text('Error loading banners'));
+                        }
+                        return Container();
+                      },
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: context.w(25)),
                       child: Column(
@@ -82,24 +97,20 @@ class HomePage extends StatelessWidget {
 }
 
 class BannerWidget extends StatelessWidget {
-  const BannerWidget({super.key});
+  final List<String> banners;
+
+  const BannerWidget({super.key, required this.banners});
 
   @override
   Widget build(BuildContext context) {
-    final List<String> imageUrls = [
-      'https://picsum.photos/200/300?random=1',
-      'https://picsum.photos/200/300?random=2',
-      'https://picsum.photos/200/300?random=3',
-    ];
-
     return Container(
       height: context.h(150),
       width: double.infinity,
       margin: EdgeInsets.only(top: context.h(25)),
       child: CarouselSlider.builder(
-        itemCount: imageUrls.length,
+        itemCount: banners.length,
         itemBuilder: (context, index, realIndex) {
-          return _buildBannerItem(context, imageUrls[index]);
+          return _buildBannerItem(context, banners[index]);
         },
         options: CarouselOptions(
           autoPlay: true,
@@ -113,24 +124,15 @@ class BannerWidget extends StatelessWidget {
 
   // Helper method to build individual banner items
   Widget _buildBannerItem(BuildContext context, String imageUrl) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blue[300],
-        borderRadius: BorderRadius.circular(context.r(12)),
-        image: DecorationImage(
-          image: NetworkImage(imageUrl),
-          fit: BoxFit.cover,
-        ),
-      ),
-      child: Center(
-        child: Text(
-          "Tunjukkan Bakatmu di Bidang E-Sport, Himakom!",
-          style: TextStyle(
-              color: Colors.white,
-              fontSize: context.sp(16),
-              fontWeight: FontWeight.bold),
-          textAlign: TextAlign.center,
-        ),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(context.r(10)),
+      child: CachedNetworkImage(
+        imageUrl: imageUrl,
+        fit: BoxFit.cover,
+        placeholder: (context, url) =>
+            const Center(child: CircularProgressIndicator()),
+        errorWidget: (context, url, error) =>
+            const Center(child: Icon(Icons.error)),
       ),
     );
   }
@@ -160,6 +162,8 @@ class SearchBarWidget extends StatelessWidget {
                   Assets.icons.icSearch.svg(
                     width: context.w(20),
                     height: context.h(20),
+                    colorFilter:
+                        ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
                   ),
                   SizedBox(width: context.w(8)),
                   Text(
@@ -190,6 +194,7 @@ class SearchBarWidget extends StatelessWidget {
             child: Assets.icons.icFilter.svg(
               width: context.w(22),
               height: context.h(16),
+              colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
             ),
           ),
         ),
@@ -236,7 +241,7 @@ class CategoriesWidget extends StatelessWidget {
             ],
           ),
           padding: EdgeInsets.all(context.i(14)),
-          child: Icon(icon, color: Colors.blue[800], size: context.sp(38)),
+          child: Icon(icon, color: AppColors.primary, size: context.sp(38)),
         ),
         SizedBox(height: context.h(8)),
         Text(title,
@@ -401,7 +406,7 @@ class UpcomingEventCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: context.h(150),
-      margin: EdgeInsets.only(right: context.w(20), bottom: context.h(20)),
+      margin: EdgeInsets.only(right: context.w(10), bottom: context.h(20)),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(context.r(10)),
@@ -587,8 +592,8 @@ class CustomSliverAppBar extends StatelessWidget {
                             child: Assets.icons.icNotif.svg(
                               width: context.w(20),
                               height: context.h(20),
-                              colorFilter: const ColorFilter.mode(
-                                  Color(0xFF3785FC), BlendMode.srcIn),
+                              colorFilter: ColorFilter.mode(
+                                  AppColors.primary, BlendMode.srcIn),
                             ),
                           ),
                         ),
@@ -606,8 +611,8 @@ class CustomSliverAppBar extends StatelessWidget {
                             child: Assets.icons.icChat.svg(
                               width: context.w(20),
                               height: context.h(20),
-                              colorFilter: const ColorFilter.mode(
-                                  Color(0xFF3785FC), BlendMode.srcIn),
+                              colorFilter: ColorFilter.mode(
+                                  AppColors.primary, BlendMode.srcIn),
                             ),
                           ),
                         ),

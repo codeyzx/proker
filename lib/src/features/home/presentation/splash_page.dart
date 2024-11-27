@@ -8,6 +8,7 @@ import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_colors.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
+import 'package:proker/src/features/home/presentation/bloc/home_cubit.dart';
 
 @RoutePage()
 class SplashPage extends StatelessWidget {
@@ -15,8 +16,15 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider.value(
-      value: getIt<AuthCubit>()..checkSignInStatus(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider.value(
+          value: getIt<AuthCubit>()..checkSignInStatus(),
+        ),
+        BlocProvider.value(
+          value: getIt<HomeCubit>()..fetchDataFromFirestore(),
+        ),
+      ],
       child: BlocListener<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthAuthenticatedState) {
@@ -29,20 +37,24 @@ class SplashPage extends StatelessWidget {
             });
           }
         },
-        child: StatusBarWidget(
-          color: AppColors.primary,
-          child: Scaffold(
-            backgroundColor: AppColors.primary,
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildLogo(context),
-                  _buildSplashText(context),
-                ],
+        child: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            return StatusBarWidget(
+              color: AppColors.primary,
+              child: Scaffold(
+                backgroundColor: AppColors.primary,
+                body: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _buildLogo(context),
+                      _buildSplashText(context),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );

@@ -7,14 +7,14 @@ class AppTheme {
   static ThemeData data(bool isDark) {
     return ThemeData(
       useMaterial3: true,
-      colorScheme: const ColorScheme.light(
+      colorScheme: ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.primaryDarker,
         error: AppColors.textRed,
         surfaceTint: Colors.transparent,
       ),
-      progressIndicatorTheme: const ProgressIndicatorThemeData(
-        circularTrackColor: Color(0xFFE0E0E0),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        circularTrackColor: const Color(0xFFE0E0E0),
         color: AppColors.primary,
       ),
       dividerColor: Colors.transparent,
@@ -46,7 +46,7 @@ class AppTheme {
         labelLarge: TextStyle(
             fontSize: 14, fontWeight: FontWeight.w600, color: Colors.blue),
       ),
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 1,
         backgroundColor: Colors.white,
         selectedItemColor: AppColors.primary,

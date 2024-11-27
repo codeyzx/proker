@@ -188,7 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 ..onTap = () {
                                   context.replaceRoute(const SignInRoute());
                                 },
-                              style: const TextStyle(
+                              style: TextStyle(
                                 color: AppColors.primary,
                                 fontWeight: FontWeight.bold,
                               ),

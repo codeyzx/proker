@@ -140,7 +140,7 @@ class ProfilePage extends StatelessWidget {
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
                                         color:
@@ -202,7 +202,7 @@ class ProfilePage extends StatelessWidget {
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
                                         color:
@@ -264,7 +264,7 @@ class ProfilePage extends StatelessWidget {
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
                                         color:
@@ -316,7 +316,7 @@ class ProfilePage extends StatelessWidget {
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
                                         color:
@@ -379,7 +379,7 @@ class ProfilePage extends StatelessWidget {
                                           fontSize: context.sp(18),
                                         ),
                                       ),
-                                      const Icon(
+                                      Icon(
                                         Icons.arrow_forward_ios_rounded,
                                         size: 30,
                                         color:

@@ -67,6 +67,7 @@ import '../../../features/event/domain/usecases/update_event_usecase.dart'
     as _i441;
 import '../../../features/event/presentation/bloc/event/event_cubit.dart'
     as _i20;
+import '../../../features/home/presentation/bloc/home_cubit.dart' as _i382;
 import '../../cache/hive_local_storage.dart' as _i252;
 import '../../cache/local_storage.dart' as _i99;
 import '../../cache/secure_local_storage.dart' as _i333;
@@ -88,6 +89,7 @@ extension GetItInjectableX on _i174.GetIt {
     final registerModule = _$RegisterModule(this);
     gh.factory<_i252.HiveLocalStorage>(() => _i252.HiveLocalStorage());
     gh.factory<_i875.AuthLoginFormCubit>(() => _i875.AuthLoginFormCubit());
+    gh.factory<_i382.HomeCubit>(() => _i382.HomeCubit());
     gh.singleton<_i59.FirebaseAuth>(() => fBModule.getFirebaseAuth);
     gh.singleton<_i116.GoogleSignIn>(() => fBModule.getGoogleSignin);
     gh.singleton<_i451.FirebaseChatCore>(() => fBModule.getFirebaseChatCore);

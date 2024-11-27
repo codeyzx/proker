@@ -61,8 +61,8 @@ class _LivestreamRoomState extends State<StreamingRoomPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Padding(
-                        padding: EdgeInsets.fromLTRB(0, 10, 0, 20),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 10, 0, 20),
                         child: Icon(
                           Icons.tv_off,
                           color: AppColors.primary,
@@ -116,9 +116,8 @@ class _LivestreamRoomState extends State<StreamingRoomPage> {
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12.0),
                                 ),
-                                side:
-                                    const BorderSide(color: AppColors.primary)),
-                            child: const Text(
+                                side: BorderSide(color: AppColors.primary)),
+                            child: Text(
                               'Batal',
                               style: TextStyle(
                                 color: AppColors.primary,

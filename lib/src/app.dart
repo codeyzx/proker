@@ -7,6 +7,7 @@ import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/config/themes/app_theme.dart';
 import 'package:proker/src/core/constants/app_constants.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
+import 'package:proker/src/features/home/presentation/bloc/home_cubit.dart';
 import 'package:zego_uikit_prebuilt_live_streaming/zego_uikit_prebuilt_live_streaming.dart';
 
 class App extends StatelessWidget {
@@ -25,40 +26,47 @@ class App extends StatelessWidget {
         BlocProvider(
           create: (context) => getIt<ThemeBloc>(),
         ),
+        BlocProvider(
+          create: (context) => getIt<HomeCubit>()..fetchDataFromFirestore(),
+        ),
       ],
-      child: BlocBuilder<ThemeBloc, ThemeState>(
-        builder: (_, state) {
-          return GestureDetector(
-            onTap: () {
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            child: ScreenUtil(
-              options: const ScreenUtilOptions(
-                enable: true,
-                designSize: Size(390, 844),
-                fontFactorByWidth: 2.0,
-                fontFactorByHeight: 1.0,
-                flipSizeWhenLandscape: true,
-              ),
-              child: MaterialApp.router(
-                debugShowCheckedModeBanner: false,
-                title: AppConstants.appTitle,
-                theme: AppTheme.data(state.isDarkMode),
-                routerConfig: _appRouter.config(),
-                builder: (context, child) {
-                  return Stack(
-                    children: [
-                      child!,
-                      ZegoUIKitPrebuiltLiveStreamingMiniOverlayPage(
-                        contextQuery: () {
-                          return navigatorKey.currentState!.context;
-                        },
-                      ),
-                    ],
-                  );
+      child: BlocBuilder<HomeCubit, HomeState>(
+        builder: (context, state) {
+          return BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (_, themeState) {
+              return GestureDetector(
+                onTap: () {
+                  FocusManager.instance.primaryFocus?.unfocus();
                 },
-              ),
-            ),
+                child: ScreenUtil(
+                  options: const ScreenUtilOptions(
+                    enable: true,
+                    designSize: Size(390, 844),
+                    fontFactorByWidth: 2.0,
+                    fontFactorByHeight: 1.0,
+                    flipSizeWhenLandscape: true,
+                  ),
+                  child: MaterialApp.router(
+                    debugShowCheckedModeBanner: false,
+                    title: AppConstants.appTitle,
+                    theme: AppTheme.data(themeState.isDarkMode),
+                    routerConfig: _appRouter.config(),
+                    builder: (context, child) {
+                      return Stack(
+                        children: [
+                          child!,
+                          ZegoUIKitPrebuiltLiveStreamingMiniOverlayPage(
+                            contextQuery: () {
+                              return navigatorKey.currentState!.context;
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
           );
         },
       ),

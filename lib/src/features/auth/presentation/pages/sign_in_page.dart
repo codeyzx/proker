@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/src/core/common/widgets/status_bar/status_bar_widget.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
+import 'package:proker/src/core/config/themes/app_colors.dart';
 import 'package:proker/src/core/utils/show_snackbar.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth_login_form/auth_login_form_cubit.dart';
@@ -146,7 +147,7 @@ class SignInPage extends StatelessWidget {
                                       );
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: const Color(0xFF04339B),
+                                  backgroundColor: AppColors.primary,
                                   padding: EdgeInsets.all(context.h(16)),
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10),

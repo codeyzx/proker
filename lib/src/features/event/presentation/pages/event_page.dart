@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/core/config/themes/app_colors.dart';
 import 'package:proker/src/core/utils/logger.dart';
 import 'package:proker/src/features/event/domain/entities/event_entity.dart';
 import 'package:proker/src/features/event/presentation/bloc/event/event_cubit.dart';
@@ -68,7 +69,7 @@ class _EventPageState extends State<EventPage> {
 
   Widget _buildBlueSection() {
     return Container(
-      color: const Color(0xFF04339B),
+      color: AppColors.primary,
       height: 300.0, // Berikan tinggi eksplisit
       width: double.infinity,
       padding: EdgeInsets.only(top: context.i(40.0)),
@@ -125,8 +126,7 @@ class _EventPageState extends State<EventPage> {
           child: Text(
             item,
             style: TextStyle(
-              color:
-                  selectedValue == item ? const Color(0xFF04339B) : Colors.grey,
+              color: selectedValue == item ? AppColors.primary : Colors.grey,
               fontSize: context.sp(16),
               fontFamily: 'Urbanist',
               fontWeight: FontWeight.bold,
@@ -254,7 +254,7 @@ class _EventPageState extends State<EventPage> {
       label: Text(
         label,
         style: TextStyle(
-          color: isSelected ? const Color(0xFF04339B) : Colors.grey,
+          color: isSelected ? AppColors.primary : Colors.grey,
           fontSize: context.sp(16),
           fontFamily: 'Urbanist',
           fontWeight: FontWeight.bold,
@@ -290,8 +290,8 @@ class _EventPageState extends State<EventPage> {
       ),
       selected: isSelected,
       onSelected: onSelected,
-      backgroundColor: isSelected ? const Color(0xFF04339B) : Colors.white,
-      selectedColor: const Color(0xFF04339B),
+      backgroundColor: isSelected ? AppColors.primary : Colors.white,
+      selectedColor: AppColors.primary,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(
           context.r(8.0),
@@ -327,7 +327,7 @@ class _EventPageState extends State<EventPage> {
                           width: 200,
                           height: 4,
                           decoration: BoxDecoration(
-                            color: const Color(0xFF04339B),
+                            color: AppColors.primary,
                             borderRadius: BorderRadius.circular(
                               context.r(2),
                             ),
@@ -573,7 +573,7 @@ class EventCard extends StatelessWidget {
                       color: Colors.white, // Ubah warna teks
                     ),
                   ),
-                  backgroundColor: const Color(0xFF04339B),
+                  backgroundColor: AppColors.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius:
                         BorderRadius.circular(20.0), // Ubah border radius
