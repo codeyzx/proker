@@ -371,7 +371,7 @@ class _AddEventPageState extends State<AddEventPage> {
                           createdBy:
                               'currentUserId', // Replace with actual user ID
                           bannerUrl:
-                              'https://ibb.co.com/LPW5vSt', // URL foto random
+                              'https://i.ibb.co.com/1n56bZq/events-1-1.png',
                           type: selectedType ?? 'Program Kerja',
                           status: 'Unpublished',
                         );

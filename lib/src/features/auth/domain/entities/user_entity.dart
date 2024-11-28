@@ -31,6 +31,38 @@ class UserEntity extends Equatable {
   int? updatedAtMillis() => updatedAt?.millisecondsSinceEpoch;
   int? lastSeenMillis() => lastSeen?.millisecondsSinceEpoch;
 
+  factory UserEntity.fromJson(Map<String, dynamic> json) {
+    return UserEntity(
+      id: json['id'],
+      name: json['name'],
+      email: json['email'],
+      firstName: json['firstName'],
+      lastName: json['lastName'],
+      imageUrl: json['imageUrl'],
+      role: json['role'],
+      createdAt: fromMillis(json['createdAt']),
+      updatedAt: fromMillis(json['updatedAt']),
+      lastSeen: fromMillis(json['lastSeen']),
+      password: json['password'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'email': email,
+      'firstName': firstName,
+      'lastName': lastName,
+      'imageUrl': imageUrl,
+      'role': role,
+      'createdAt': createdAtMillis(),
+      'updatedAt': updatedAtMillis(),
+      'lastSeen': lastSeenMillis(),
+      'password': password,
+    };
+  }
+
   static DateTime? fromMillis(dynamic millis) {
     if (millis is Timestamp) {
       return millis.toDate();

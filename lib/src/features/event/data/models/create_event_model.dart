@@ -32,20 +32,22 @@ class CreateEventModel extends EventEntity {
 
   Map<String, dynamic> toMap() {
     return {
+      "id": id,
       "title": title,
       "description": description,
       "status": status,
-      "startDate": startDate,
+      "start_date": startDate?.toIso8601String(),
+      "end_date": endDate?.toIso8601String(),
       "location": location,
-      "createdBy": createdBy,
+      "created_by": createdBy,
       "type": type,
       "benefits": benefits,
-      "bannerUrl": bannerUrl,
+      "banner_url": bannerUrl,
       "category": category,
-      "upvoteCount": upvoteCount,
-      "documentationUrl": documentationUrl,
-      "galleryUrls": galleryUrls,
-      "timeline": timeline,
+      "upvote_count": upvoteCount,
+      "documentation_url": documentationUrl,
+      "gallery_urls": galleryUrls,
+      "timeline": timeline?.map((e) => e.toMap()).toList(),
     };
   }
 

@@ -26,21 +26,21 @@ class EventModel extends EventEntity {
       title: json["title"] as String?,
       description: json["description"] as String?,
       status: json["status"] as String?,
-      startDate: json["start_date"] != null
-          ? DateTime.parse(json["start_date"] as String)
+      startDate: json["startDate"] != null
+          ? DateTime.parse(json["startDate"] as String)
           : null,
-      endDate: json["end_date"] != null
-          ? DateTime.parse(json["end_date"] as String)
+      endDate: json["endDate"] != null
+          ? DateTime.parse(json["endDate"] as String)
           : null,
       location: json["location"] as String?,
-      createdBy: json["created_by"] as String?,
+      createdBy: json["createdBy"] as String?,
       type: json["type"] as String?,
       benefits: json["benefits"] as String?,
-      bannerUrl: json["banner_url"] as String?,
+      bannerUrl: json["bannerUrl"] as String?,
       category: json["category"] as String?,
-      upvoteCount: json["upvote_count"] as int?,
-      documentationUrl: json["documentation_url"] as String?,
-      galleryUrls: (json["gallery_urls"] as List<dynamic>?)
+      upvoteCount: json["upvoteCount"] as int?,
+      documentationUrl: json["documentationUrl"] as String?,
+      galleryUrls: (json["galleryUrls"] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       timeline: (json["timeline"] as List<dynamic>?)
@@ -55,21 +55,21 @@ class EventModel extends EventEntity {
       title: map["title"] as String?,
       description: map["description"] as String?,
       status: map["status"] as String?,
-      startDate: map["start_date"] != null
-          ? DateTime.parse(map["start_date"] as String)
+      startDate: map["startDate"] != null
+          ? DateTime.parse(map["startDate"] as String)
           : null,
-      endDate: map["end_date"] != null
-          ? DateTime.parse(map["end_date"] as String)
+      endDate: map["endDate"] != null
+          ? DateTime.parse(map["endDate"] as String)
           : null,
       location: map["location"] as String?,
-      createdBy: map["created_by"] as String?,
+      createdBy: map["createdBy"] as String?,
       type: map["type"] as String?,
       benefits: map["benefits"] as String?,
-      bannerUrl: map["banner_url"] as String?,
+      bannerUrl: map["bannerUrl"] as String?,
       category: map["category"] as String?,
-      upvoteCount: map["upvote_count"] as int?,
-      documentationUrl: map["documentation_url"] as String?,
-      galleryUrls: (map["gallery_urls"] as List<dynamic>?)
+      upvoteCount: map["upvoteCount"] as int?,
+      documentationUrl: map["documentationUrl"] as String?,
+      galleryUrls: (map["galleryUrls"] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
       timeline: (map["timeline"] as List<dynamic>?)
@@ -88,18 +88,17 @@ class EventModel extends EventEntity {
       "title": title,
       "description": description,
       "status": status,
-      "start_date": startDate?.toIso8601String(),
-      "end_date": endDate?.toIso8601String(),
+      "startDate": startDate,
       "location": location,
-      "created_by": createdBy,
+      "createdBy": createdBy,
       "type": type,
       "benefits": benefits,
-      "banner_url": bannerUrl,
+      "bannerUrl": bannerUrl,
       "category": category,
-      "upvote_count": upvoteCount,
-      "documentation_url": documentationUrl,
-      "gallery_urls": galleryUrls,
-      "timeline": timeline?.map((e) => e.toMap()).toList(),
+      "upvoteCount": upvoteCount,
+      "documentationUrl": documentationUrl,
+      "galleryUrls": galleryUrls,
+      "timeline": timeline,
     };
   }
 

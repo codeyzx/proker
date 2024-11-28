@@ -10,6 +10,7 @@ import 'package:proker/src/core/utils/logger.dart';
 import 'package:proker/src/features/auth/data/models/login_model.dart';
 import 'package:proker/src/features/auth/data/models/register_model.dart';
 import 'package:proker/src/features/auth/data/models/user_model.dart';
+import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 
 @factoryMethod
 sealed class AuthRemoteDataSource {
@@ -155,7 +156,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     try {
       final result = await ApiUrl.users.where("email", isEqualTo: email).get();
       final doc = result.docs.first;
-      final user = UserModel.fromJson(doc.data(), doc.id);
+      final user = UserModel.fromJson(doc.data().toJson(), doc.id);
 
       return user;
     } catch (e) {
@@ -168,16 +169,21 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   Future<void> _registerUserToFirestore(User user, {String? name}) async {
-    await ApiUrl.users.doc(user.uid).set({
-      "email": user.email,
-      "name": name ?? user.displayName,
-      "firstName": name ?? user.displayName,
-      "lastName": "",
-      "imageUrl": user.photoURL ?? 'https://i.pravatar.cc/300',
-      "role": "user",
-      "createdAt": FieldValue.serverTimestamp(),
-      "updatedAt": FieldValue.serverTimestamp(),
-      "lastSeen": FieldValue.serverTimestamp(),
-    });
+    await ApiUrl.users.doc(user.uid).set(
+          UserEntity.fromJson(
+            {
+              "id": user.uid,
+              "email": user.email,
+              "name": name ?? user.displayName,
+              "firstName": name ?? user.displayName,
+              "lastName": "",
+              "imageUrl": user.photoURL ?? 'https://i.pravatar.cc/300',
+              "role": "user",
+              "createdAt": FieldValue.serverTimestamp(),
+              "updatedAt": FieldValue.serverTimestamp(),
+              "lastSeen": FieldValue.serverTimestamp(),
+            },
+          ),
+        );
   }
 }

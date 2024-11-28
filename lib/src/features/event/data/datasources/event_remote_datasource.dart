@@ -3,11 +3,12 @@ import 'package:proker/src/core/api/api_url.dart';
 import 'package:proker/src/core/errors/exceptions.dart';
 import 'package:proker/src/core/utils/logger.dart';
 import 'package:proker/src/features/event/data/models/models.dart';
+import 'package:proker/src/features/event/domain/entities/event_entity.dart';
 
 @factoryMethod
 sealed class EventRemoteDataSource {
   Future<List<EventModel>> fetchEvent();
-  Future<void> createEvent(CreateEventModel model);
+  Future<void> createEvent(EventEntity model);
   Future<void> updateEvent(UpdateEventModel model);
   Future<void> deleteEvent(DeleteEventModel model);
 }
@@ -23,26 +24,9 @@ class EventRemoteDataSourceImpl implements EventRemoteDataSource {
     try {
       final response = await ApiUrl.events.get();
 
-      return EventModel.fromJsonList(response.docs
-          .map((e) => {
-                "id": e.id,
-                "title": e.data()["title"],
-                "description": e.data()["description"],
-                "status": e.data()["status"],
-                "startDate": e.data()["startDate"],
-                "endDate": e.data()["endDate"],
-                "location": e.data()["location"],
-                "createdBy": e.data()["createdBy"],
-                "type": e.data()["type"],
-                "benefits": e.data()["benefits"],
-                "bannerUrl": e.data()["bannerUrl"],
-                "category": e.data()["category"],
-                "upvoteCount": e.data()["upvoteCount"],
-                "documentationUrl": e.data()["documentationUrl"],
-                "galleryUrls": e.data()["galleryUrls"],
-                "timeline": e.data()["timeline"],
-              })
-          .toList());
+      return response.docs
+          .map((e) => EventModel.fromJson(e.data().toJson()))
+          .toList();
     } catch (e) {
       logger.e(e);
       throw ServerException();
@@ -50,9 +34,9 @@ class EventRemoteDataSourceImpl implements EventRemoteDataSource {
   }
 
   @override
-  Future<void> createEvent(CreateEventModel model) async {
+  Future<void> createEvent(EventEntity model) async {
     try {
-      await ApiUrl.events.add(model.toMap());
+      await ApiUrl.events.add(model);
       return;
     } catch (e) {
       logger.e(e);
