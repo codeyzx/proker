@@ -132,6 +132,25 @@ class EventRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [FeedPage]
+class FeedRoute extends PageRouteInfo<void> {
+  const FeedRoute({List<PageRouteInfo>? children})
+      : super(
+          FeedRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FeedRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return FeedPage();
+    },
+  );
+}
+
+/// generated route for
 /// [FriendPage]
 class FriendRoute extends PageRouteInfo<void> {
   const FriendRoute({List<PageRouteInfo>? children})

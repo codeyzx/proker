@@ -27,7 +27,7 @@ class TabPage extends StatelessWidget {
       const HomeRoute(),
       const EventRoute(),
       if (userRole == 'pengelola') const KelolaEventRoute(),
-      const EventRoute(),
+      const FeedRoute(),
       const ProfileRoute(),
     ];
 
