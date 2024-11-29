@@ -69,40 +69,6 @@ class _DetailEventState extends State<DetailEventPage> {
     //   });
   }
 
-  void _showFullImage(String imageUrl) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return Dialog(
-          child: Container(
-            color: Colors.black,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                GestureDetector(
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    padding: const EdgeInsets.all(16.0),
-                    alignment: Alignment.topRight,
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: InteractiveViewer(
-                    child: Image.network(imageUrl),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     List<String> benefitsList = widget.event.benefits?.split(', ') ?? [];
@@ -527,7 +493,6 @@ class _DetailEventState extends State<DetailEventPage> {
                             icon: const Icon(Icons.send),
                             onPressed: () {
                               // Implement send comment functionality
-                              print("Comment sent: ${_controller.text}");
                               _controller.clear();
                             },
                           ),
