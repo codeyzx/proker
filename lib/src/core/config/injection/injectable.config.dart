@@ -142,28 +142,28 @@ extension GetItInjectableX on _i174.GetIt {
           gh<_i333.SecureLocalStorage>(),
           gh<_i252.HiveLocalStorage>(),
         ));
-    gh.lazySingleton<_i619.AuthCheckSignInStatusUseCase>(
-        () => _i619.AuthCheckSignInStatusUseCase(gh<_i234.AuthRepository>()));
+    gh.lazySingleton<_i879.AuthRegisterUseCase>(
+        () => _i879.AuthRegisterUseCase(gh<_i234.AuthRepository>()));
     gh.lazySingleton<_i849.AuthLoginUseCase>(
         () => _i849.AuthLoginUseCase(gh<_i234.AuthRepository>()));
     gh.lazySingleton<_i1.AuthLogoutUseCase>(
         () => _i1.AuthLogoutUseCase(gh<_i234.AuthRepository>()));
-    gh.lazySingleton<_i879.AuthRegisterUseCase>(
-        () => _i879.AuthRegisterUseCase(gh<_i234.AuthRepository>()));
+    gh.lazySingleton<_i619.AuthCheckSignInStatusUseCase>(
+        () => _i619.AuthCheckSignInStatusUseCase(gh<_i234.AuthRepository>()));
     gh.lazySingleton<_i32.AuthCubit>(() => _i32.AuthCubit(
           gh<_i849.AuthLoginUseCase>(),
           gh<_i1.AuthLogoutUseCase>(),
           gh<_i879.AuthRegisterUseCase>(),
           gh<_i619.AuthCheckSignInStatusUseCase>(),
         ));
-    gh.lazySingleton<_i534.CreateEventUseCase>(
-        () => _i534.CreateEventUseCase(gh<_i340.EventRepository>()));
-    gh.lazySingleton<_i883.DeleteEventUseCase>(
-        () => _i883.DeleteEventUseCase(gh<_i340.EventRepository>()));
-    gh.lazySingleton<_i68.GetEventListUseCase>(
-        () => _i68.GetEventListUseCase(gh<_i340.EventRepository>()));
     gh.lazySingleton<_i441.UpdateEventUseCase>(
         () => _i441.UpdateEventUseCase(gh<_i340.EventRepository>()));
+    gh.lazySingleton<_i883.DeleteEventUseCase>(
+        () => _i883.DeleteEventUseCase(gh<_i340.EventRepository>()));
+    gh.lazySingleton<_i534.CreateEventUseCase>(
+        () => _i534.CreateEventUseCase(gh<_i340.EventRepository>()));
+    gh.lazySingleton<_i68.GetEventListUseCase>(
+        () => _i68.GetEventListUseCase(gh<_i340.EventRepository>()));
     gh.factory<_i20.EventCubit>(() => _i20.EventCubit(
           gh<_i534.CreateEventUseCase>(),
           gh<_i883.DeleteEventUseCase>(),

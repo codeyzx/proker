@@ -24,7 +24,8 @@ class SplashPage extends StatelessWidget {
           } else if (state is AuthCheckSignInStatusFailureState) {
             Future.delayed(const Duration(seconds: 3)).then((value) {
               if (context.mounted) {
-                context.router.replaceAll([SignInRoute()]);
+                // context.router.replaceAll([SignInRoute()]);
+                context.router.replaceAll([const OnboardRoute()]);
               }
             });
           }

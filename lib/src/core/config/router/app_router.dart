@@ -13,6 +13,7 @@ import 'package:proker/src/features/event/presentation/pages/event_list_page.dar
 import 'package:proker/src/features/event/presentation/pages/event_page.dart';
 import 'package:proker/src/features/event/presentation/pages/kelola_event.dart';
 import 'package:proker/src/features/home/presentation/home_page.dart';
+import 'package:proker/src/features/home/presentation/onboard_page.dart';
 import 'package:proker/src/features/home/presentation/profile_page.dart';
 import 'package:proker/src/features/home/presentation/splash_page.dart';
 import 'package:proker/src/features/home/presentation/widgets/tab_page.dart';
@@ -35,6 +36,7 @@ class AppRouter extends RootStackRouter {
           ],
         ),
         AutoRoute(page: SplashRoute.page, initial: true),
+        AutoRoute(page: OnboardRoute.page),
         AutoRoute(page: SignInRoute.page),
         AutoRoute(page: SignUpRoute.page),
         AutoRoute(page: ResetPasswordRoute.page),
