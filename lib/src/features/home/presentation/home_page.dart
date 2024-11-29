@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/gen/assets.gen.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
 import 'package:proker/src/core/config/router/app_router.dart';
+import 'package:proker/src/core/utils/string_helpers.dart';
 import 'package:proker/src/features/auth/presentation/bloc/auth/auth_cubit.dart';
 import 'package:proker/src/features/home/presentation/bloc/home_cubit.dart';
 
@@ -113,7 +114,11 @@ class BannerWidget extends StatelessWidget {
       child: CarouselSlider.builder(
         itemCount: banners.length,
         itemBuilder: (context, index, realIndex) {
-          return _buildBannerItem(context, banners[index]);
+          return _buildBannerItem(
+              context,
+              banners.isEmpty
+                  ? 'https://picsum.photos/200/300'
+                  : banners[index]);
         },
         options: CarouselOptions(
           autoPlay: true,
@@ -561,7 +566,7 @@ class CustomSliverAppBar extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Halo ${user.name ?? "User"}!',
+                          'Halo ${user.name == null ? 'User' : StringHelpers.limitTextInitial(user.name.toString(), 12)}!',
                           style: TextStyle(
                               color: Colors.white, fontSize: context.sp(18)),
                         ),

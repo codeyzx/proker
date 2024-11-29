@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart';
 
 class UserEntity extends Equatable {
   final String? id;
@@ -44,6 +45,24 @@ class UserEntity extends Equatable {
       updatedAt: fromMillis(json['updatedAt']),
       lastSeen: fromMillis(json['lastSeen']),
       password: json['password'],
+    );
+  }
+
+  //UserEntity to User flutter chat types
+  User toUser() {
+    return User(
+      id: id ?? '',
+      firstName: firstName,
+      imageUrl: imageUrl,
+      lastName: lastName,
+      metadata: {
+        'role': 'user',
+        'email': email,
+        'name': name,
+        'createdAt': fromMillis(createdAt),
+        'updatedAt': fromMillis(updatedAt),
+        'lastSeen': fromMillis(lastSeen),
+      },
     );
   }
 

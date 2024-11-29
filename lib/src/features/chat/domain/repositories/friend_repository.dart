@@ -1,6 +1,6 @@
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:fpdart/fpdart.dart';
+import 'package:proker/src/features/auth/domain/entities/user_entity.dart';
 
 abstract class FriendRepository {
-  Stream<Either<String, List<types.User>>> watchFriends();
+  Stream<Either<String, List<UserEntity>>> watchFriends();
 }

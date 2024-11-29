@@ -8,8 +8,10 @@ import 'package:proker/src/features/feed/presentation/widgets/filter_bar.dart';
 
 @RoutePage()
 class FeedPage extends StatefulWidget {
+  const FeedPage({super.key});
+
   @override
-  _FeedPageState createState() => _FeedPageState();
+  State<FeedPage> createState() => _FeedPageState();
 }
 
 class _FeedPageState extends State<FeedPage> {
@@ -22,24 +24,30 @@ class _FeedPageState extends State<FeedPage> {
       profileName: 'Departemen SenOr',
       time: '4m ago',
       eventName: 'Proker Himakomfest',
-      description: 'Berikan dukunganmu untuk event ini dengan melakukan "Upvote"',
-      image: 'https://www.gramedia.com/blog/content/images/2024/04/pexels-photo-2747450.jpg',
+      description:
+          'Berikan dukunganmu untuk event ini dengan melakukan "Upvote"',
+      image:
+          'https://www.gramedia.com/blog/content/images/2024/04/pexels-photo-2747450.jpg',
     ),
     FeedItem(
       status: 'Upcoming',
       profileName: 'Departemen RisetDikti',
       time: '41m ago',
       eventName: 'Tsigram 2024',
-      description: 'Nantikan Tsigram 2024 yang akan diselenggarakan pada 24 Oktober. Jangan sampai ketinggalan!',
-      image: 'https://geekhunter.co/wp-content/uploads/2023/01/manfaat-bootcamp-dibandingkan-kuliah-1024x576.jpg',
+      description:
+          'Nantikan Tsigram 2024 yang akan diselenggarakan pada 24 Oktober. Jangan sampai ketinggalan!',
+      image:
+          'https://geekhunter.co/wp-content/uploads/2023/01/manfaat-bootcamp-dibandingkan-kuliah-1024x576.jpg',
     ),
     FeedItem(
       status: 'Finished',
       profileName: 'Departemen Himakom',
       time: '2h ago',
       eventName: 'Diskusi Publik 2024',
-      description: 'Kami ucapkan terimakasih sebesar-besarnya terhadap semua partisipan event ini. Berikan feedback agar event ini dapat semakin berkembang!',
-      image: 'https://image.kemenpora.go.id/images/content/2024/03/28/4813/389Luncurkan-Diskusi-Publik--KlubBerkawan--Menpora-Dito-Harap-Bisa-Lahirkan-Habibie-Baru-untuk-Masa-Depan-Indonesia.jpg',
+      description:
+          'Kami ucapkan terimakasih sebesar-besarnya terhadap semua partisipan event ini. Berikan feedback agar event ini dapat semakin berkembang!',
+      image:
+          'https://image.kemenpora.go.id/images/content/2024/03/28/4813/389Luncurkan-Diskusi-Publik--KlubBerkawan--Menpora-Dito-Harap-Bisa-Lahirkan-Habibie-Baru-untuk-Masa-Depan-Indonesia.jpg',
     ),
   ];
 
@@ -51,13 +59,15 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text(
           "Himakom's Feed",
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: Color(0xFF04339B),
+        backgroundColor:
+            // AppColors.primary,
+
+            Theme.of(context).primaryColor,
         elevation: 4.0,
         shadowColor: Colors.black,
       ),

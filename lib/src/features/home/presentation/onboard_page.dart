@@ -13,8 +13,7 @@ class OnboardPage extends StatefulWidget {
 }
 
 class _OnboardPageState extends State<OnboardPage> {
-
-    bool isLastPage = false;
+  bool isLastPage = false;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class _OnboardPageState extends State<OnboardPage> {
               });
             }
           },
-          children:  [
+          children: [
             OnboardingContent(
                 imageAsset: "assets/images/himakom_logo.png",
                 imageWidth: context.w(300),
@@ -61,8 +60,9 @@ class _OnboardPageState extends State<OnboardPage> {
         ),
       ),
       bottomSheet: Container(
-        padding: EdgeInsets.only(bottom: context.h(52), left: context.w(34), right: context.w(34)),
-        height:context.h(170),
+        padding: EdgeInsets.only(
+            bottom: context.h(52), left: context.w(34), right: context.w(34)),
+        height: context.h(170),
         color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -90,7 +90,7 @@ class _OnboardPageState extends State<OnboardPage> {
                     height: context.h(50),
                     child: ElevatedButton(
                       onPressed: () {
-                        context.router.replaceAll([SignInRoute()]);
+                        context.router.replaceAll([const SignInRoute()]);
                       },
                       child: const Text("Gabung Sekarang"),
                     ),
@@ -160,7 +160,7 @@ class OnboardingContent extends StatelessWidget {
             ),
             textAlign: TextAlign.center,
           ),
-          SizedBox(height:context.h(25.0)),
+          SizedBox(height: context.h(25.0)),
           SizedBox(
             width: context.w(350),
             child: Text(

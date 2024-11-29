@@ -29,12 +29,12 @@ class UserModel extends UserEntity {
   factory UserModel.fromJson(Map<String, dynamic> json, String id) {
     return UserModel(
       id: id,
-      email: json["email"],
-      name: json["name"],
-      firstName: json["firstName"],
-      lastName: json["lastName"],
-      imageUrl: json["imageUrl"],
-      role: json["role"],
+      email: json["email"] ?? "",
+      name: json["name"] ?? "",
+      firstName: json["firstName"] ?? "",
+      lastName: json["lastName"] ?? "",
+      imageUrl: json["imageUrl"] ?? "",
+      role: json["role"] ?? "",
       createdAt: UserEntity.fromMillis(json["createdAt"]) ?? DateTime.now(),
       updatedAt: UserEntity.fromMillis(json["updatedAt"]) ?? DateTime.now(),
       lastSeen: UserEntity.fromMillis(json["lastSeen"]) ?? DateTime.now(),

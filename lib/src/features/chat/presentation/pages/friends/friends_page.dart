@@ -62,7 +62,7 @@ class _FriendPageState extends State<FriendPage> {
                               //create room
                               context
                                   .read<RoomCubit>()
-                                  .createSingleRoom(singleUser);
+                                  .createSingleRoom(singleUser.toUser());
                             },
                             title: Text(singleUser.firstName ?? ""),
                             leading: CircleAvatar(

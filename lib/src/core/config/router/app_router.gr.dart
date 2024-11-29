@@ -145,7 +145,7 @@ class FeedRoute extends PageRouteInfo<void> {
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return FeedPage();
+      return const FeedPage();
     },
   );
 }

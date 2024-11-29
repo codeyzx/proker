@@ -7,12 +7,11 @@ import 'package:proker/src/features/feed/domain/entities/feed_item.dart';
 class FeedCard extends StatelessWidget {
   final FeedItem item;
 
-  FeedCard({required this.item});
+  const FeedCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
       margin: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
       elevation: 3.0,
       child: Column(
@@ -40,14 +39,14 @@ class FeedCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: EdgeInsets.all(4),
+                  padding: const EdgeInsets.all(4),
                   decoration: BoxDecoration(
                     color: getStatusColor(item.status),
                     borderRadius: BorderRadius.circular(5),
                   ),
                   child: Text(
                     item.status,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -56,7 +55,7 @@ class FeedCard extends StatelessWidget {
                 const SizedBox(height: 4.0),
                 Text(
                   item.eventName,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),

@@ -7,7 +7,8 @@ class FilterBar extends StatelessWidget {
   final String selectedFilter;
   final Function(String) onFilterSelected;
 
-  FilterBar({
+  const FilterBar({
+    super.key,
     required this.filters,
     required this.selectedFilter,
     required this.onFilterSelected,
@@ -29,10 +30,13 @@ class FilterBar extends StatelessWidget {
               onFilterSelected(filter);
             },
             child: Container(
-              margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
-              padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
               decoration: BoxDecoration(
-                color: isSelected ? Color(0xFF04339B) : Colors.white,
+                color:
+                    isSelected ? Theme.of(context).primaryColor : Colors.white,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
@@ -45,7 +49,9 @@ class FilterBar extends StatelessWidget {
               child: Text(
                 filter,
                 style: TextStyle(
-                  color: isSelected ? Colors.white : Color(0xFF04339B),
+                  color: isSelected
+                      ? Colors.white
+                      : Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
