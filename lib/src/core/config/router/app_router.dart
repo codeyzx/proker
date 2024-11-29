@@ -7,8 +7,10 @@ import 'package:proker/src/features/auth/presentation/pages/sign_up_page.dart';
 import 'package:proker/src/features/chat/presentation/pages/chat/chat_page.dart';
 import 'package:proker/src/features/chat/presentation/pages/friends/friends_page.dart';
 import 'package:proker/src/features/chat/presentation/pages/room/room_page.dart';
+import 'package:proker/src/features/event/domain/entities/event_entity.dart';
 import 'package:proker/src/features/event/presentation/pages/add_event.dart';
 import 'package:proker/src/features/event/presentation/pages/create_event_page.dart';
+import 'package:proker/src/features/event/presentation/pages/detail_event.dart';
 import 'package:proker/src/features/event/presentation/pages/event_list_page.dart';
 import 'package:proker/src/features/event/presentation/pages/event_page.dart';
 import 'package:proker/src/features/event/presentation/pages/kelola_event.dart';
@@ -48,5 +50,6 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: CreateEventRoute.page),
         AutoRoute(page: StreamingRoomRoute.page),
         AutoRoute(page: AddEventRoute.page),
+        AutoRoute(page: DetailEventRoute.page),
       ];
 }
