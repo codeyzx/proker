@@ -121,5 +121,48 @@ class EventCubit extends Cubit<EventState> {
     return super.close();
   }
 
+  void filterEvents({
+    String? searchText,
+    bool? isNewSelected,
+    bool? isUpcomingSelected,
+    bool? isDoneSelected,
+    List<String>? selectedCategories,
+    List<EventEntity>? allevents,
+  }) {
+    List<EventEntity> filteredEvents = allevents ?? [];
+
+    if (searchText != null && searchText.isNotEmpty) {
+      filteredEvents = filteredEvents
+          .where((event) =>
+              event.title?.toLowerCase().contains(searchText.toLowerCase()) ??
+              false)
+          .toList();
+    }
+
+    if (isNewSelected == true) {
+      filteredEvents = filteredEvents
+          .where((event) => event.status?.toLowerCase() == 'new')
+          .toList();
+    } else if (isUpcomingSelected == true) {
+      filteredEvents = filteredEvents
+          .where((event) => event.status?.toLowerCase() == 'upcoming')
+          .toList();
+    } else if (isDoneSelected == true) {
+      filteredEvents = filteredEvents
+          .where((event) => event.status?.toLowerCase() == 'done')
+          .toList();
+    }
+
+    if (selectedCategories != null && selectedCategories.isNotEmpty) {
+      filteredEvents = filteredEvents.where((event) {
+        final eventCategories = event.category?.split(', ') ?? [];
+        return selectedCategories.any(
+            (category) => eventCategories.contains(category.toLowerCase()));
+      }).toList();
+    }
+
+    emit(GetEventListSuccessState(filteredEvents));
+  }
+
   void searchEvents(String searchText) {}
 }

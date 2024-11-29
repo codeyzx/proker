@@ -94,6 +94,52 @@ class CreateEventRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [DetailEventPage]
+class DetailEventRoute extends PageRouteInfo<DetailEventRouteArgs> {
+  DetailEventRoute({
+    Key? key,
+    required EventEntity event,
+    List<PageRouteInfo>? children,
+  }) : super(
+          DetailEventRoute.name,
+          args: DetailEventRouteArgs(
+            key: key,
+            event: event,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'DetailEventRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      final args = data.argsAs<DetailEventRouteArgs>();
+      return DetailEventPage(
+        key: args.key,
+        event: args.event,
+      );
+    },
+  );
+}
+
+class DetailEventRouteArgs {
+  const DetailEventRouteArgs({
+    this.key,
+    required this.event,
+  });
+
+  final Key? key;
+
+  final EventEntity event;
+
+  @override
+  String toString() {
+    return 'DetailEventRouteArgs{key: $key, event: $event}';
+  }
+}
+
+/// generated route for
 /// [EventListPage]
 class EventListRoute extends PageRouteInfo<void> {
   const EventListRoute({List<PageRouteInfo>? children})

@@ -69,7 +69,7 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/app_logo.png
   AssetGenImage get appLogo =>
-      const AssetGenImage('assets/images/app_logo.png');
+      const AssetGenImage('assets/images/app_logo2.png');
 
   /// File path: assets/images/banner_pergerakan_1.png
   AssetGenImage get bannerPergerakan1 =>
