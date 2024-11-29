@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:proker/src/core/config/injection/injectable.dart';
+import 'package:proker/src/core/config/router/app_router.dart';
 import 'package:proker/src/core/utils/logger.dart';
 import 'package:proker/src/features/event/domain/entities/event_entity.dart';
 import 'package:proker/src/features/event/presentation/bloc/event/event_cubit.dart';
@@ -44,7 +45,7 @@ class _EventPageState extends State<EventPage> {
 
   void _filterEvents() {
     setState(() {
-      context.read<EventCubit>().searchEvents(searchText);
+      // context.read<EventCubit>().searchEvents(searchText);
     });
   }
 
@@ -519,93 +520,100 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Banner event
-            Container(
-              height: 100,
-              width: 340,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.network(
-                  event.bannerUrl ??
-                      'https://via.placeholder.com/340x100', // Ganti dengan sumber gambar fallback
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    // Log error
-                    logger.e('Error loading image: $error');
-                    return Container(
-                      color: Colors.grey,
-                      child: const Center(
-                        child: Text(
-                          'Error loading image',
-                          style: TextStyle(color: Colors.white),
+    return GestureDetector(
+      onTap: () {
+        logger.d('Event ID: ${event..toJson()}');
+        // Navigasi ke halaman detail event dengan mengirimkan data event
+        context.router.push(DetailEventRoute(event: event));
+      },
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Banner event
+              Container(
+                height: 100,
+                width: 340,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Image.network(
+                    event.bannerUrl ??
+                        'https://via.placeholder.com/340x100', // Ganti dengan sumber gambar fallback
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      // Log error
+                      logger.e('Error loading image: $error');
+                      return Container(
+                        color: Colors.grey,
+                        child: const Center(
+                          child: Text(
+                            'Error loading image',
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
-                      ),
-                    );
-                  },
+                      );
+                    },
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 8),
+              const SizedBox(height: 8),
 
-            // Elemen kategori event
-            Wrap(
-              spacing: 6.0,
-              children:
-                  (event.category?.split(', ') ?? []).map<Widget>((category) {
-                return Chip(
-                  label: Text(
-                    category,
-                    style: const TextStyle(
-                      fontFamily: 'Urbanist Bold',
-                      fontSize: 10.0, // Ubah ukuran teks
-                      fontWeight: FontWeight.bold, // Ubah ketebalan teks
-                      color: Colors.white, // Ubah warna teks
+              // Elemen kategori event
+              Wrap(
+                spacing: 6.0,
+                children:
+                    (event.category?.split(', ') ?? []).map<Widget>((category) {
+                  return Chip(
+                    label: Text(
+                      category,
+                      style: const TextStyle(
+                        fontFamily: 'Urbanist Bold',
+                        fontSize: 10.0, // Ubah ukuran teks
+                        fontWeight: FontWeight.bold, // Ubah ketebalan teks
+                        color: Colors.white, // Ubah warna teks
+                      ),
                     ),
-                  ),
-                  backgroundColor: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius:
-                        BorderRadius.circular(20.0), // Ubah border radius
-                  ),
-                );
-              }).toList(),
-            ),
-            const SizedBox(height: 8),
-
-            // Judul event
-            Text(
-              event.title ?? 'No Title',
-              style: const TextStyle(
-                fontFamily: 'Urbanist Bold',
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(20.0), // Ubah border radius
+                    ),
+                  );
+                }).toList(),
               ),
-            ),
-            const SizedBox(height: 4),
+              const SizedBox(height: 8),
 
-            // Deskripsi event
-            Text(
-              event.description ?? 'No Description',
-              style: TextStyle(
-                fontFamily: 'Urbanist',
-                fontSize: 12,
-                color: Colors.grey[600],
+              // Judul event
+              Text(
+                event.title ?? 'No Title',
+                style: const TextStyle(
+                  fontFamily: 'Urbanist Bold',
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 4),
+
+              // Deskripsi event
+              Text(
+                event.description ?? 'No Description',
+                style: TextStyle(
+                  fontFamily: 'Urbanist',
+                  fontSize: 12,
+                  color: Colors.grey[600],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

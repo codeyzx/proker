@@ -245,9 +245,9 @@ class $AssetsIconsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/app_logo.png
+  /// File path: assets/images/app_logo2.png
   AssetGenImage get appLogo =>
-      const AssetGenImage('assets/images/app_logo.png');
+      const AssetGenImage('assets/images/app_logo2.png');
 
   /// File path: assets/images/banner_pergerakan_1.png
   AssetGenImage get bannerPergerakan1 =>
@@ -13859,7 +13859,7 @@ class CustomSliverAppBar extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       backgroundImage:
-                          const AssetImage('assets/images/app_logo.png'),
+                          const AssetImage('assets/images/app_logo2.png'),
                       radius: context.r(24),
                     ),
                     SizedBox(width: context.w(16)),
